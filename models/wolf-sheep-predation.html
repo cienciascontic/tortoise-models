@@ -1,0 +1,421 @@
+
+<!-- saved from url=(0048)http://li425-91.members.linode.com:9000/save-url -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="app.css" charset="utf-8"/>
+  </head>
+  <body data-feedly-mini="yes">
+    <div id="model-container"><div class="netlogo-model" style="width: 819;"><div class="netlogo-header"><label class="netlogo-widget netlogo-speed-slider"><span class="netlogo-label">speed</span> <input type="range" min="-1" max="1" step="0.01"></label> <div class="netlogo-powered-by"><a href="http://ccl.northwestern.edu/netlogo/"><img style="vertical-align: middle;" alt="NetLogo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAANcSURBVHjarJRdaFxFFMd/M/dj7252uxubKms+bGprVyIVbNMWWqkQqtLUSpQWfSiV+oVFTcE3DeiDgvoiUSiCYLH2oVoLtQ+iaaIWWtE2FKGkkSrkq5svN+sm7ma/7p3x4W42lEbjQw8MM8yc87/nzPnNFVprbqWJXyMyXuMqx1Ni6N3ny3cX8tOHNLoBUMvESoFI2Xbs4zeO1lzREpSrMSNS1zkBDv6uo1/noz1H7mpvS4SjprAl2AZYEqzKbEowBAgBAkjPKX2599JjT7R0bj412D0JYNplPSBD1G2SmR/e6u1ikEHG2vYiGxoJmxAyIGSCI8GpCItKimtvl2JtfGujDNkX6epuAhCjNeAZxM1ocPy2Qh4toGQ5DLU+ysiuA2S3P0KgJkjAgEAlQylAA64CG/jlUk6//ng4cNWmLK0yOPNMnG99Rs9LQINVKrD+wmke7upg55PrWP3eYcwrlykpKCkoelDy/HVegQhoABNAepbACwjOt72gZkJhypX70YDWEEklue+rbnYc2MiGp1upPfYReiJJUUG58gFXu4udch1wHcjFIgy0HyIjb2yvBpT2F6t+6+f+D15lW8c9JDo7iPSdgVIRLUqL2AyHDQAOf9hfbqxvMF98eT3RuTS1avHyl+Stcphe2chP9+4k/t3RbXVl3W+Ws17FY56/w3VcbO/koS/eZLoAqrQMxADZMTYOfwpwoWjL4+bCYcgssMqGOzPD6CIkZ/3SxTJ0ayFIN6/BnBrZb2XdE1JUgkJWkfrUNRJnPyc16zsbgPyXIUJBpvc+y89nk/S8/4nek3NPGeBWMwzGvhUPnP6RubRLwfODlqqx3LSCyee2MnlwMwA2RwgO5qouVcHmksUdJweYyi8hZkrUjgT5t/ejNq0jBsSqNWsKyT9uFtxw7Bs585d3g46KOeT2bWHmtd14KyP+5mzqpsYU3OyioACMhGiqPTMocsrHId9cy9BLDzKxq8X3ctMwlV6yKSHL4fr4dd0DeQBTBUgUkvpE1kVPbqkX117ZzuSaFf4zyfz5n9A4lk0yNU7vyb7jTy1kmFGipejKvh6h9n0W995ZPTu227hqmCz33xXgFV1v9NzI96NfjndWt7XWCB/7BSICFWL+j3lAofpCtfYFb6X9MwCJZ07mUsXRGwAAAABJRU5ErkJggg=="> <span style="font-size: 16px;">powered by NetLogo</span></a></div></div> <div style="position: relative; width: 819; height: 509" class="netlogo-widget-container"><div class="netlogo-widget netlogo-view-container" style="position: absolute; left: 350px; top: 10px; width: 469px; height: 490px;"><div class="netlogo-widget netlogo-tick-counter">ticks: <span></span></div><div class="view-layers" style="width: 100%; position: relative;"><canvas width="918" height="918" class="patch-view" style="width: 100%; z-index: 0;"></canvas><canvas width="1377" height="1377" class="turtle-view" style="width: 100%; position: absolute; top: 0px; left: 0px; z-index: 1;"></canvas><canvas width="459" height="459" class="spotlight-view" style="width: 100%; position: absolute; top: 0px; left: 0px; z-index: 2;"></canvas></div></div>              <label class="netlogo-widget netlogo-slider netlogo-input" style="position: absolute; left: 3px; top: 150px; width: 174px; height: 33px;"><input type="range" max="250" min="0" step="1"> <span class="netlogo-label">initial-number-sheep</span> <span class="netlogo-value"><input type="number" min="0" max="250" step="1"> </span></label>         <label class="netlogo-widget netlogo-slider netlogo-input" style="position: absolute; left: 3px; top: 187px; width: 174px; height: 33px;"><input type="range" max="50" min="0" step="1.0"> <span class="netlogo-label">sheep-gain-from-food</span> <span class="netlogo-value"><input type="number" min="0" max="50" step="1.0"> </span></label>         <label class="netlogo-widget netlogo-slider netlogo-input" style="position: absolute; left: 3px; top: 222px; width: 174px; height: 33px;"><input type="range" max="20" min="1" step="1.0"> <span class="netlogo-label">sheep-reproduce</span> <span class="netlogo-value"><input type="number" min="1" max="20" step="1.0"> %</span></label>         <label class="netlogo-widget netlogo-slider netlogo-input" style="position: absolute; left: 181px; top: 150px; width: 165px; height: 33px;"><input type="range" max="250" min="0" step="1"> <span class="netlogo-label">initial-number-wolves</span> <span class="netlogo-value"><input type="number" min="0" max="250" step="1"> </span></label>         <label class="netlogo-widget netlogo-slider netlogo-input" style="position: absolute; left: 181px; top: 186px; width: 165px; height: 33px;"><input type="range" max="100" min="0" step="1.0"> <span class="netlogo-label">wolf-gain-from-food</span> <span class="netlogo-value"><input type="number" min="0" max="100" step="1.0"> </span></label>         <label class="netlogo-widget netlogo-slider netlogo-input" style="position: absolute; left: 181px; top: 222px; width: 165px; height: 33px;"><input type="range" max="20" min="0" step="1.0"> <span class="netlogo-label">wolf-reproduce</span> <span class="netlogo-value"><input type="number" min="0" max="20" step="1.0"> %</span></label>      <label class="netlogo-widget netlogo-switcher netlogo-input" style="position: absolute; left: 5px; top: 87px; width: 94px; height: 33px;"><input type="checkbox"> <span class="netlogo-label">grass?</span></label>            <label class="netlogo-widget netlogo-slider netlogo-input" style="position: absolute; left: 106px; top: 88px; width: 212px; height: 33px;"><input type="range" max="100" min="0" step="1"> <span class="netlogo-label">grass-regrowth-time</span> <span class="netlogo-value"><input type="number" min="0" max="100" step="1"> </span></label>       <button class="netlogo-widget netlogo-button netlogo-command" type="button" style="position: absolute; left: 8px; top: 28px; width: 69px; height: 33px;"><span>setup</span></button>          <label class="netlogo-widget netlogo-button netlogo-forever-button  netlogo-command" style="position: absolute; left: 90px; top: 28px; width: 67px; height: 33px;"><input type="checkbox"> <span class="netlogo-label">go</span></label>              <div class="netlogo-widget netlogo-plot netlogo-plot-0 netlogo-output" style="position: absolute; left: 12px; top: 312px; width: 316px; height: 197px;" data-highcharts-chart="1"><div class="highcharts-container" id="highcharts-2" style="position: relative; overflow: hidden; width: 316px; height: 197px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="316" height="197"><desc>Created with Highcharts 4.0.4</desc><defs><clippath id="highcharts-3"><rect x="0" y="0" width="232" height="55"></rect></clippath></defs><rect x="0" y="0" width="316" height="197" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect><g class="highcharts-button" style="cursor:default;" stroke-linecap="round" transform="translate(282,10)"><title>Chart context menu</title><rect x="0.5" y="0.5" width="24" height="22" strokeWidth="1" fill="white" stroke="none" stroke-width="1" rx="2" ry="2"></rect><path fill="#E0E0E0" d="M 6 6.5 L 20 6.5 M 6 11.5 L 20 11.5 M 6 16.5 L 20 16.5" stroke="#666" stroke-width="3" zIndex="1"></path><text x="0" zIndex="1" style="color:black;fill:black;" y="13"></text></g><g class="highcharts-grid" zIndex="1"></g><g class="highcharts-grid" zIndex="1"><path fill="none" d="M 74 52.5 L 306 52.5" stroke="#C0C0C0" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 74 108.5 L 306 108.5" stroke="#C0C0C0" stroke-width="1" zIndex="1" opacity="1"></path></g><g class="highcharts-axis" zIndex="2"><path fill="none" d="M 189.5 108 L 189.5 118" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 306.5 108 L 306.5 118" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 73.5 108 L 73.5 118" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><text x="190" zIndex="7" text-anchor="middle" transform="translate(0,0)" class=" highcharts-xaxis-title" style="color:#707070;fill:#707070;" visibility="visible" y="150">time</text><path fill="none" d="M 74 108.5 L 306 108.5" stroke="#C0D0E0" stroke-width="1" zIndex="7" visibility="visible"></path></g><g class="highcharts-axis" zIndex="2"><text x="28.125" zIndex="7" text-anchor="middle" transform="translate(0,0) rotate(270 28.125 80.5)" class=" highcharts-yaxis-title" style="color:#707070;fill:#707070;" visibility="visible" y="80.5">pop.</text></g><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series" visibility="visible" zIndex="0.1" transform="translate(74,53) scale(1 1)" clip-path="url(#highcharts-3)"><path fill="none" d="M 0 0" stroke-linejoin="round" visibility="visible" stroke="rgba(192,192,192,0.0001)" stroke-width="22" zIndex="2" class=" highcharts-tracker" style=""></path></g><g class="highcharts-markers highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(74,53) scale(1 1)" clip-path="none" style=""></g><g class="highcharts-series" visibility="visible" zIndex="0.1" transform="translate(74,53) scale(1 1)" clip-path="url(#highcharts-3)"><path fill="none" d="M 0 0" stroke-linejoin="round" visibility="visible" stroke="rgba(192,192,192,0.0001)" stroke-width="22" zIndex="2" class=" highcharts-tracker" style=""></path></g><g class="highcharts-markers highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(74,53) scale(1 1)" clip-path="none" style=""></g><g class="highcharts-series" visibility="visible" zIndex="0.1" transform="translate(74,53) scale(1 1)" clip-path="url(#highcharts-3)"><path fill="none" d="M 0 0" stroke-linejoin="round" visibility="visible" stroke="rgba(192,192,192,0.0001)" stroke-width="22" zIndex="2" class=" highcharts-tracker" style=""></path></g><g class="highcharts-markers highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(74,53) scale(1 1)" clip-path="none" style=""></g></g><text x="158" text-anchor="middle" class="highcharts-title" zIndex="4" style="color:#333333;font-size:18px;fill:#333333;width:252px;" y="25">populations</text><g class="highcharts-legend" zIndex="7" transform="translate(37,161)"><g zIndex="1"><g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,3)"><path fill="none" d="M 0 11 L 16 11" stroke="rgb(52, 93, 169)" stroke-width="2"></path><text x="21" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2" y="15">sheep</text></g><g class="highcharts-legend-item" zIndex="1" transform="translate(84.703125,3)"><path fill="none" d="M 0 11 L 16 11" stroke="rgb(215, 50, 41)" stroke-width="2"></path><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2">wolves</text></g><g class="highcharts-legend-item" zIndex="1" transform="translate(166.25,3)"><path fill="none" d="M 0 11 L 16 11" stroke="rgb(89, 176, 60)" stroke-width="2"></path><text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2"><tspan>grass / 4</tspan></text></g></g></g></g><g class="highcharts-axis-labels highcharts-xaxis-labels" zIndex="7"><text x="74" text-anchor="middle" style="color:#606060;cursor:default;font-size:11px;fill:#606060;" y="128" opacity="1">0</text><text x="190" text-anchor="middle" style="color:#606060;cursor:default;font-size:11px;fill:#606060;" y="128" opacity="1">50</text><text x="305.5625" text-anchor="middle" style="color:#606060;cursor:default;font-size:11px;fill:#606060;" y="128" opacity="1">100</text></g><g class="highcharts-axis-labels highcharts-yaxis-labels" zIndex="7"><text x="59" text-anchor="end" style="width:84px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="111.5" opacity="1">0</text><text x="59" text-anchor="end" style="width:84px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="56.5" opacity="1">100</text></g><g class="highcharts-tooltip" zIndex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(0,-9999)"><path fill="none" d="M 3 0 L 13 0 C 16 0 16 0 16 3 L 16 13 C 16 16 16 16 13 16 L 3 16 C 0 16 0 16 0 13 L 0 3 C 0 0 0 0 3 0" isShadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)"></path><path fill="none" d="M 3 0 L 13 0 C 16 0 16 0 16 3 L 16 13 C 16 16 16 16 13 16 L 3 16 C 0 16 0 16 0 13 L 0 3 C 0 0 0 0 3 0" isShadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)"></path><path fill="none" d="M 3 0 L 13 0 C 16 0 16 0 16 3 L 16 13 C 16 16 16 16 13 16 L 3 16 C 0 16 0 16 0 13 L 0 3 C 0 0 0 0 3 0" isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)"></path><path fill="rgba(249, 249, 249, .85)" d="M 3 0 L 13 0 C 16 0 16 0 16 3 L 16 13 C 16 16 16 16 13 16 L 3 16 C 0 16 0 16 0 13 L 0 3 C 0 0 0 0 3 0"></path><text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;" y="21"></text></g></svg></div></div>       <div class="netlogo-widget netlogo-monitor netlogo-output" style="position: absolute; left: 50px; top: 265px; width: 71px; height: 45px;"><div class="netlogo-label">sheep</div> <output class="netlogo-value">0</output></div>         <div class="netlogo-widget netlogo-monitor netlogo-output" style="position: absolute; left: 125px; top: 265px; width: 82px; height: 45px;"><div class="netlogo-label">wolves</div> <output class="netlogo-value">0</output></div>         <div class="netlogo-widget netlogo-monitor netlogo-output" style="position: absolute; left: 211px; top: 265px; width: 76px; height: 45px;"><div class="netlogo-label">grass / 4</div> <output class="netlogo-value">0</output></div>   <pre class="netlogo-widget netlogo-text-box" style="position: absolute; left: 8px; top: 130px; width: 140px; height: 19px;">Sheep settings</pre>         <pre class="netlogo-widget netlogo-text-box" style="position: absolute; left: 186px; top: 130px; width: 113px; height: 18px;">Wolf settings</pre>         <pre class="netlogo-widget netlogo-text-box" style="position: absolute; left: 9px; top: 68px; width: 152px; height: 18px;">Grass settings</pre>          <label class="netlogo-widget netlogo-switcher netlogo-input" style="position: absolute; left: 167px; top: 28px; width: 136px; height: 33px;"><input type="checkbox"> <span class="netlogo-label">show-energy?</span></label>       </div> <div class="netlogo-tabs"><label class="netlogo-code-tab netlogo-tab netlogo-command "><input type="checkbox"> NetLogo Code</label> <label class="netlogo-info-tab netlogo-tab netlogo-command "><input type="checkbox"> Model Info</label></div> <div class="netlogo-model-text"> </div></div></div>
+    <script type="text/string" id="nlogo-code">globals [grass]  ;; keep track of how much grass there is
+;; Sheep and wolves are both breeds of turtle.
+breed [sheep a-sheep]  ;; sheep is its own plural, so we use "a-sheep" as the singular.
+breed [wolves wolf]
+turtles-own [energy]       ;; both wolves and sheep have energy
+patches-own [countdown]
+
+to setup
+  clear-all
+  ask patches [ set pcolor green ]
+  ;; check GRASS? switch.
+  ;; if it is true, then grass grows and the sheep eat it
+  ;; if it false, then the sheep don't need to eat
+  if grass? [
+    ask patches [
+      set pcolor one-of [green brown]
+      if-else pcolor = green
+        [ set countdown grass-regrowth-time ]
+        [ set countdown random grass-regrowth-time ] ;; initialize grass grow clocks randomly for brown patches
+    ]
+  ]
+  set-default-shape sheep "sheep"
+  create-sheep initial-number-sheep  ;; create the sheep, then initialize their variables
+  [
+    set color white
+    set size 1.5  ;; easier to see
+    set label-color blue - 2
+    set energy random (2 * sheep-gain-from-food)
+    setxy random-xcor random-ycor
+  ]
+  set-default-shape wolves "wolf"
+  create-wolves initial-number-wolves  ;; create the wolves, then initialize their variables
+  [
+    set color black
+    set size 2  ;; easier to see
+    set energy random (2 * wolf-gain-from-food)
+    setxy random-xcor random-ycor
+  ]
+  display-labels
+  set grass count patches with [pcolor = green]
+  reset-ticks
+end
+
+to go
+  if not any? turtles [ stop ]
+  ask sheep [
+    move
+    if grass? [
+      set energy energy - 1  ;; deduct energy for sheep only if grass? switch is on
+      eat-grass
+    ]
+    death
+    reproduce-sheep
+  ]
+  ask wolves [
+    move
+    set energy energy - 1  ;; wolves lose energy as they move
+    catch-sheep
+    death
+    reproduce-wolves
+  ]
+  if grass? [ ask patches [ grow-grass ] ]
+  set grass count patches with [pcolor = green]
+  tick
+  display-labels
+end
+
+to move  ;; turtle procedure
+  rt random 50
+  lt random 50
+  fd 1
+end
+
+to eat-grass  ;; sheep procedure
+  ;; sheep eat grass, turn the patch brown
+  if pcolor = green [
+    set pcolor brown
+    set energy energy + sheep-gain-from-food  ;; sheep gain energy by eating
+  ]
+end
+
+to reproduce-sheep  ;; sheep procedure
+  if random-float 100 < sheep-reproduce [  ;; throw "dice" to see if you will reproduce
+    set energy (energy / 2)                ;; divide energy between parent and offspring
+    hatch 1 [ rt random-float 360 fd 1 ]   ;; hatch an offspring and move it forward 1 step
+  ]
+end
+
+to reproduce-wolves  ;; wolf procedure
+  if random-float 100 < wolf-reproduce [  ;; throw "dice" to see if you will reproduce
+    set energy (energy / 2)               ;; divide energy between parent and offspring
+    hatch 1 [ rt random-float 360 fd 1 ]  ;; hatch an offspring and move it forward 1 step
+  ]
+end
+
+to catch-sheep  ;; wolf procedure
+  let prey one-of sheep-here                    ;; grab a random sheep
+  if prey != nobody                             ;; did we get one?  if so,
+    [ ask prey [ die ]                          ;; kill it
+      set energy energy + wolf-gain-from-food ] ;; get energy from eating
+end
+
+to death  ;; turtle procedure
+  ;; when energy dips below zero, die
+  if energy < 0 [ die ]
+end
+
+to grow-grass  ;; patch procedure
+  ;; countdown on brown patches: if reach 0, grow some grass
+  if pcolor = brown [
+    ifelse countdown <= 0
+      [ set pcolor green
+        set countdown grass-regrowth-time ]
+      [ set countdown countdown - 1 ]
+  ]
+end
+
+to display-labels
+  ask turtles [ set label "" ]
+  if show-energy? [
+    ask wolves [ set label round energy ]
+    if grass? [ ask sheep [ set label round energy ] ]
+  ]
+end</script>
+    <script type="text/string" id="nlogo-info">## WHAT IS IT?
+
+This model explores the stability of predator-prey ecosystems. Such a system is called unstable if it tends to result in extinction for one or more species involved.  In contrast, a system is stable if it tends to maintain itself over time, despite fluctuations in population sizes.
+
+## HOW IT WORKS
+
+There are two main variations to this model.
+
+In the first variation, wolves and sheep wander randomly around the landscape, while the wolves look for sheep to prey on. Each step costs the wolves energy, and they must eat sheep in order to replenish their energy - when they run out of energy they die. To allow the population to continue, each wolf or sheep has a fixed probability of reproducing at each time step. This variation produces interesting population dynamics, but is ultimately unstable.
+
+The second variation includes grass (green) in addition to wolves and sheep. The behavior of the wolves is identical to the first variation, however this time the sheep must eat grass in order to maintain their energy - when they run out of energy they die. Once grass is eaten it will only regrow after a fixed amount of time. This variation is more complex than the first, but it is generally stable.
+
+The construction of this model is described in two papers by Wilensky & Reisman referenced below.
+
+## HOW TO USE IT
+
+1. Set the GRASS? switch to TRUE to include grass in the model, or to FALSE to only include wolves (red) and sheep (white).
+2. Adjust the slider parameters (see below), or use the default settings.
+3. Press the SETUP button.
+4. Press the GO button to begin the simulation.
+5. Look at the monitors to see the current population sizes
+6. Look at the POPULATIONS plot to watch the populations fluctuate over time
+
+Parameters:
+INITIAL-NUMBER-SHEEP: The initial size of sheep population
+INITIAL-NUMBER-WOLVES: The initial size of wolf population
+SHEEP-GAIN-FROM-FOOD: The amount of energy sheep get for every grass patch eaten
+WOLF-GAIN-FROM-FOOD: The amount of energy wolves get for every sheep eaten
+SHEEP-REPRODUCE: The probability of a sheep reproducing at each time step
+WOLF-REPRODUCE: The probability of a wolf reproducing at each time step
+GRASS?: Whether or not to include grass in the model
+GRASS-REGROWTH-TIME: How long it takes for grass to regrow once it is eaten
+SHOW-ENERGY?: Whether or not to show the energy of each animal as a number
+
+Notes:
+- one unit of energy is deducted for every step a wolf takes
+- when grass is included, one unit of energy is deducted for every step a sheep takes
+
+## THINGS TO NOTICE
+
+When grass is not included, watch as the sheep and wolf populations fluctuate. Notice that increases and decreases in the sizes of each population are related. In what way are they related? What eventually happens?
+
+Once grass is added, notice the green line added to the population plot representing fluctuations in the amount of grass. How do the sizes of the three populations appear to relate now? What is the explanation for this?
+
+Why do you suppose that some variations of the model might be stable while others are not?
+
+## THINGS TO TRY
+
+Try adjusting the parameters under various settings. How sensitive is the stability of the model to the particular parameters?
+
+Can you find any parameters that generate a stable ecosystem that includes only wolves and sheep?
+
+Try setting GRASS? to TRUE, but setting INITIAL-NUMBER-WOLVES to 0. This gives a stable ecosystem with only sheep and grass. Why might this be stable while the variation with only sheep and wolves is not?
+
+Notice that under stable settings, the populations tend to fluctuate at a predictable pace. Can you find any parameters that will speed this up or slow it down?
+
+Try changing the reproduction rules -- for example, what would happen if reproduction depended on energy rather than being determined by a fixed probability?
+
+## EXTENDING THE MODEL
+
+There are a number ways to alter the model so that it will be stable with only wolves and sheep (no grass). Some will require new elements to be coded in or existing behaviors to be changed. Can you develop such a version?
+
+## NETLOGO FEATURES
+
+Note the use of breeds to model two different kinds of "turtles": wolves and sheep. Note the use of patches to model grass.
+
+Note use of the ONE-OF agentset reporter to select a random sheep to be eaten by a wolf.
+
+## RELATED MODELS
+
+Look at Rabbits Grass Weeds for another model of interacting populations with different rules.
+
+## CREDITS AND REFERENCES
+
+Wilensky, U. & Reisman, K. (1999). Connected Science: Learning Biology through Constructing and Testing Computational Theories -- an Embodied Modeling Approach. International Journal of Complex Systems, M. 234, pp. 1 - 12. (This model is a slightly extended version of the model described in the paper.)
+
+Wilensky, U. & Reisman, K. (2006). Thinking like a Wolf, a Sheep or a Firefly: Learning Biology through Constructing and Testing Computational Theories -- an Embodied Modeling Approach. Cognition & Instruction, 24(2), pp. 171-209. http://ccl.northwestern.edu/papers/wolfsheep.pdf</script>
+<script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript">
+;
+
+      var widgets = [{"left":350,"top":10,"right":819,"bottom":500,"patchSize":9.0,"fontSize":14,"wrappingAllowedInX":true,"wrappingAllowedInY":true,"minPxcor":-25,"maxPxcor":25,"minPycor":-25,"maxPycor":25,"updateMode":"Continuous","showTickCounter":true,"tickCounterLabel":"ticks","frameRate":30.0,"type":"view"},{"display":"initial-number-sheep","left":3,"top":150,"right":177,"bottom":183,"varName":"initial-number-sheep","min":"0","max":"250","default":100.0,"step":"1","units":null,"direction":"horizontal","type":"slider","compiledMin":{"success":true,"result":"0"},"compiledMax":{"success":true,"result":"250"},"compiledStep":{"success":true,"result":"1"}},{"display":"sheep-gain-from-food","left":3,"top":187,"right":177,"bottom":220,"varName":"sheep-gain-from-food","min":"0.0","max":"50.0","default":4.0,"step":"1.0","units":null,"direction":"horizontal","type":"slider","compiledMin":{"success":true,"result":"0"},"compiledMax":{"success":true,"result":"50"},"compiledStep":{"success":true,"result":"1"}},{"display":"sheep-reproduce","left":3,"top":222,"right":177,"bottom":255,"varName":"sheep-reproduce","min":"1.0","max":"20.0","default":4.0,"step":"1.0","units":"%","direction":"horizontal","type":"slider","compiledMin":{"success":true,"result":"1"},"compiledMax":{"success":true,"result":"20"},"compiledStep":{"success":true,"result":"1"}},{"display":"initial-number-wolves","left":181,"top":150,"right":346,"bottom":183,"varName":"initial-number-wolves","min":"0","max":"250","default":50.0,"step":"1","units":null,"direction":"horizontal","type":"slider","compiledMin":{"success":true,"result":"0"},"compiledMax":{"success":true,"result":"250"},"compiledStep":{"success":true,"result":"1"}},{"display":"wolf-gain-from-food","left":181,"top":186,"right":346,"bottom":219,"varName":"wolf-gain-from-food","min":"0.0","max":"100.0","default":20.0,"step":"1.0","units":null,"direction":"horizontal","type":"slider","compiledMin":{"success":true,"result":"0"},"compiledMax":{"success":true,"result":"100"},"compiledStep":{"success":true,"result":"1"}},{"display":"wolf-reproduce","left":181,"top":222,"right":346,"bottom":255,"varName":"wolf-reproduce","min":"0.0","max":"20.0","default":5.0,"step":"1.0","units":"%","direction":"horizontal","type":"slider","compiledMin":{"success":true,"result":"0"},"compiledMax":{"success":true,"result":"20"},"compiledStep":{"success":true,"result":"1"}},{"display":"grass?","left":5,"top":87,"right":99,"bottom":120,"varName":"grass?","on":false,"type":"switch"},{"display":"grass-regrowth-time","left":106,"top":88,"right":318,"bottom":121,"varName":"grass-regrowth-time","min":"0","max":"100","default":30.0,"step":"1","units":null,"direction":"horizontal","type":"slider","compiledMin":{"success":true,"result":"0"},"compiledMax":{"success":true,"result":"100"},"compiledStep":{"success":true,"result":"1"}},{"display":"setup","left":8,"top":28,"right":77,"bottom":61,"source":"setup","forever":false,"buttonType":"OBSERVER","actionKey":null,"type":"button","compiledSource":{"success":true,"result":"Call(setup);"}},{"display":"go","left":90,"top":28,"right":157,"bottom":61,"source":"go","forever":true,"buttonType":"OBSERVER","actionKey":null,"type":"button","compiledSource":{"success":true,"result":"Call(go);"}},{"display":"populations","left":12,"top":312,"right":328,"bottom":509,"xAxis":"time","yAxis":"pop.","xmin":0.0,"xmax":100.0,"ymin":0.0,"ymax":100.0,"autoPlotOn":true,"legendOn":true,"setupCode":"","updateCode":"","pens":[{"display":"sheep","interval":1.0,"mode":0,"color":-13345367,"inLegend":true,"setupCode":"","updateCode":"plot count sheep","type":"pen","compiledSetupCode":{"success":true,"result":""},"compiledUpdateCode":{"success":true,"result":"plotManager.plotValue(world.turtleManager.turtlesOfBreed(\"SHEEP\").size());"}},{"display":"wolves","interval":1.0,"mode":0,"color":-2674135,"inLegend":true,"setupCode":"","updateCode":"plot count wolves","type":"pen","compiledSetupCode":{"success":true,"result":""},"compiledUpdateCode":{"success":true,"result":"plotManager.plotValue(world.turtleManager.turtlesOfBreed(\"WOLVES\").size());"}},{"display":"grass / 4","interval":1.0,"mode":0,"color":-10899396,"inLegend":true,"setupCode":"","updateCode":"if grass? [ plot grass / 4 ]","type":"pen","compiledSetupCode":{"success":true,"result":""},"compiledUpdateCode":{"success":true,"result":"if (world.observer.getGlobal('grass?')) {\n  plotManager.plotValue((world.observer.getGlobal('grass') / 4));\n}"}}],"type":"plot","compiledSetupCode":{"success":true,"result":""},"compiledUpdateCode":{"success":true,"result":""}},{"display":"sheep","left":50,"top":265,"right":121,"bottom":310,"source":"count sheep","precision":3,"fontSize":11,"type":"monitor","compiledSource":{"success":true,"result":"world.turtleManager.turtlesOfBreed(\"SHEEP\").size()"}},{"display":"wolves","left":125,"top":265,"right":207,"bottom":310,"source":"count wolves","precision":3,"fontSize":11,"type":"monitor","compiledSource":{"success":true,"result":"world.turtleManager.turtlesOfBreed(\"WOLVES\").size()"}},{"left":211,"top":265,"right":287,"bottom":310,"source":"grass / 4","precision":0,"fontSize":11,"type":"monitor","compiledSource":{"success":true,"result":"(world.observer.getGlobal('grass') / 4)"}},{"display":"Sheep settings","left":8,"top":130,"right":148,"bottom":149,"fontSize":11,"color":0.0,"transparent":false,"type":"textBox"},{"display":"Wolf settings","left":186,"top":130,"right":299,"bottom":148,"fontSize":11,"color":0.0,"transparent":false,"type":"textBox"},{"display":"Grass settings","left":9,"top":68,"right":161,"bottom":86,"fontSize":11,"color":0.0,"transparent":false,"type":"textBox"},{"display":"show-energy?","left":167,"top":28,"right":303,"bottom":61,"varName":"show-energy?","on":false,"type":"switch"}];
+      var code    = document.querySelector("#nlogo-code").textContent;
+      var info    = document.querySelector("#nlogo-info").textContent;
+      var session = Tortoise.fromCompiledModel('#model-container', widgets, code, info, '', true);
+      var modelConfig  = (typeof window.modelConfig !== "undefined" && window.modelConfig !== null) ? window.modelConfig : {};
+var modelPlotOps = (typeof modelConfig.plotOps !== "undefined" && modelConfig.plotOps !== null) ? modelConfig.plotOps : {};
+
+var PenBundle = tortoise_require('engine/plot/pen');
+var Plot      = tortoise_require('engine/plot/plot');
+var PlotOps   = tortoise_require('engine/plot/plotops');
+
+modelConfig.plots = [(function() {
+  var name    = 'populations';
+  var plotOps = (typeof modelPlotOps[name] !== "undefined" && modelPlotOps[name] !== null) ? modelPlotOps[name] : new PlotOps(function() {}, function() {}, function() {}, function() { return function() {}; }, function() { return function() {}; }, function() { return function() {}; });
+  var pens    = [new PenBundle.Pen('sheep', plotOps.makePenOps, false, new PenBundle.State(105.0, 1.0, PenBundle.DisplayMode.Line), function() { workspace.rng.withAux(function() { plotManager.withTemporaryContext('populations', 'sheep')(function() {}); }); }, function() { workspace.rng.withAux(function() { plotManager.withTemporaryContext('populations', 'sheep')(function() { plotManager.plotValue(world.turtleManager.turtlesOfBreed("SHEEP").size());; }); }); }),
+new PenBundle.Pen('wolves', plotOps.makePenOps, false, new PenBundle.State(15.0, 1.0, PenBundle.DisplayMode.Line), function() { workspace.rng.withAux(function() { plotManager.withTemporaryContext('populations', 'wolves')(function() {}); }); }, function() { workspace.rng.withAux(function() { plotManager.withTemporaryContext('populations', 'wolves')(function() { plotManager.plotValue(world.turtleManager.turtlesOfBreed("WOLVES").size());; }); }); }),
+new PenBundle.Pen('grass / 4', plotOps.makePenOps, false, new PenBundle.State(55.0, 1.0, PenBundle.DisplayMode.Line), function() { workspace.rng.withAux(function() { plotManager.withTemporaryContext('populations', 'grass / 4')(function() {}); }); }, function() { workspace.rng.withAux(function() { plotManager.withTemporaryContext('populations', 'grass / 4')(function() { if (world.observer.getGlobal('grass?')) {
+  plotManager.plotValue((world.observer.getGlobal('grass') / 4));
+}; }); }); })];
+  var setup   = function() { workspace.rng.withAux(function() { plotManager.withTemporaryContext('populations', undefined)(function() {}); }); };
+  var update  = function() { workspace.rng.withAux(function() { plotManager.withTemporaryContext('populations', undefined)(function() {}); }); };
+  return new Plot(name, pens, plotOps, 'time', 'pop.', true, 0.0, 100.0, 0.0, 100.0, setup, update);
+})()];
+
+var workspace = tortoise_require('engine/workspace')(modelConfig)([{ name: 'SHEEP', singular: 'a-sheep', varNames: [] }, { name: 'WOLVES', singular: 'wolf', varNames: [] }])(['energy'], [])(['initial-number-sheep', 'sheep-gain-from-food', 'sheep-reproduce', 'initial-number-wolves', 'wolf-gain-from-food', 'wolf-reproduce', 'grass?', 'grass-regrowth-time', 'show-energy?', 'grass'], ['initial-number-sheep', 'sheep-gain-from-food', 'sheep-reproduce', 'initial-number-wolves', 'wolf-gain-from-food', 'wolf-reproduce', 'grass?', 'grass-regrowth-time', 'show-energy?'], ['countdown'], -25, 25, -25, 25, 9.0, true, true, {"default":{"rotate":true,"elements":[{"xcors":[150,40,150,260],"ycors":[5,250,205,250],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"airplane":{"rotate":true,"elements":[{"xcors":[150,135,120,120,15,15,120,135,105,120,150,180,210,165,180,285,285,180,180,165],"ycors":[0,15,60,105,165,195,180,240,270,285,270,285,270,240,180,195,165,105,60,15],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"arrow":{"rotate":true,"elements":[{"xcors":[150,0,105,105,195,195,300],"ycors":[0,150,150,293,293,150,150],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"box":{"rotate":false,"elements":[{"xcors":[150,285,285,150],"ycors":[285,225,75,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[150,15,150,285],"ycors":[135,75,15,75],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[15,15,150,150],"ycors":[75,225,285,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":150,"y1":285,"x2":150,"y2":135,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false},{"x1":150,"y1":135,"x2":15,"y2":75,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false},{"x1":150,"y1":135,"x2":285,"y2":75,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false}]},"bug":{"rotate":true,"elements":[{"x":96,"y":182,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":110,"y":127,"diam":80,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":110,"y":75,"diam":80,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":150,"y1":100,"x2":80,"y2":30,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":150,"y1":100,"x2":220,"y2":30,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"butterfly":{"rotate":true,"elements":[{"xcors":[150,209,225,225,195,165,150],"ycors":[165,199,225,255,270,255,240],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[150,89,75,75,105,135,150],"ycors":[165,198,225,255,270,255,240],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[139,100,55,25,10,10,25,40,85,139],"ycors":[148,105,90,90,105,135,180,195,194,163],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[162,200,245,275,290,290,275,260,215,162],"ycors":[150,105,90,90,105,135,180,195,195,165],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[150,135,120,135,150,165,180,165],"ycors":[255,225,150,120,105,120,150,225],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":135,"y":90,"diam":30,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x1":150,"y1":105,"x2":195,"y2":60,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false},{"x1":150,"y1":105,"x2":105,"y2":60,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false}]},"car":{"rotate":false,"elements":[{"xcors":[300,279,261,240,226,213,203,185,159,135,75,0,0,0,300,300],"ycors":[180,164,144,135,132,106,84,63,50,50,60,150,165,225,225,180],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":180,"y":180,"diam":90,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":30,"y":180,"diam":90,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[162,132,134,209,194,189,180],"ycors":[80,78,135,135,105,96,89],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":47,"y":195,"diam":58,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":195,"y":195,"diam":58,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"circle":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"circle 2":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":30,"y":30,"diam":240,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"cow":{"rotate":false,"elements":[{"xcors":[200,197,179,177,166,140,93,78,72,49,48,37,25,25,45,103,179,198,252,272,293,285,255,242,224],"ycors":[193,249,249,196,187,189,191,179,211,209,181,149,120,89,72,84,75,76,64,81,103,121,121,118,167],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[73,86,62,48],"ycors":[210,251,249,208],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[25,16,9,23,25,39],"ycors":[114,195,204,213,200,123],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"cylinder":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"dot":{"rotate":false,"elements":[{"x":90,"y":90,"diam":120,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"face happy":{"rotate":false,"elements":[{"x":8,"y":8,"diam":285,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":60,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":180,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[150,90,62,47,67,90,109,150,192,210,227,251,236,212],"ycors":[255,239,213,191,179,203,218,225,218,203,181,194,217,240],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"face neutral":{"rotate":false,"elements":[{"x":8,"y":7,"diam":285,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":60,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":180,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xmin":60,"ymin":195,"xmax":240,"ymax":225,"type":"rectangle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"face sad":{"rotate":false,"elements":[{"x":8,"y":8,"diam":285,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":60,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":180,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[150,90,62,47,67,90,109,150,192,210,227,251,236,212],"ycors":[168,184,210,232,244,220,205,198,205,220,242,229,206,183],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"fish":{"rotate":false,"elements":[{"xcors":[44,21,15,0,15,0,13,20,45],"ycors":[131,87,86,120,150,180,214,212,166],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[135,119,95,76,46,60],"ycors":[195,235,218,210,204,165],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[75,83,71,86,166,135],"ycors":[45,77,103,114,78,60],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[30,151,226,280,292,292,287,270,195,151,30],"ycors":[136,77,81,119,146,160,170,195,210,212,166],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":215,"y":106,"diam":30,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"flag":{"rotate":false,"elements":[{"xmin":60,"ymin":15,"xmax":75,"ymax":300,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[90,270,90],"ycors":[150,90,30],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":75,"y1":135,"x2":90,"y2":135,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":75,"y1":45,"x2":90,"y2":45,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"flower":{"rotate":false,"elements":[{"xcors":[135,165,180,180,150,165,195,195,165],"ycors":[120,165,210,240,300,300,240,195,135],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"x":85,"y":132,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":130,"y":147,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":192,"y":85,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":85,"y":40,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":177,"y":40,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":177,"y":132,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":70,"y":85,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":130,"y":25,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":96,"y":51,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":113,"y":68,"diam":74,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[189,219,249,279,234],"ycors":[233,188,173,188,218],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[180,150,105,75,135],"ycors":[255,210,210,240,240],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false}]},"house":{"rotate":false,"elements":[{"xmin":45,"ymin":120,"xmax":255,"ymax":285,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":120,"ymin":210,"xmax":180,"ymax":285,"type":"rectangle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[15,150,285],"ycors":[120,15,120],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":30,"y1":120,"x2":270,"y2":120,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false}]},"leaf":{"rotate":false,"elements":[{"xcors":[150,135,120,60,30,60,60,15,30,15,40,45,60,90,105,120,105,120,135,150,165,180,195,180,195,210,240,255,263,285,270,285,240,240,270,240,180,165],"ycors":[210,195,210,210,195,180,165,135,120,105,104,90,90,105,120,120,60,60,30,15,30,60,60,120,120,105,90,90,104,105,120,135,165,180,195,210,210,195],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,135,120,105,105,135,165,165],"ycors":[195,240,255,255,285,285,240,195],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"line":{"rotate":true,"elements":[{"x1":150,"y1":0,"x2":150,"y2":300,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"line half":{"rotate":true,"elements":[{"x1":150,"y1":0,"x2":150,"y2":150,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"pentagon":{"rotate":false,"elements":[{"xcors":[150,15,60,240,285],"ycors":[15,120,285,285,120],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"person":{"rotate":false,"elements":[{"x":110,"y":5,"diam":80,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[105,120,90,105,135,150,165,195,210,180,195],"ycors":[90,195,285,300,300,225,300,300,285,195,90],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":127,"ymin":79,"xmax":172,"ymax":94,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[195,240,225,165],"ycors":[90,150,180,105],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[105,60,75,135],"ycors":[90,150,180,105],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"plant":{"rotate":false,"elements":[{"xmin":135,"ymin":90,"xmax":165,"ymax":300,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,90,45,75,135],"ycors":[255,210,195,255,285],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[165,210,255,225,165],"ycors":[255,210,195,255,285],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,90,45,75,135],"ycors":[180,135,120,180,210],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[165,165,225,255,210],"ycors":[180,210,180,120,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,90,45,75,135],"ycors":[105,60,45,105,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[165,165,225,255,210],"ycors":[105,135,105,45,60],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,120,150,180,165],"ycors":[90,45,15,45,90],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"sheep":{"rotate":false,"elements":[{"x":203,"y":65,"diam":88,"type":"circle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":true},{"x":70,"y":65,"diam":162,"type":"circle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":true},{"x":150,"y":105,"diam":120,"type":"circle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":true},{"xcors":[218,240,255,278],"ycors":[120,165,165,120],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":false},{"x":214,"y":72,"diam":67,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":false},{"xmin":164,"ymin":223,"xmax":179,"ymax":298,"type":"rectangle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":true},{"xcors":[45,30,30,15,45],"ycors":[285,285,240,195,210],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":true},{"x":3,"y":83,"diam":150,"type":"circle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":true},{"xmin":65,"ymin":221,"xmax":80,"ymax":296,"type":"rectangle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":true},{"xcors":[195,210,210,240,195],"ycors":[285,285,240,210,210],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":true},{"xcors":[276,285,302,294],"ycors":[85,105,99,83],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":false},{"xcors":[219,210,193,201],"ycors":[85,105,99,83],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":false}]},"square":{"rotate":false,"elements":[{"xmin":30,"ymin":30,"xmax":270,"ymax":270,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"square 2":{"rotate":false,"elements":[{"xmin":30,"ymin":30,"xmax":270,"ymax":270,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":60,"ymin":60,"xmax":240,"ymax":240,"type":"rectangle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"star":{"rotate":false,"elements":[{"xcors":[151,185,298,207,242,151,59,94,3,116],"ycors":[1,108,108,175,282,216,282,175,108,108],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"target":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":30,"y":30,"diam":240,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":60,"y":60,"diam":180,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":90,"y":90,"diam":120,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":120,"y":120,"diam":60,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"tree":{"rotate":false,"elements":[{"x":118,"y":3,"diam":94,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":120,"ymin":195,"xmax":180,"ymax":300,"type":"rectangle","color":"rgba(157, 110, 72, 1.0)","filled":true,"marked":false},{"x":65,"y":21,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":116,"y":41,"diam":127,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":45,"y":90,"diam":120,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":104,"y":74,"diam":152,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"triangle":{"rotate":false,"elements":[{"xcors":[150,15,285],"ycors":[30,255,255],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"triangle 2":{"rotate":false,"elements":[{"xcors":[150,15,285],"ycors":[30,255,255],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[151,225,75],"ycors":[99,223,224],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"truck":{"rotate":false,"elements":[{"xmin":4,"ymin":45,"xmax":195,"ymax":187,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[296,296,259,244,208,207],"ycors":[193,150,134,104,104,194],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":195,"ymin":60,"xmax":195,"ymax":105,"type":"rectangle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[238,252,219,218],"ycors":[112,141,141,112],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":234,"y":174,"diam":42,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xmin":181,"ymin":185,"xmax":214,"ymax":194,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":144,"y":174,"diam":42,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":24,"y":174,"diam":42,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":24,"y":174,"diam":42,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x":144,"y":174,"diam":42,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x":234,"y":174,"diam":42,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"turtle":{"rotate":true,"elements":[{"xcors":[215,240,246,228,215,193],"ycors":[204,233,254,266,252,210],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[195,225,245,260,269,261,240,225,210],"ycors":[90,75,75,89,108,124,105,105,105],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[105,75,55,40,31,39,60,75,90],"ycors":[90,75,75,89,108,124,105,105,105],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[132,134,107,108,150,192,192,169,172],"ycors":[85,64,51,17,2,18,52,65,87],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[85,60,54,72,85,107],"ycors":[204,233,254,266,252,210],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[119,179,209,224,220,175,128,81,74,88],"ycors":[75,75,101,135,225,261,261,224,135,99],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"wheel":{"rotate":false,"elements":[{"x":3,"y":3,"diam":294,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":30,"y":30,"diam":240,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x1":150,"y1":285,"x2":150,"y2":15,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":15,"y1":150,"x2":285,"y2":150,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x":120,"y":120,"diam":60,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":216,"y1":40,"x2":79,"y2":269,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":40,"y1":84,"x2":269,"y2":221,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":40,"y1":216,"x2":269,"y2":79,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":84,"y1":40,"x2":221,"y2":269,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"wolf":{"rotate":false,"elements":[{"xcors":[253,245,245],"ycors":[133,131,133],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[2,13,30,38,38,20,20,27,38,40,31,31,60,68,75,66,65,82,84,100,103,77,79,100,98,119,143,160,166,172,173,167,160,154,169,178,186,198,200,217,219,207,195,192,210,227,242,259,284,277,293,299,297,273,270],"ycors":[194,197,191,193,205,226,257,265,266,260,253,230,206,198,209,228,243,261,268,267,261,239,231,207,196,201,202,195,210,213,238,251,248,265,264,247,240,260,271,271,262,258,230,198,184,164,144,145,151,141,140,134,127,119,105],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[-1,14,36,40,53,82,134,159,188,227,236,238,268,269,281,269,269],"ycors":[195,180,166,153,140,131,133,126,115,108,102,98,86,92,87,103,113],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"x":{"rotate":false,"elements":[{"xcors":[270,225,30,75],"ycors":[75,30,225,270],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[30,75,270,225],"ycors":[75,30,225,270],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]}}, {"default":{}});
+
+var BreedManager  = workspace.breedManager;
+var LayoutManager = workspace.layoutManager;
+var LinkPrims     = workspace.linkPrims;
+var ListPrims     = workspace.listPrims;
+var MousePrims    = workspace.mousePrims;
+var plotManager   = workspace.plotManager;
+var Prims         = workspace.prims;
+var SelfPrims     = workspace.selfPrims;
+var SelfManager   = workspace.selfManager;
+var Updater       = workspace.updater;
+var world         = workspace.world;
+
+var Call           = tortoise_require('util/call');
+var ColorModel     = tortoise_require('util/colormodel');
+var Exception      = tortoise_require('util/exception');
+var Trig           = tortoise_require('util/trig');
+var Type           = tortoise_require('util/typechecker');
+var notImplemented = tortoise_require('util/notimplemented');
+
+var Dump      = tortoise_require('engine/dump');
+var Link      = tortoise_require('engine/core/link');
+var LinkSet   = tortoise_require('engine/core/linkset');
+var Nobody    = tortoise_require('engine/core/nobody');
+var PatchSet  = tortoise_require('engine/core/patchset');
+var Turtle    = tortoise_require('engine/core/turtle');
+var TurtleSet = tortoise_require('engine/core/turtleset');
+var Tasks     = tortoise_require('engine/prim/tasks');
+
+var AgentModel = tortoise_require('agentmodel');
+var Denuller   = tortoise_require('nashorn/denuller');
+var Random     = tortoise_require('shim/random');
+var StrictMath = tortoise_require('shim/strictmath');
+function setup() {
+  world.clearAll();
+  world.patches().ask(function() {
+    SelfPrims.setPatchVariable('pcolor', 55);
+  }, true);
+  if (world.observer.getGlobal('grass?')) {
+    world.patches().ask(function() {
+      SelfPrims.setPatchVariable('pcolor', ListPrims.oneOf([55, 35]));
+      if (Prims.equality(SelfPrims.getPatchVariable('pcolor'), 55)) {
+        SelfPrims.setPatchVariable('countdown', world.observer.getGlobal('grass-regrowth-time'));
+      }
+      else {
+        SelfPrims.setPatchVariable('countdown', Prims.random(world.observer.getGlobal('grass-regrowth-time')));
+      }
+    }, true);
+  }
+  BreedManager.setDefaultShape(world.turtleManager.turtlesOfBreed("SHEEP").getBreedName(), "sheep")
+  world.turtleManager.createTurtles(world.observer.getGlobal('initial-number-sheep'), 'SHEEP').ask(function() {
+    SelfPrims.setVariable('color', 9.9);
+    SelfPrims.setVariable('size', 1.5);
+    SelfPrims.setVariable('label-color', (105 - 2));
+    SelfPrims.setVariable('energy', Prims.random((2 * world.observer.getGlobal('sheep-gain-from-food'))));
+    SelfPrims.setXY(world.topology.randomXcor(), world.topology.randomYcor());
+  }, true);
+  BreedManager.setDefaultShape(world.turtleManager.turtlesOfBreed("WOLVES").getBreedName(), "wolf")
+  world.turtleManager.createTurtles(world.observer.getGlobal('initial-number-wolves'), 'WOLVES').ask(function() {
+    SelfPrims.setVariable('color', 0);
+    SelfPrims.setVariable('size', 2);
+    SelfPrims.setVariable('energy', Prims.random((2 * world.observer.getGlobal('wolf-gain-from-food'))));
+    SelfPrims.setXY(world.topology.randomXcor(), world.topology.randomYcor());
+  }, true);
+  Call(displayLabels);
+  world.observer.setGlobal('grass', world.patches().agentFilter(function() {
+    return Prims.equality(SelfPrims.getPatchVariable('pcolor'), 55);
+  }).size());
+  world.ticker.reset();
+}
+function go() {
+  if (!world.turtles().nonEmpty()) {
+    throw new Exception.StopInterrupt;
+  }
+  world.turtleManager.turtlesOfBreed("SHEEP").ask(function() {
+    Call(move);
+    if (world.observer.getGlobal('grass?')) {
+      SelfPrims.setVariable('energy', (SelfPrims.getVariable('energy') - 1));
+      Call(eatGrass);
+    }
+    Call(death);
+    Call(reproduceSheep);
+  }, true);
+  world.turtleManager.turtlesOfBreed("WOLVES").ask(function() {
+    Call(move);
+    SelfPrims.setVariable('energy', (SelfPrims.getVariable('energy') - 1));
+    Call(catchSheep);
+    Call(death);
+    Call(reproduceWolves);
+  }, true);
+  if (world.observer.getGlobal('grass?')) {
+    world.patches().ask(function() {
+      Call(growGrass);
+    }, true);
+  }
+  world.observer.setGlobal('grass', world.patches().agentFilter(function() {
+    return Prims.equality(SelfPrims.getPatchVariable('pcolor'), 55);
+  }).size());
+  world.ticker.tick();
+  Call(displayLabels);
+}
+function move() {
+  SelfPrims.right(Prims.random(50));
+  SelfPrims.left(Prims.random(50));
+  SelfPrims.fd(1);
+}
+function eatGrass() {
+  if (Prims.equality(SelfPrims.getPatchVariable('pcolor'), 55)) {
+    SelfPrims.setPatchVariable('pcolor', 35);
+    SelfPrims.setVariable('energy', (SelfPrims.getVariable('energy') + world.observer.getGlobal('sheep-gain-from-food')));
+  }
+}
+function reproduceSheep() {
+  if (Prims.lt(Prims.randomFloat(100), world.observer.getGlobal('sheep-reproduce'))) {
+    SelfPrims.setVariable('energy', (SelfPrims.getVariable('energy') / 2));
+    SelfPrims.hatch(1, '').ask(function() {
+      SelfPrims.right(Prims.randomFloat(360));
+      SelfPrims.fd(1);
+    }, true);
+  }
+}
+function reproduceWolves() {
+  if (Prims.lt(Prims.randomFloat(100), world.observer.getGlobal('wolf-reproduce'))) {
+    SelfPrims.setVariable('energy', (SelfPrims.getVariable('energy') / 2));
+    SelfPrims.hatch(1, '').ask(function() {
+      SelfPrims.right(Prims.randomFloat(360));
+      SelfPrims.fd(1);
+    }, true);
+  }
+}
+function catchSheep() {
+  var prey = ListPrims.oneOf(SelfManager.self().breedHere("SHEEP"));
+  if (!Prims.equality(prey, Nobody)) {
+    prey.ask(function() {
+      SelfPrims.die();
+    }, true);
+    SelfPrims.setVariable('energy', (SelfPrims.getVariable('energy') + world.observer.getGlobal('wolf-gain-from-food')));
+  }
+}
+function death() {
+  if (Prims.lt(SelfPrims.getVariable('energy'), 0)) {
+    SelfPrims.die();
+  }
+}
+function growGrass() {
+  if (Prims.equality(SelfPrims.getPatchVariable('pcolor'), 35)) {
+    if (Prims.lte(SelfPrims.getPatchVariable('countdown'), 0)) {
+      SelfPrims.setPatchVariable('pcolor', 55);
+      SelfPrims.setPatchVariable('countdown', world.observer.getGlobal('grass-regrowth-time'));
+    }
+    else {
+      SelfPrims.setPatchVariable('countdown', (SelfPrims.getPatchVariable('countdown') - 1));
+    }
+  }
+}
+function displayLabels() {
+  world.turtles().ask(function() {
+    SelfPrims.setVariable('label', "");
+  }, true);
+  if (world.observer.getGlobal('show-energy?')) {
+    world.turtleManager.turtlesOfBreed("WOLVES").ask(function() {
+      SelfPrims.setVariable('label', StrictMath.round(SelfPrims.getVariable('energy')));
+    }, true);
+    if (world.observer.getGlobal('grass?')) {
+      world.turtleManager.turtlesOfBreed("SHEEP").ask(function() {
+        SelfPrims.setVariable('label', StrictMath.round(SelfPrims.getVariable('energy')));
+      }, true);
+    }
+  }
+}
+world.observer.setGlobal('initial-number-sheep', 70);
+world.observer.setGlobal('sheep-gain-from-food', 4);
+world.observer.setGlobal('sheep-reproduce', 4);
+world.observer.setGlobal('initial-number-wolves', 40);
+world.observer.setGlobal('wolf-gain-from-food', 20);
+world.observer.setGlobal('wolf-reproduce', 5);
+world.observer.setGlobal('grass?', true);
+world.observer.setGlobal('grass-regrowth-time', 30);
+world.observer.setGlobal('show-energy?', false);
+      session.startLoop()
+    </script>
+  
+
+</body></html>
