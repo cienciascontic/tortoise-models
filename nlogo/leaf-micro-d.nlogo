@@ -19,6 +19,7 @@ breed [ chloroplast ]
 chloroplast-own [ NADPH? ]
 
 to startup
+my-import-drawing "aspenleaftrans.png"
 setup
 end
 
@@ -37,6 +38,9 @@ set wait-for-vapor false
 set wait-for-sugar false
 set wait-for-oxygen false
 reset-ticks
+end
+
+to my-import-drawing [src]
 end
 
 to go 

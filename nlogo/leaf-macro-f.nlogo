@@ -18,6 +18,7 @@ breed [ chloroplast ]
 chloroplast-own [ NADPH? ]
 
 to startup
+my-import-drawing "aspenleaftrans.png"
 setup
 end
 
@@ -35,6 +36,9 @@ set day? true
 set sun-brightness 36
 set co2-amount 14
 set water-flow 10
+end
+
+to my-import-drawing [src]
 end
 
 to go 

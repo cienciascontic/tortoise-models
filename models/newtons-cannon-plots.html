@@ -369,9 +369,28 @@ world.observer.setGlobal('mainscale', 0.25);
 world.observer.setGlobal('launchspeed', 1);
 world.observer.setGlobal('model_speed', 0);
       session.startLoop()
+// This overrides a function in the model.
+function pause(time) {
+  var start = new Date().getTime(),
+      expire = start + (time*500);
+
+  while (new Date().getTime() < expire) { }
+  return;
+}
+
+function myOutputType(str) {
+  var div = document.getElementById('output');
+  if (div) {
+    div.innerHTML += str;
+  }
+}
+
+function myOutputPrint(str) {
+  var div = document.getElementById('output');
+  if (div) {
+    div.innerHTML += str + "\n";
+  }
+}
     </script>
-  
-  <script type="application/javascript" src="pause.js"></script>
-  <script type="application/javascript" src="output.js"></script>
   </body>
 </html>

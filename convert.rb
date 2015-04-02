@@ -7,12 +7,16 @@ else
 end
 CUSTOM_COMMANDS = {
   "myImportDrawing" => "my-import-drawing.js",
-  "myAcos" => "acos.js"
+  "myAcos" => "acos.js",
+  "pause" => "pause.js",
+  "myOutputType" => "output-type.js",
+  "myOutputPrint" => "output-print.js",
+  "myClearOutput" => "clear-output.js"
 }
 
 def inject_custom_commands(file)
   CUSTOM_COMMANDS.each do |k,v|
-    grp = `grep 'function #{k}' #{file}`
+    grp = `grep 'function #{k}(' #{file}`
     unless grp.empty?
       `mv #{file} #{file}.tmp`
       `head -n -3 #{file}.tmp > #{file}`
