@@ -21,7 +21,6 @@ to move-turtles
   ask points [if xcor < min-pxcor + 10 [ die ]]
   if (deeX < 0 and xval > min-pxcor + 80) or (deeX > 0 and xval < max-pxcor - 80) [set xval xval + deeX]
   ask suns [set xcor xval + offset]
-  wait delay-time / 1000
 end;
 
 to reset

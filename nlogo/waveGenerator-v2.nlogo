@@ -11,8 +11,8 @@ to startup
   set telescope-edge min-pxcor + 45
   set wave-color yellow
   set moving? true
-  import-drawing "telescopeEnd.png"
-  import-drawing "normalHydrogenSpec.png"
+  my-import-drawing "telescopeEnd.png"
+  my-import-drawing "normalHydrogenSpec.png"
   reset
 end
 
@@ -41,7 +41,6 @@ to move-turtles
       ifelse light-color = red [
         plotxy timestep 6] [
         plotxy timestep 0]]]
-  wait delay-time / 1000
 end;
 
 to reset
@@ -53,7 +52,7 @@ to reset
   set graph-time-window 500
   clear-plot
   create-suns 1 [set shape "sun" set size 100 set color yellow set xcor offset]
-  import-drawing "normalHydrogenSpec.png"
+  my-import-drawing "normalHydrogenSpec.png"
 end
 
 to move-forward-quickly
@@ -61,7 +60,7 @@ to move-forward-quickly
   set moving? true
   set deeX -0.6
   set wave-color blue
-  import-drawing "blueshiftedHydrogenSpec.png"
+  my-import-drawing "blueshiftedHydrogenSpec.png"
 end
 
 to move-back-quickly
@@ -69,7 +68,7 @@ to move-back-quickly
   set moving? true
   set deeX 0.6
   set wave-color red
-  import-drawing "redshiftedHydrogenSpec.png"
+  my-import-drawing "redshiftedHydrogenSpec.png"
 end
 
 to reset-graph
@@ -83,7 +82,10 @@ to stop-moving
   set moving? false
   set deeX 0
   set wave-color yellow
-  import-drawing "normalHydrogenSpec.png"
+  my-import-drawing "normalHydrogenSpec.png"
+end
+
+to my-import-drawing [src]
 end
  
 @#$#@#$#@

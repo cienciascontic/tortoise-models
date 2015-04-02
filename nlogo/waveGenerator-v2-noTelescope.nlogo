@@ -10,7 +10,7 @@ to startup
   set timestep 0
   set telescope-edge min-pxcor + 45
   set wave-color yellow
- ; import-drawing "telescopeEnd.png"
+ ; my-import-drawing "telescopeEnd.png"
   reset
 end
 
@@ -41,7 +41,6 @@ to move-turtles
       ifelse light-color = red [
         plot -6] [
         plot 0]]]
-  wait delay-time / 1000
 end;
 
 to reset
