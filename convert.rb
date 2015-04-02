@@ -17,6 +17,7 @@ def inject_custom_commands(file)
       `head -n -3 #{file}.tmp > #{file}`
       `cat commands/#{v} >> #{file}`
       `tail -n 3 #{file}.tmp >> #{file}`
+      `rm #{file}.tmp`
     end
   end
 end
