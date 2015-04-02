@@ -5,6 +5,21 @@ if ARGV.empty?
 else
   puts "Converting specified nlogo files..."
 end
+CUSTOM_COMMANDS = {
+  "myImportDrawing" => "my-import-drawing.js"
+}
+
+def inject_custom_commands(file)
+  CUSTOM_COMMANDS.each do |k,v|
+    grp = `grep 'function #{k}' #{file}`
+    unless grp.empty?
+      `mv #{file} #{file}.tmp`
+      `head -n -3 #{file}.tmp > #{file}`
+      `cat commands/#{v} >> #{file}`
+      `tail -n 3 #{file}.tmp >> #{file}`
+    end
+  end
+end
 
 def curl_command(in_file, out_file)
   cmd = %!curl -F model=@#{in_file} "http://li425-91.members.linode.com:9000/save-nlogo"!
@@ -24,5 +39,8 @@ files = ARGV.empty? ? Dir.glob('nlogo/*nlogo') : ARGV
 files.each do |full_filename|
   fname = File.basename(full_filename).gsub(/nlogo$/,'html')
 
+  puts "Converting #{full_filename}..."
   puts `#{curl_command(full_filename, 'standalone/'+fname)}`
+
+  inject_custom_commands('standalone/'+fname)
 end
