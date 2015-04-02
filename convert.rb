@@ -6,7 +6,8 @@ else
   puts "Converting specified nlogo files..."
 end
 CUSTOM_COMMANDS = {
-  "myImportDrawing" => "my-import-drawing.js"
+  "myImportDrawing" => "my-import-drawing.js",
+  "myAcos" => "acos.js"
 }
 
 def inject_custom_commands(file)
