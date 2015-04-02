@@ -191,7 +191,7 @@ to startup
   create-arrowheads 1 [set shape "default" set color red set size 3 ht ]
   create-outerHZ 1 [
     set shape "circle" 
-    set color lput 125 hsb 143 224 146
+    set color [18 99 146 125]
     setxy 0 0 
     set size tsize outerHZRad ]
  create-innerHZ 1 [
@@ -330,7 +330,6 @@ to generate-analysis
     stop ]
   let avg-dist mean orbital-dist-points
   let avg-dist-in-HZ (avg-dist >= innerHZRad and avg-dist <= outerHZRad)
-  let high-eccentricity? (standard-deviation orbital-dist-points / avg-dist > 0.10)
   let min-orbit min orbital-dist-points
   let max-orbit max orbital-dist-points
   let too-close? (min-orbit < innerHZRad)
@@ -411,8 +410,7 @@ to update-scale [d]                              ; handles scale change if neede
         [                                         ; if contracting (getting farther away), pan first, then redraw
           repeat n [                              ; 
             set dist dist + dd                    ; don't need first step--that's old
-            update-screen
-          wait .06 ]
+            update-screen ]
           set old-distance d
           set grid-size d / 2                     ; redraw grid with a size that is half the distance to the star. 
 ;          ask spots [die]                        ; restore this if we hate keeping the smaller grid 
@@ -423,8 +421,7 @@ to update-scale [d]                              ; handles scale change if neede
           new-grid grid-size 
           repeat n [                              ; 
             set dist dist + dd                    ; don't need first step--that's old
-            update-screen
-            wait .06 ]
+            update-screen ]
           set old-distance d
         ]                                          ; end of pan
     ; for the new scale, we need new values of time/bread-crumb, bread-crumb-lifetime,  v-scale, and delta-t. They scale as d ^.5
@@ -491,7 +488,7 @@ to update-screen                                  ; uses dist, and redraws the s
         st
         set xa ( [x-cor] of one-of planets) + v-scale * ( [vx] of one-of planets)   ;  vx is the same for both planets, so I use any one of them.
         set ya ( [y-cor] of one-of planets) + v-scale * ( [vy] of one-of planets )
-        set heading 180 + towards-nowrap new-planet  
+        set heading 180 + towards new-planet  
         let loc screen-coords xa ya
         let u first loc   let v item 1 loc
         ifelse in-view? u v 
@@ -616,7 +613,7 @@ to adjust-planet                                    ; support the mouse as it ad
           ask arrowheads [ 
            set xa ([x-cor] of one-of planets + v-scale * [vx] of one-of planets ) 
            set ya ([y-cor] of one-of planets + v-scale * [vy] of one-of planets )
-           set heading 180 + towards-nowrap new-planet  ]
+           set heading 180 + towards new-planet  ]
         update-screen ]
         ]
         [  ; do this block if the arrowhead is nearest the cursor 
@@ -625,7 +622,7 @@ to adjust-planet                                    ; support the mouse as it ad
               let u mouse-xcor  let v mouse-ycor
               set xa dist  * u  / scale     ; this is the inverse transformation from screen coords to problem coords. 
               set ya dist  * v / scale 
-              set heading 180 + towards-nowrap new-planet]
+              set heading 180 + towards new-planet]
             ask planets [                                           ; set its vx and vy
               set vx ([xa] of one-of arrowheads  - x-cor ) / v-scale
               set vy ([ya] of one-of arrowheads  - y-cor ) / v-scale ]
@@ -890,7 +887,12 @@ to-report parse-output [string]
 end
   
 to-report scale-to-num [legend]
-  report read-from-string (substring legend (position "=" legend + 2) (position "=" legend + 6)) * 20
+  report my-read-from-string (substring legend (position "=" legend + 2) (position "=" legend + 6)) * 20
+end
+
+; this breaks normal netlogo, but is fine for tortoise conversion
+to-report my-read-from-string [string]
+  report string
 end
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

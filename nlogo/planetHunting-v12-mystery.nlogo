@@ -119,7 +119,7 @@ to startup
   
    set random-star random 5
   if random-star = 0
-  [ import-drawing "mysteryStar1.jpg" 
+  [ my-import-drawing "mysteryStar1.jpg" 
     set telescope-precision 99
     set planet-diameter 3.4
     set rocky-planet true
@@ -127,7 +127,7 @@ to startup
     set distance-to-star 5
   ]
   if random-star = 1
-  [ import-drawing "mysteryStar2.jpg" 
+  [ my-import-drawing "mysteryStar2.jpg" 
     set telescope-precision 21
     set planet-diameter 16.8
     set rocky-planet true
@@ -135,7 +135,7 @@ to startup
     set distance-to-star 5
   ]
   if random-star = 2
-  [ import-drawing "mysteryStar3.jpg" 
+  [ my-import-drawing "mysteryStar3.jpg" 
     set telescope-precision 35
     set planet-diameter 16.8
     set rocky-planet true
@@ -143,7 +143,7 @@ to startup
     set distance-to-star 5
   ]
   if random-star = 3
-  [ import-drawing "mysteryStar4.jpg" 
+  [ my-import-drawing "mysteryStar4.jpg" 
     set telescope-precision 94
     set planet-diameter 7.6
     set rocky-planet false
@@ -151,7 +151,7 @@ to startup
     set distance-to-star 5
   ]
   if random-star = 4
-  [ import-drawing "mysteryStar5.jpg" 
+  [ my-import-drawing "mysteryStar5.jpg" 
     set telescope-precision 5
     set planet-diameter 50
     set rocky-planet false
@@ -235,6 +235,9 @@ to startup
   ask links [hide-link]
   go
 
+end
+
+to my-import-drawing [src]
 end
 
 to go                                                    ; this is called from a forever button
@@ -340,8 +343,7 @@ to update-scale [d]                              ; handles scale change if neede
         [                                         ; if contracting (getting farther away), pan first, then redraw
           repeat n [                              ; 
             set dist dist + dd                    ; don't need first step--that's old
-            update-screen
-          wait .06 ]
+            update-screen ]
           set old-distance d
           set grid-size d / 2                     ; redraw grid with a size that is half the distance to the star. 
 ;          ask spots [die]                        ; restore this if we hate keeping the smaller grid 
@@ -352,8 +354,7 @@ to update-scale [d]                              ; handles scale change if neede
           new-grid grid-size 
           repeat n [                              ; 
             set dist dist + dd                    ; don't need first step--that's old
-            update-screen
-            wait .06 ]
+            update-screen ]
           set old-distance d
         ]                                          ; end of pan
     ; for the new scale, we need new values of time/bread-crumb, bread-crumb-lifetime,  v-scale, and delta-t. They scale as d ^.5
@@ -411,7 +412,7 @@ to update-screen                                  ; uses dist, and redraws the s
         ht
         set xa ( [x-cor] of one-of planets) + v-scale * ( [vx] of one-of planets)   ;  vx is the same for both planets, so I use any one of them.
         set ya ( [y-cor] of one-of planets) + v-scale * ( [vy] of one-of planets )
-;        set heading 180 + towards-nowrap new-planet  
+;        set heading 180 + towards new-planet  
         let loc screen-coords xa ya
         let u first loc   let v item 1 loc
         ifelse in-view? u v 
@@ -535,7 +536,7 @@ to adjust-planet                                    ; support the mouse as it ad
           ask arrowheads [ 
            set xa ([x-cor] of one-of planets + v-scale * [vx] of one-of planets ) 
            set ya ([y-cor] of one-of planets + v-scale * [vy] of one-of planets )
-           set heading 180 + towards-nowrap new-planet  ]
+           set heading 180 + towards new-planet  ]
         update-screen ]
         ]
         [  ; do this block if the arrowhead is nearest the cursor 
@@ -544,7 +545,7 @@ to adjust-planet                                    ; support the mouse as it ad
               let u mouse-xcor  let v mouse-ycor
               set xa dist  * u  / scale     ; this is the inverse transformation from screen coords to problem coords. 
               set ya dist  * v / scale 
-              set heading 180 + towards-nowrap new-planet]
+              set heading 180 + towards new-planet]
             ask planets [                                           ; set its vx and vy
               set vx ([xa] of one-of arrowheads  - x-cor ) / v-scale
               set vy ([ya] of one-of arrowheads  - y-cor ) / v-scale ]

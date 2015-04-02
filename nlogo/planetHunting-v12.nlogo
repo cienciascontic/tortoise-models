@@ -711,7 +711,12 @@ to-report rand-noise ; makes a bell-shaped distribution w/ sd = 1
 end
 
 to-report scale-to-num [legend]
-  report 20 ;;read-from-string (substring legend (position "=" legend + 2) (position "=" legend + 6)) * 20
+  report my-read-from-string (substring legend (position "=" legend + 2) (position "=" legend + 6)) * 20
+end
+
+; this breaks normal netlogo, but is fine for tortoise conversion
+to-report my-read-from-string [string]
+  report string
 end
 
 
