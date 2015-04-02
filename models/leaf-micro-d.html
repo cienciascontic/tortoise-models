@@ -1,387 +1,25 @@
 
-<!-- saved from url=(0050)http://li425-91.members.linode.com:9000/save-nlogo -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+<html>
+  <head>
 <link rel="stylesheet" type="text/css" href="app.css" charset="utf-8"/>
+<link rel="stylesheet" type="text/css" href="app-custom.css" charset="utf-8"/>
   </head>
   <body>
-    <div id="model-container"><div class="netlogo-model" style="width: 552;"><div class="netlogo-header"><label class="netlogo-widget netlogo-speed-slider"><span class="netlogo-label">speed</span> <input type="range" min="-1" max="1" step="0.01"></label> <div class="netlogo-powered-by"><a href="http://ccl.northwestern.edu/netlogo/"><img style="vertical-align: middle;" alt="NetLogo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAANcSURBVHjarJRdaFxFFMd/M/dj7252uxubKms+bGprVyIVbNMWWqkQqtLUSpQWfSiV+oVFTcE3DeiDgvoiUSiCYLH2oVoLtQ+iaaIWWtE2FKGkkSrkq5svN+sm7ma/7p3x4W42lEbjQw8MM8yc87/nzPnNFVprbqWJXyMyXuMqx1Ni6N3ny3cX8tOHNLoBUMvESoFI2Xbs4zeO1lzREpSrMSNS1zkBDv6uo1/noz1H7mpvS4SjprAl2AZYEqzKbEowBAgBAkjPKX2599JjT7R0bj412D0JYNplPSBD1G2SmR/e6u1ikEHG2vYiGxoJmxAyIGSCI8GpCItKimtvl2JtfGujDNkX6epuAhCjNeAZxM1ocPy2Qh4toGQ5DLU+ysiuA2S3P0KgJkjAgEAlQylAA64CG/jlUk6//ng4cNWmLK0yOPNMnG99Rs9LQINVKrD+wmke7upg55PrWP3eYcwrlykpKCkoelDy/HVegQhoABNAepbACwjOt72gZkJhypX70YDWEEklue+rbnYc2MiGp1upPfYReiJJUUG58gFXu4udch1wHcjFIgy0HyIjb2yvBpT2F6t+6+f+D15lW8c9JDo7iPSdgVIRLUqL2AyHDQAOf9hfbqxvMF98eT3RuTS1avHyl+Stcphe2chP9+4k/t3RbXVl3W+Ws17FY56/w3VcbO/koS/eZLoAqrQMxADZMTYOfwpwoWjL4+bCYcgssMqGOzPD6CIkZ/3SxTJ0ayFIN6/BnBrZb2XdE1JUgkJWkfrUNRJnPyc16zsbgPyXIUJBpvc+y89nk/S8/4nek3NPGeBWMwzGvhUPnP6RubRLwfODlqqx3LSCyee2MnlwMwA2RwgO5qouVcHmksUdJweYyi8hZkrUjgT5t/ejNq0jBsSqNWsKyT9uFtxw7Bs585d3g46KOeT2bWHmtd14KyP+5mzqpsYU3OyioACMhGiqPTMocsrHId9cy9BLDzKxq8X3ctMwlV6yKSHL4fr4dd0DeQBTBUgUkvpE1kVPbqkX117ZzuSaFf4zyfz5n9A4lk0yNU7vyb7jTy1kmFGipejKvh6h9n0W995ZPTu227hqmCz33xXgFV1v9NzI96NfjndWt7XWCB/7BSICFWL+j3lAofpCtfYFb6X9MwCJZ07mUsXRGwAAAABJRU5ErkJggg=="> <span style="font-size: 16px;">powered by NetLogo</span></a></div></div> <div style="position: relative; width: 552; height: 369" class="netlogo-widget-container"><div class="netlogo-widget netlogo-view-container" style="position: absolute; left: 134px; top: 10px; width: 418px; height: 359px;"><div class="netlogo-widget netlogo-tick-counter">ticks: <span></span></div><div class="view-layers" style="width: 100%; position: relative;"><canvas width="816" height="656" class="patch-view" style="width: 100%; z-index: 0;"></canvas><canvas width="1224" height="984" class="turtle-view" style="width: 100%; position: absolute; top: 0px; left: 0px; z-index: 1;"></canvas><canvas width="408" height="328" class="spotlight-view" style="width: 100%; position: absolute; top: 0px; left: 0px; z-index: 2;"></canvas></div></div>            <button class="netlogo-widget netlogo-button netlogo-command" type="button" style="position: absolute; left: 9px; top: 11px; width: 106px; height: 33px;"><span>Setup/Reset</span></button>          <label class="netlogo-widget netlogo-button netlogo-forever-button  netlogo-command" style="position: absolute; left: 23px; top: 63px; width: 81px; height: 33px;"><input type="checkbox"> <span class="netlogo-label">Run/Stop</span></label>          <label class="netlogo-widget netlogo-slider netlogo-input" style="position: absolute; left: 14px; top: 239px; width: 113px; height: 33px;"><input type="range" max="20" min="0" step="1"> <span class="netlogo-label">water-flow</span> <span class="netlogo-value"><input type="number" min="0" max="20" step="1"> </span></label>         <label class="netlogo-widget netlogo-slider netlogo-input" style="position: absolute; left: 10px; top: 182px; width: 116px; height: 33px;"><input type="range" max="30" min="0" step="1"> <span class="netlogo-label">CO2-amount</span> <span class="netlogo-value"><input type="number" min="0" max="30" step="1"> </span></label>         <label class="netlogo-widget netlogo-slider netlogo-input" style="position: absolute; left: 9px; top: 126px; width: 119px; height: 33px;"><input type="range" max="100" min="0" step="1"> <span class="netlogo-label">sun-brightness</span> <span class="netlogo-value"><input type="number" min="0" max="100" step="1"> </span></label>    </div> <div class="netlogo-tabs"><label class="netlogo-code-tab netlogo-tab netlogo-command "><input type="checkbox"> NetLogo Code</label> <label class="netlogo-info-tab netlogo-tab netlogo-command "><input type="checkbox"> Model Info</label></div> <div class="netlogo-model-text"> </div></div></div>
-    <script type="text/string" id="nlogo-code">globals [ sugarcount sugarcount-old sugar-rate oxygencount O2-temp-count 
-        sugar-temp-count step time-unit  day?
-        vapor-temp-count
-          sugarsmoothed sugarsmoothed-old sugar-rate-smoothed 
-          smoothness smoothness-2 percent-excited
-          waiting wait-for-sugar wait-for-oxygen wait-for-vapor
-          wait-for-photosynthesis ]
-turtles-own [ water-in-leaf?   ]
-patches-own [     ]
-breed [light  ]
-breed [sun]
-breed [sugar]
-sun-own [   old-xcor ]
-breed [ CO2 ]
-breed [ oxygen ]
-breed [ water ]
-breed [vapor]
-breed [ chloroplast ]
-chloroplast-own [ NADPH? ]
-
-to startup
-setup
-end
-
-to setup
-clear-all
-createplant
-createsun
-createchloroplast
-ask water [ set water-in-leaf? false]
-set sun-brightness 30
-set CO2-amount 14
-set water-flow 8
-set waiting false
-set wait-for-photosynthesis false
-set wait-for-vapor false
-set wait-for-sugar false
-set wait-for-oxygen false
-reset-ticks
-end
-
-to go 
-  set step step + 1   tick
-  shine-light
-  takeup-water
-  move-chloroplast
-  color-sky
-  set-CO2
-  resolve-wait
-  if waiting = false [ photosynthesize ]
-  if waiting = false [ make-oxygen ]
-  if waiting = false [ make-sugar ]
-  if waiting = false [ make-water-vapor ]
-  ask sugar [
-    fd 0.1
-    if ycor < min-pycor + 1 
-       [die]
-    ]
-  ask oxygen [
-    
-    fd 0.2 
-    set heading heading - 10 + random 20
-    if abs xcor > max-pxcor - 1 or abs ycor > max-pycor - 1
-      [die]
-  ]
-  ask vapor [
-    fd 0.2 
-    set heading heading - 10 + random 20
-    if abs xcor > max-pxcor - 1 or abs ycor > max-pycor - 1
-      [die]
-      ]
-;; plot-stuff
-  ;;tick
-end
-
-;;SETUP PROCEDURES
-
-to createplant
-ask patches [
-  set  pcolor 103
-  if pycor <= -15 and pycor > -17 [set pcolor 31]
-  if pycor <= -17 [set pcolor 36 ]
-]
-end
-
-to createsun
-create-sun 1 [
-  set xcor -7
-  set ycor max-pycor - 3
-  set heading 90
-  set color yellow
-  set size 5
-  set shape "circle"
-  ]
-end
-
-to createchloroplast
-create-chloroplast 1 
-  [setxy 0  0
-  set color 64
-  set shape "circle 3"
-  set color black
-  set size 14
-  set NADPH? false
-  ]
-end
-
-;;GO PROCEDURES
-
-to move-chloroplast
-ask chloroplast 
-  [fd .05
-  set heading heading + (10 - random 20)
-  if distancexy 0 0 > 3 [ rt 180 ] 
-  ]
-end
-
-to shine-light
-if random 100 < sun-brightness [
-    create-light 1
-        [set color yellow + 3
-        set size 2
-        setxy [xcor] of (turtle 0) [ycor] of (turtle 0)
-        set heading 240 - random 120
-        set xcor xcor + random 5 - 2
-        fd 1
-        ]
-     ]
-ask light [
-    fd .5
-    if abs xcor > max-pycor - 1 [die]
-    if ycor < -14 [die]
-     ]
-end
-
-to takeup-water
-if random 100 < water-flow [
-create-water 1
-  [set color blue
-  set shape "circle"
-  set size 2
-  setxy min-pxcor (- 16 - random 4) 
-  set heading 90
-  fd 1
-  ]]
-ask water [
-  if xcor > max-pxcor - 1 [die]
-  if abs xcor < 3 and ycor < -15 and random 100 < 5  and (count water with [ycor > -5]) < 20 
-    [set heading 0]
-  if ycor > -7
-    [set water-in-leaf? true]
-  if water-in-leaf? = true and distancexy 0 0 > 8 [
-    rt 180
-    fd 1
-    ]
-  if distancexy 0 0 < 7 [set heading heading + (10 - random 20)]
-    fd .3
-    
-  ]
-end
-
-to set-CO2
-if count CO2 < CO2-amount [
-   create-CO2 1
-    [
-     set shape "CO2"
-     set size 3
-     setxy random max-pxcor random max-pycor
-     set heading random 360
-    ]
-]
-ask CO2 [
-    set heading heading + (10 - random 20)
-   
-    fd 0.5
-    if ycor > (max-pycor - 1) or ycor < min-pycor + 6 [
-    rt 180
-    fd 1
-    ] 
-  ]
-end
-
-to photosynthesize
-ask chloroplast [
-   if NADPH? = false 
-   and count (light in-radius 5) > 0
-   and count (water in-radius 5) > 0 [
-        
-        set O2-temp-count O2-temp-count + 1
-        ask one-of (water in-radius 5) [set size 6  set label-color white set label  "water" ] 
-        ask one-of (light in-radius 5) [set size 6 set label-color black set label  "light" ] 
-        ;; pause 1
-          set NADPH? true
-          set size 16 
-          set color red
-        ;; pause 1
-        set waiting true
-
-      ]
-      
-
-  If NADPH? = true 
-    and count (CO2 in-radius 4) > 0 
-    and count (water in-radius 4) > 0 [
-      set sugar-temp-count sugar-temp-count + 1
-      set vapor-temp-count vapor-temp-count + 1
-
-      ask one-of (CO2 in-radius 4) [set size 6 set label-color white set label  "CO2" ]
-     ask one-of (water in-radius 4) [set size 6 set label-color white set label  "water" ] 
-        ;; pause 1
-          set NADPH? false
-          set size 14
-          set color black
-        ;; pause 1
-        set waiting true
-
-      ]
-]
-  if waiting = true [ set wait-for-photosynthesis true ]
-end
-
-to make-oxygen
-if O2-temp-count > 0 [
-  create-oxygen 1
-    [set color gray
-    set shape "oxygen"
-    set size 5 set label-color black set label  "oxygen"
-    set heading random 360 
-    ]
-  set waiting true
-  set wait-for-oxygen true
-  set O2-temp-count O2-temp-count - 1
-]
-
-end
-
-to  make-sugar 
-if sugar-temp-count > 0 [
-  create-sugar 1
-    [setxy 0 0
-    set shape "sugar"
-    set color white
-    set size 5 set label-color black set label  "sugar"
-    set heading 180
-    ]
-  set waiting true
-  set wait-for-sugar true
-  set sugar-temp-count sugar-temp-count - 1 
-]
-end
-
-to   make-water-vapor
-if vapor-temp-count > 0 [
-  create-vapor 1
-    [setxy 0 3   
-    set shape "vapor"
-    set color blue + 2
-    set size 5 set label-color black set label  "water vapor"
-    set heading random 360
-    ]
-  set waiting true
-  set wait-for-vapor true
-  set vapor-temp-count vapor-temp-count - 1 
-]
-end
-
-to color-sky
-if step mod 10 = 0 [
-ask patches [
-  if pycor > -15 
-    [set pcolor (scale-color blue (count light) -30 60)]
-   ]
-]
-end
-
-to plot-stuff
-set-current-plot "Production Rates"
-  set-current-plot-pen "oxygen"
-      plot count oxygen
-    set-current-plot-pen "Sugar"
-      plot count sugar
-   ;; set-current-plot-pen "Vapor"
-    ;;  plot count vapor
-end
-
-to resolve-wait
-  if waiting = true [
-    pause 1
-    set waiting false
-  ]
-
-  if wait-for-photosynthesis = true [
-    ask turtles with [size = 6] [die]
-    set wait-for-photosynthesis false
-  ]
-  
-  if wait-for-vapor = true [
-    ask turtles with [shape = "vapor"] with [size = 5] [
-      set size 3 set label ""
-    ]
-    set wait-for-vapor false
-  ]
-  
-  if wait-for-sugar = true [
-    ask turtles with [shape = "sugar"] with [size = 5] [
-      set size 3 set label ""
-    ]
-    set wait-for-sugar false
-  ]
-  
-  if wait-for-oxygen = true [
-    ask turtles with [shape = "oxygen"] with [size = 5] [
-      set size 3 set label ""
-    ]
-    set wait-for-oxygen false
-  ]
-end
-    
-
-to pause [time]
-  ;; custom wait code here
-  ;; wait time
-end</script>
-    <script type="text/string" id="nlogo-info">## WHAT IS IT?
-
-This is a model of photosynthesis in a chloroplast which is inside a leaf. 
-
-## HOW IT WORKS
-
-The following inputs can be adjusted with sliders:  
--- light rays radiating from the sun (yellow arrowheads)  
--- water supplied to the stem (blue circles)  
--- carbon dioxide (CO2) molecules in the atmosphere (orange and black)
-
-In the center of the leaf is a black circle representing a chloroplast. The rules for the model are as follows:  
-1. Water in the stem is drawn up into the leaf as it goes by, up to a maximum of 30 water molecules.  
-2. If a light ray and a water molecule are both inside the chloroplast, it goes into an excited state (NADPH). The circle gets larger and turns orange. One water is used up and one oxygen (gray circle) is created.  
-3. If a CO2 and a water are both inside the chloroplast when it is in an excited state,  
-it returns to an unexcited state. The circle gets smaller and turns black. One CO2 is used up and one sugar (white jagged shape) is created.  
-4. The sugars go down the leaf stem and disappear. The sugar production rate on the graph is the number of sugars on the screen at any moment.  
-5. The oxygens go out in all directions and disappear when they get to the edge of the screen. The oxygen production rate on the graph is the number of oxygens on the screen at any moment.
-
-## HOW TO USE IT
-
-This section could explain how to use the model, including a description of each of the items in the interface tab.
-
-## THINGS TO NOTICE
-
-This section could give some ideas of things for the user to notice while running the model.
-
-## THINGS TO TRY
-
-This section could give some ideas of things for the user to try to do (move sliders, switches, etc.) with the model.
-
-## EXTENDING THE MODEL
-
-This section could give some ideas of things to add or change in the procedures tab to make the model more complicated, detailed, accurate, etc.
-
-## NETLOGO FEATURES
-
-This section could point out any especially interesting or unusual features of NetLogo that the model makes use of, particularly in the Procedures tab.  It might also point out places where workarounds were needed because of missing features.
-
-## RELATED MODELS
-
-This section could give the names of models in the NetLogo Models Library or elsewhere which are of related interest.
-
-## CREDITS AND REFERENCES
-
-This section could contain a reference to the model's URL on the web if it has one, as well as any other necessary credits or references.</script>
+    <div id="model-container"></div>
 <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript">
 ;
 
-      var widgets = [{"left":134,"top":10,"right":552,"bottom":369,"patchSize":8.0,"fontSize":10,"wrappingAllowedInX":true,"wrappingAllowedInY":true,"minPxcor":-25,"maxPxcor":25,"minPycor":-20,"maxPycor":20,"updateMode":"Continuous","showTickCounter":true,"tickCounterLabel":"ticks","frameRate":30.0,"type":"view"},{"display":"Setup/Reset","left":9,"top":11,"right":115,"bottom":44,"source":"setup","forever":false,"buttonType":"OBSERVER","actionKey":null,"type":"button","compiledSource":{"success":true,"result":"Call(setup);"}},{"display":"Run/Stop","left":23,"top":63,"right":104,"bottom":96,"source":"go","forever":true,"buttonType":"OBSERVER","actionKey":null,"type":"button","compiledSource":{"success":true,"result":"Call(go);"}},{"display":"water-flow","left":14,"top":239,"right":127,"bottom":272,"varName":"water-flow","min":"0","max":"20","default":8.0,"step":"1","units":null,"direction":"horizontal","type":"slider","compiledMin":{"success":true,"result":"0"},"compiledMax":{"success":true,"result":"20"},"compiledStep":{"success":true,"result":"1"}},{"display":"CO2-amount","left":10,"top":182,"right":126,"bottom":215,"varName":"CO2-amount","min":"0","max":"30","default":14.0,"step":"1","units":null,"direction":"horizontal","type":"slider","compiledMin":{"success":true,"result":"0"},"compiledMax":{"success":true,"result":"30"},"compiledStep":{"success":true,"result":"1"}},{"display":"sun-brightness","left":9,"top":126,"right":128,"bottom":159,"varName":"sun-brightness","min":"0","max":"100","default":30.0,"step":"1","units":null,"direction":"horizontal","type":"slider","compiledMin":{"success":true,"result":"0"},"compiledMax":{"success":true,"result":"100"},"compiledStep":{"success":true,"result":"1"}}];
-      var code    = document.querySelector("#nlogo-code").textContent;
-      var info    = document.querySelector("#nlogo-info").textContent;
-      var session = Tortoise.fromCompiledModel('#model-container', widgets, code, info, '', true);
+      var session =
+        (function () {
+          var widgets = [{"left":134,"top":10,"right":552,"bottom":369,"patchSize":8.0,"fontSize":10,"wrappingAllowedInX":true,"wrappingAllowedInY":true,"minPxcor":-25,"maxPxcor":25,"minPycor":-20,"maxPycor":20,"updateMode":"Continuous","showTickCounter":true,"tickCounterLabel":"ticks","frameRate":30.0,"type":"view"},{"display":"Setup/Reset","left":9,"top":11,"right":115,"bottom":44,"source":"setup","forever":false,"buttonType":"OBSERVER","actionKey":null,"type":"button","compiledSource":{"success":true,"result":"Call(setup);"}},{"display":"Run/Stop","left":23,"top":63,"right":104,"bottom":96,"source":"go","forever":true,"buttonType":"OBSERVER","actionKey":null,"type":"button","compiledSource":{"success":true,"result":"Call(go);"}},{"display":"water-flow","left":14,"top":239,"right":127,"bottom":272,"varName":"water-flow","min":"0","max":"20","default":8.0,"step":"1","units":null,"direction":"horizontal","type":"slider","compiledMin":{"success":true,"result":"0"},"compiledMax":{"success":true,"result":"20"},"compiledStep":{"success":true,"result":"1"}},{"display":"CO2-amount","left":10,"top":182,"right":126,"bottom":215,"varName":"CO2-amount","min":"0","max":"30","default":14.0,"step":"1","units":null,"direction":"horizontal","type":"slider","compiledMin":{"success":true,"result":"0"},"compiledMax":{"success":true,"result":"30"},"compiledStep":{"success":true,"result":"1"}},{"display":"sun-brightness","left":9,"top":126,"right":128,"bottom":159,"varName":"sun-brightness","min":"0","max":"100","default":30.0,"step":"1","units":null,"direction":"horizontal","type":"slider","compiledMin":{"success":true,"result":"0"},"compiledMax":{"success":true,"result":"100"},"compiledStep":{"success":true,"result":"1"}}];
+          var code    = "globals [ sugarcount sugarcount-old sugar-rate oxygencount O2-temp-count \n        sugar-temp-count step time-unit  day?\n        vapor-temp-count\n          sugarsmoothed sugarsmoothed-old sugar-rate-smoothed \n          smoothness smoothness-2 percent-excited\n          waiting wait-for-sugar wait-for-oxygen wait-for-vapor\n          wait-for-photosynthesis ]\nturtles-own [ water-in-leaf?   ]\npatches-own [     ]\nbreed [light  ]\nbreed [sun]\nbreed [sugar]\nsun-own [   old-xcor ]\nbreed [ CO2 ]\nbreed [ oxygen ]\nbreed [ water ]\nbreed [vapor]\nbreed [ chloroplast ]\nchloroplast-own [ NADPH? ]\n\nto startup\nsetup\nend\n\nto setup\nclear-all\ncreateplant\ncreatesun\ncreatechloroplast\nask water [ set water-in-leaf? false]\nset sun-brightness 30\nset CO2-amount 14\nset water-flow 8\nset waiting false\nset wait-for-photosynthesis false\nset wait-for-vapor false\nset wait-for-sugar false\nset wait-for-oxygen false\nreset-ticks\nend\n\nto go \n  set step step + 1   tick\n  shine-light\n  takeup-water\n  move-chloroplast\n  color-sky\n  set-CO2\n  resolve-wait\n  if waiting = false [ photosynthesize ]\n  if waiting = false [ make-oxygen ]\n  if waiting = false [ make-sugar ]\n  if waiting = false [ make-water-vapor ]\n  ask sugar [\n    fd 0.1\n    if ycor < min-pycor + 1 \n       [die]\n    ]\n  ask oxygen [\n    \n    fd 0.2 \n    set heading heading - 10 + random 20\n    if abs xcor > max-pxcor - 1 or abs ycor > max-pycor - 1\n      [die]\n  ]\n  ask vapor [\n    fd 0.2 \n    set heading heading - 10 + random 20\n    if abs xcor > max-pxcor - 1 or abs ycor > max-pycor - 1\n      [die]\n      ]\n;; plot-stuff\n  ;;tick\nend\n\n;;SETUP PROCEDURES\n\nto createplant\nask patches [\n  set  pcolor 103\n  if pycor <= -15 and pycor > -17 [set pcolor 31]\n  if pycor <= -17 [set pcolor 36 ]\n]\nend\n\nto createsun\ncreate-sun 1 [\n  set xcor -7\n  set ycor max-pycor - 3\n  set heading 90\n  set color yellow\n  set size 5\n  set shape \"circle\"\n  ]\nend\n\nto createchloroplast\ncreate-chloroplast 1 \n  [setxy 0  0\n  set color 64\n  set shape \"circle 3\"\n  set color black\n  set size 14\n  set NADPH? false\n  ]\nend\n\n;;GO PROCEDURES\n\nto move-chloroplast\nask chloroplast \n  [fd .05\n  set heading heading + (10 - random 20)\n  if distancexy 0 0 > 3 [ rt 180 ] \n  ]\nend\n\nto shine-light\nif random 100 < sun-brightness [\n    create-light 1\n        [set color yellow + 3\n        set size 2\n        setxy [xcor] of (turtle 0) [ycor] of (turtle 0)\n        set heading 240 - random 120\n        set xcor xcor + random 5 - 2\n        fd 1\n        ]\n     ]\nask light [\n    fd .5\n    if abs xcor > max-pycor - 1 [die]\n    if ycor < -14 [die]\n     ]\nend\n\nto takeup-water\nif random 100 < water-flow [\ncreate-water 1\n  [set color blue\n  set shape \"circle\"\n  set size 2\n  setxy min-pxcor (- 16 - random 4) \n  set heading 90\n  fd 1\n  ]]\nask water [\n  if xcor > max-pxcor - 1 [die]\n  if abs xcor < 3 and ycor < -15 and random 100 < 5  and (count water with [ycor > -5]) < 20 \n    [set heading 0]\n  if ycor > -7\n    [set water-in-leaf? true]\n  if water-in-leaf? = true and distancexy 0 0 > 8 [\n    rt 180\n    fd 1\n    ]\n  if distancexy 0 0 < 7 [set heading heading + (10 - random 20)]\n    fd .3\n    \n  ]\nend\n\nto set-CO2\nif count CO2 < CO2-amount [\n   create-CO2 1\n    [\n     set shape \"CO2\"\n     set size 3\n     setxy random max-pxcor random max-pycor\n     set heading random 360\n    ]\n]\nask CO2 [\n    set heading heading + (10 - random 20)\n   \n    fd 0.5\n    if ycor > (max-pycor - 1) or ycor < min-pycor + 6 [\n    rt 180\n    fd 1\n    ] \n  ]\nend\n\nto photosynthesize\nask chloroplast [\n   if NADPH? = false \n   and count (light in-radius 5) > 0\n   and count (water in-radius 5) > 0 [\n        \n        set O2-temp-count O2-temp-count + 1\n        ask one-of (water in-radius 5) [set size 6  set label-color white set label  \"water\" ] \n        ask one-of (light in-radius 5) [set size 6 set label-color black set label  \"light\" ] \n        ;; pause 1\n          set NADPH? true\n          set size 16 \n          set color red\n        ;; pause 1\n        set waiting true\n\n      ]\n      \n\n  If NADPH? = true \n    and count (CO2 in-radius 4) > 0 \n    and count (water in-radius 4) > 0 [\n      set sugar-temp-count sugar-temp-count + 1\n      set vapor-temp-count vapor-temp-count + 1\n\n      ask one-of (CO2 in-radius 4) [set size 6 set label-color white set label  \"CO2\" ]\n     ask one-of (water in-radius 4) [set size 6 set label-color white set label  \"water\" ] \n        ;; pause 1\n          set NADPH? false\n          set size 14\n          set color black\n        ;; pause 1\n        set waiting true\n\n      ]\n]\n  if waiting = true [ set wait-for-photosynthesis true ]\nend\n\nto make-oxygen\nif O2-temp-count > 0 [\n  create-oxygen 1\n    [set color gray\n    set shape \"oxygen\"\n    set size 5 set label-color black set label  \"oxygen\"\n    set heading random 360 \n    ]\n  set waiting true\n  set wait-for-oxygen true\n  set O2-temp-count O2-temp-count - 1\n]\n\nend\n\nto  make-sugar \nif sugar-temp-count > 0 [\n  create-sugar 1\n    [setxy 0 0\n    set shape \"sugar\"\n    set color white\n    set size 5 set label-color black set label  \"sugar\"\n    set heading 180\n    ]\n  set waiting true\n  set wait-for-sugar true\n  set sugar-temp-count sugar-temp-count - 1 \n]\nend\n\nto   make-water-vapor\nif vapor-temp-count > 0 [\n  create-vapor 1\n    [setxy 0 3   \n    set shape \"vapor\"\n    set color blue + 2\n    set size 5 set label-color black set label  \"water vapor\"\n    set heading random 360\n    ]\n  set waiting true\n  set wait-for-vapor true\n  set vapor-temp-count vapor-temp-count - 1 \n]\nend\n\nto color-sky\nif step mod 10 = 0 [\nask patches [\n  if pycor > -15 \n    [set pcolor (scale-color blue (count light) -30 60)]\n   ]\n]\nend\n\nto plot-stuff\nset-current-plot \"Production Rates\"\n  set-current-plot-pen \"oxygen\"\n      plot count oxygen\n    set-current-plot-pen \"Sugar\"\n      plot count sugar\n   ;; set-current-plot-pen \"Vapor\"\n    ;;  plot count vapor\nend\n\nto resolve-wait\n  if waiting = true [\n    pause 1\n    set waiting false\n  ]\n\n  if wait-for-photosynthesis = true [\n    ask turtles with [size = 6] [die]\n    set wait-for-photosynthesis false\n  ]\n  \n  if wait-for-vapor = true [\n    ask turtles with [shape = \"vapor\"] with [size = 5] [\n      set size 3 set label \"\"\n    ]\n    set wait-for-vapor false\n  ]\n  \n  if wait-for-sugar = true [\n    ask turtles with [shape = \"sugar\"] with [size = 5] [\n      set size 3 set label \"\"\n    ]\n    set wait-for-sugar false\n  ]\n  \n  if wait-for-oxygen = true [\n    ask turtles with [shape = \"oxygen\"] with [size = 5] [\n      set size 3 set label \"\"\n    ]\n    set wait-for-oxygen false\n  ]\nend\n    \n\nto pause [time]\n  ;; custom wait code here\n  ;; wait time\nend";
+          var info    = "## WHAT IS IT?\n\nThis is a model of photosynthesis in a chloroplast which is inside a leaf. \n\n## HOW IT WORKS\n\nThe following inputs can be adjusted with sliders:  \n-- light rays radiating from the sun (yellow arrowheads)  \n-- water supplied to the stem (blue circles)  \n-- carbon dioxide (CO2) molecules in the atmosphere (orange and black)\n\nIn the center of the leaf is a black circle representing a chloroplast. The rules for the model are as follows:  \n1. Water in the stem is drawn up into the leaf as it goes by, up to a maximum of 30 water molecules.  \n2. If a light ray and a water molecule are both inside the chloroplast, it goes into an excited state (NADPH). The circle gets larger and turns orange. One water is used up and one oxygen (gray circle) is created.  \n3. If a CO2 and a water are both inside the chloroplast when it is in an excited state,  \nit returns to an unexcited state. The circle gets smaller and turns black. One CO2 is used up and one sugar (white jagged shape) is created.  \n4. The sugars go down the leaf stem and disappear. The sugar production rate on the graph is the number of sugars on the screen at any moment.  \n5. The oxygens go out in all directions and disappear when they get to the edge of the screen. The oxygen production rate on the graph is the number of oxygens on the screen at any moment.\n\n## HOW TO USE IT\n\nThis section could explain how to use the model, including a description of each of the items in the interface tab.\n\n## THINGS TO NOTICE\n\nThis section could give some ideas of things for the user to notice while running the model.\n\n## THINGS TO TRY\n\nThis section could give some ideas of things for the user to try to do (move sliders, switches, etc.) with the model.\n\n## EXTENDING THE MODEL\n\nThis section could give some ideas of things to add or change in the procedures tab to make the model more complicated, detailed, accurate, etc.\n\n## NETLOGO FEATURES\n\nThis section could point out any especially interesting or unusual features of NetLogo that the model makes use of, particularly in the Procedures tab.  It might also point out places where workarounds were needed because of missing features.\n\n## RELATED MODELS\n\nThis section could give the names of models in the NetLogo Models Library or elsewhere which are of related interest.\n\n## CREDITS AND REFERENCES\n\nThis section could contain a reference to the model's URL on the web if it has one, as well as any other necessary credits or references.";
+          return Tortoise.fromCompiledModel('#model-container', widgets, code, info, '', true);
+        })();
       var modelConfig  = (typeof window.modelConfig !== "undefined" && window.modelConfig !== null) ? window.modelConfig : {};
 var modelPlotOps = (typeof modelConfig.plotOps !== "undefined" && modelConfig.plotOps !== null) ? modelConfig.plotOps : {};
 
@@ -390,8 +28,9 @@ var Plot      = tortoise_require('engine/plot/plot');
 var PlotOps   = tortoise_require('engine/plot/plotops');
 
 modelConfig.plots = [];
+if (typeof javax !== "undefined") { modelConfig.output = { clear: function(){}, write: function(str) { context.getWriter().print(str); } } }
 
-var workspace = tortoise_require('engine/workspace')(modelConfig)([{ name: 'LIGHT', singular: 'turtle', varNames: [] }, { name: 'SUN', singular: 'turtle', varNames: ['old-xcor'] }, { name: 'SUGAR', singular: 'turtle', varNames: [] }, { name: 'CO2', singular: 'turtle', varNames: [] }, { name: 'OXYGEN', singular: 'turtle', varNames: [] }, { name: 'WATER', singular: 'turtle', varNames: [] }, { name: 'VAPOR', singular: 'turtle', varNames: [] }, { name: 'CHLOROPLAST', singular: 'turtle', varNames: ['nadph?'] }])(['water-in-leaf?'], [])(['water-flow', 'co2-amount', 'sun-brightness', 'sugarcount', 'sugarcount-old', 'sugar-rate', 'oxygencount', 'o2-temp-count', 'sugar-temp-count', 'step', 'time-unit', 'day?', 'vapor-temp-count', 'sugarsmoothed', 'sugarsmoothed-old', 'sugar-rate-smoothed', 'smoothness', 'smoothness-2', 'percent-excited', 'waiting', 'wait-for-sugar', 'wait-for-oxygen', 'wait-for-vapor', 'wait-for-photosynthesis'], ['water-flow', 'co2-amount', 'sun-brightness'], [], -25, 25, -20, 20, 8.0, true, true, {"default":{"rotate":true,"elements":[{"xcors":[150,40,150,260],"ycors":[5,250,205,250],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"airplane":{"rotate":true,"elements":[{"xcors":[150,135,120,120,15,15,120,135,105,120,150,180,210,165,180,285,285,180,180,165],"ycors":[0,15,60,105,165,195,180,240,270,285,270,285,270,240,180,195,165,105,60,15],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"arrow":{"rotate":true,"elements":[{"xcors":[150,0,105,105,195,195,300],"ycors":[0,150,150,293,293,150,150],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"box":{"rotate":false,"elements":[{"xcors":[150,285,285,150],"ycors":[285,225,75,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[150,15,150,285],"ycors":[135,75,15,75],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[15,15,150,150],"ycors":[75,225,285,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":150,"y1":285,"x2":150,"y2":135,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false},{"x1":150,"y1":135,"x2":15,"y2":75,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false},{"x1":150,"y1":135,"x2":285,"y2":75,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false}]},"bug":{"rotate":true,"elements":[{"x":96,"y":182,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":110,"y":127,"diam":80,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":110,"y":75,"diam":80,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":150,"y1":100,"x2":80,"y2":30,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":150,"y1":100,"x2":220,"y2":30,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"butterfly":{"rotate":true,"elements":[{"xcors":[150,209,225,225,195,165,150],"ycors":[165,199,225,255,270,255,240],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[150,89,75,75,105,135,150],"ycors":[165,198,225,255,270,255,240],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[139,100,55,25,10,10,25,40,85,139],"ycors":[148,105,90,90,105,135,180,195,194,163],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[162,200,245,275,290,290,275,260,215,162],"ycors":[150,105,90,90,105,135,180,195,195,165],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[150,135,120,135,150,165,180,165],"ycors":[255,225,150,120,105,120,150,225],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":135,"y":90,"diam":30,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x1":150,"y1":105,"x2":195,"y2":60,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false},{"x1":150,"y1":105,"x2":105,"y2":60,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false}]},"car":{"rotate":false,"elements":[{"xcors":[300,279,261,240,226,213,203,185,159,135,75,0,0,0,300,300],"ycors":[180,164,144,135,132,106,84,63,50,50,60,150,165,225,225,180],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":180,"y":180,"diam":90,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":30,"y":180,"diam":90,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[162,132,134,209,194,189,180],"ycors":[80,78,135,135,105,96,89],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":47,"y":195,"diam":58,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":195,"y":195,"diam":58,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"circle":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"circle 2":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":30,"y":30,"diam":240,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"circle 3":{"rotate":false,"elements":[{"x":8,"y":8,"diam":283,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":12,"y":12,"diam":277,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":16,"y":16,"diam":268,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":16,"y":16,"diam":268,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":21,"y":21,"diam":258,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":8,"y":8,"diam":285,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":12,"y":12,"diam":277,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":14,"y":14,"diam":272,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":12,"y":12,"diam":277,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true}]},"circle-edge":{"rotate":false,"elements":[{"x":12,"y":12,"diam":277,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":true},{"x":21,"y":21,"diam":258,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":true},{"x":23,"y":23,"diam":255,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":true},{"x":30,"y":30,"diam":240,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":true}]},"circle-edge2":{"rotate":false,"elements":[{"x":2,"y":2,"diam":295,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":16,"y":16,"diam":268,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":26,"y":26,"diam":247,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":60,"y":60,"diam":180,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":103,"y":103,"diam":95,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":23,"y":23,"diam":255,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":8,"y":8,"diam":285,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":15,"y":15,"diam":270,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":12,"y":12,"diam":277,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":2,"y":2,"diam":297,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true}]},"co2":{"rotate":true,"elements":[{"x":26,"y":116,"diam":67,"type":"circle","color":"rgba(241, 106, 21, 1.0)","filled":true,"marked":false},{"x":26,"y":116,"diam":67,"type":"circle","color":"rgba(241, 106, 21, 1.0)","filled":true,"marked":false},{"x":191,"y":116,"diam":67,"type":"circle","color":"rgba(241, 106, 21, 1.0)","filled":true,"marked":false},{"x":75,"y":75,"diam":150,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x":101,"y":101,"diam":67,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":73,"y":73,"diam":152,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":18,"y":108,"diam":85,"type":"circle","color":"rgba(241, 106, 21, 1.0)","filled":false,"marked":false},{"x":183,"y":108,"diam":85,"type":"circle","color":"rgba(241, 106, 21, 1.0)","filled":false,"marked":false}]},"cow":{"rotate":false,"elements":[{"xcors":[200,197,179,177,166,140,93,78,72,49,48,37,25,25,45,103,179,198,252,272,293,285,255,242,224],"ycors":[193,249,249,196,187,189,191,179,211,209,181,149,120,89,72,84,75,76,64,81,103,121,121,118,167],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[73,86,62,48],"ycors":[210,251,249,208],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[25,16,9,23,25,39],"ycors":[114,195,204,213,200,123],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"cylinder":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"dot":{"rotate":false,"elements":[{"x":90,"y":90,"diam":120,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"face happy":{"rotate":false,"elements":[{"x":8,"y":8,"diam":285,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":60,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":180,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[150,90,62,47,67,90,109,150,192,210,227,251,236,212],"ycors":[255,239,213,191,179,203,218,225,218,203,181,194,217,240],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"face neutral":{"rotate":false,"elements":[{"x":8,"y":7,"diam":285,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":60,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":180,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xmin":60,"ymin":195,"xmax":240,"ymax":225,"type":"rectangle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"face sad":{"rotate":false,"elements":[{"x":8,"y":8,"diam":285,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":60,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":180,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[150,90,62,47,67,90,109,150,192,210,227,251,236,212],"ycors":[168,184,210,232,244,220,205,198,205,220,242,229,206,183],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"fish":{"rotate":false,"elements":[{"xcors":[44,21,15,0,15,0,13,20,45],"ycors":[131,87,86,120,150,180,214,212,166],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[135,119,95,76,46,60],"ycors":[195,235,218,210,204,165],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[75,83,71,86,166,135],"ycors":[45,77,103,114,78,60],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[30,151,226,280,292,292,287,270,195,151,30],"ycors":[136,77,81,119,146,160,170,195,210,212,166],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":215,"y":106,"diam":30,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"flag":{"rotate":false,"elements":[{"xmin":60,"ymin":15,"xmax":75,"ymax":300,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[90,270,90],"ycors":[150,90,30],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":75,"y1":135,"x2":90,"y2":135,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":75,"y1":45,"x2":90,"y2":45,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"flower":{"rotate":false,"elements":[{"xcors":[135,165,180,180,150,165,195,195,165],"ycors":[120,165,210,240,300,300,240,195,135],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"x":85,"y":132,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":130,"y":147,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":192,"y":85,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":85,"y":40,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":177,"y":40,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":177,"y":132,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":70,"y":85,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":130,"y":25,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":96,"y":51,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":113,"y":68,"diam":74,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[189,219,249,279,234],"ycors":[233,188,173,188,218],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[180,150,105,75,135],"ycors":[255,210,210,240,240],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false}]},"house":{"rotate":false,"elements":[{"xmin":45,"ymin":120,"xmax":255,"ymax":285,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":120,"ymin":210,"xmax":180,"ymax":285,"type":"rectangle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[15,150,285],"ycors":[120,15,120],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":30,"y1":120,"x2":270,"y2":120,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false}]},"leaf":{"rotate":false,"elements":[{"xcors":[150,135,120,60,30,60,60,15,30,15,40,45,60,90,105,120,105,120,135,150,165,180,195,180,195,210,240,255,263,285,270,285,240,240,270,240,180,165],"ycors":[210,195,210,210,195,180,165,135,120,105,104,90,90,105,120,120,60,60,30,15,30,60,60,120,120,105,90,90,104,105,120,135,165,180,195,210,210,195],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,135,120,105,105,135,165,165],"ycors":[195,240,255,255,285,285,240,195],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"line":{"rotate":true,"elements":[{"x1":150,"y1":0,"x2":150,"y2":300,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"line half":{"rotate":true,"elements":[{"x1":150,"y1":0,"x2":150,"y2":150,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"link":{"rotate":true,"elements":[{"x1":150,"y1":0,"x2":150,"y2":300,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"link direction":{"rotate":true,"elements":[{"x1":150,"y1":150,"x2":30,"y2":225,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":150,"y1":150,"x2":270,"y2":225,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"oxygen":{"rotate":true,"elements":[{"x":5,"y":65,"diam":170,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":125,"y":65,"diam":170,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"pentagon":{"rotate":false,"elements":[{"xcors":[150,15,60,240,285],"ycors":[15,120,285,285,120],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"person":{"rotate":false,"elements":[{"x":110,"y":5,"diam":80,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[105,120,90,105,135,150,165,195,210,180,195],"ycors":[90,195,285,300,300,225,300,300,285,195,90],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":127,"ymin":79,"xmax":172,"ymax":94,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[195,240,225,165],"ycors":[90,150,180,105],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[105,60,75,135],"ycors":[90,150,180,105],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"plant":{"rotate":false,"elements":[{"xmin":135,"ymin":90,"xmax":165,"ymax":300,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,90,45,75,135],"ycors":[255,210,195,255,285],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[165,210,255,225,165],"ycors":[255,210,195,255,285],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,90,45,75,135],"ycors":[180,135,120,180,210],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[165,165,225,255,210],"ycors":[180,210,180,120,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,90,45,75,135],"ycors":[105,60,45,105,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[165,165,225,255,210],"ycors":[105,135,105,45,60],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,120,150,180,165],"ycors":[90,45,15,45,90],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"square":{"rotate":false,"elements":[{"xmin":30,"ymin":30,"xmax":270,"ymax":270,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"square 2":{"rotate":false,"elements":[{"xmin":30,"ymin":30,"xmax":270,"ymax":270,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":60,"ymin":60,"xmax":240,"ymax":240,"type":"rectangle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"star":{"rotate":false,"elements":[{"xcors":[151,185,298,207,242,151,59,94,3,116],"ycors":[1,108,108,175,282,216,282,175,108,108],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"sugar":{"rotate":true,"elements":[{"xcors":[75,135,165,255,225,285,195,240,150,135,75,75,15,105,15,90,75],"ycors":[60,15,60,60,120,165,180,255,255,210,255,210,195,150,90,75,60],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":true}]},"target":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":30,"y":30,"diam":240,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":60,"y":60,"diam":180,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":90,"y":90,"diam":120,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":120,"y":120,"diam":60,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"tree":{"rotate":false,"elements":[{"x":118,"y":3,"diam":94,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":120,"ymin":195,"xmax":180,"ymax":300,"type":"rectangle","color":"rgba(157, 110, 72, 1.0)","filled":true,"marked":false},{"x":65,"y":21,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":116,"y":41,"diam":127,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":45,"y":90,"diam":120,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":104,"y":74,"diam":152,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"triangle":{"rotate":false,"elements":[{"xcors":[150,15,285],"ycors":[30,255,255],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"triangle 2":{"rotate":false,"elements":[{"xcors":[150,15,285],"ycors":[30,255,255],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[151,225,75],"ycors":[99,223,224],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"truck":{"rotate":false,"elements":[{"xmin":4,"ymin":45,"xmax":195,"ymax":187,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[296,296,259,244,208,207],"ycors":[193,150,134,104,104,194],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":195,"ymin":60,"xmax":195,"ymax":105,"type":"rectangle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[238,252,219,218],"ycors":[112,141,141,112],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":234,"y":174,"diam":42,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xmin":181,"ymin":185,"xmax":214,"ymax":194,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":144,"y":174,"diam":42,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":24,"y":174,"diam":42,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":24,"y":174,"diam":42,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x":144,"y":174,"diam":42,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x":234,"y":174,"diam":42,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"turtle":{"rotate":true,"elements":[{"xcors":[215,240,246,228,215,193],"ycors":[204,233,254,266,252,210],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[195,225,245,260,269,261,240,225,210],"ycors":[90,75,75,89,108,124,105,105,105],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[105,75,55,40,31,39,60,75,90],"ycors":[90,75,75,89,108,124,105,105,105],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[132,134,107,108,150,192,192,169,172],"ycors":[85,64,51,17,2,18,52,65,87],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[85,60,54,72,85,107],"ycors":[204,233,254,266,252,210],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[119,179,209,224,220,175,128,81,74,88],"ycors":[75,75,101,135,225,261,261,224,135,99],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"vapor":{"rotate":true,"elements":[{"x":63,"y":198,"diam":85,"type":"circle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"x":78,"y":3,"diam":85,"type":"circle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"x":48,"y":33,"diam":234,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"wheel":{"rotate":false,"elements":[{"x":3,"y":3,"diam":294,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":30,"y":30,"diam":240,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x1":150,"y1":285,"x2":150,"y2":15,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":15,"y1":150,"x2":285,"y2":150,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x":120,"y":120,"diam":60,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":216,"y1":40,"x2":79,"y2":269,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":40,"y1":84,"x2":269,"y2":221,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":40,"y1":216,"x2":269,"y2":79,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":84,"y1":40,"x2":221,"y2":269,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"x":{"rotate":false,"elements":[{"xcors":[270,225,30,75],"ycors":[75,30,225,270],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[30,75,270,225],"ycors":[75,30,225,270],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]}}, {"default":{}});
+var workspace = tortoise_require('engine/workspace')(modelConfig)([{ name: 'LIGHT', singular: 'turtle', varNames: [] }, { name: 'SUN', singular: 'turtle', varNames: ['old-xcor'] }, { name: 'SUGAR', singular: 'turtle', varNames: [] }, { name: 'CO2', singular: 'turtle', varNames: [] }, { name: 'OXYGEN', singular: 'turtle', varNames: [] }, { name: 'WATER', singular: 'turtle', varNames: [] }, { name: 'VAPOR', singular: 'turtle', varNames: [] }, { name: 'CHLOROPLAST', singular: 'turtle', varNames: ['nadph?'] }])(['water-in-leaf?'], [])(['water-flow', 'co2-amount', 'sun-brightness', 'sugarcount', 'sugarcount-old', 'sugar-rate', 'oxygencount', 'o2-temp-count', 'sugar-temp-count', 'step', 'time-unit', 'day?', 'vapor-temp-count', 'sugarsmoothed', 'sugarsmoothed-old', 'sugar-rate-smoothed', 'smoothness', 'smoothness-2', 'percent-excited', 'waiting', 'wait-for-sugar', 'wait-for-oxygen', 'wait-for-vapor', 'wait-for-photosynthesis'], ['water-flow', 'co2-amount', 'sun-brightness'], [], -25, 25, -20, 20, 8.0, true, true, {"default":{"rotate":true,"elements":[{"xcors":[150,40,150,260],"ycors":[5,250,205,250],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"airplane":{"rotate":true,"elements":[{"xcors":[150,135,120,120,15,15,120,135,105,120,150,180,210,165,180,285,285,180,180,165],"ycors":[0,15,60,105,165,195,180,240,270,285,270,285,270,240,180,195,165,105,60,15],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"arrow":{"rotate":true,"elements":[{"xcors":[150,0,105,105,195,195,300],"ycors":[0,150,150,293,293,150,150],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"box":{"rotate":false,"elements":[{"xcors":[150,285,285,150],"ycors":[285,225,75,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[150,15,150,285],"ycors":[135,75,15,75],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[15,15,150,150],"ycors":[75,225,285,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":150,"y1":285,"x2":150,"y2":135,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false},{"x1":150,"y1":135,"x2":15,"y2":75,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false},{"x1":150,"y1":135,"x2":285,"y2":75,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false}]},"bug":{"rotate":true,"elements":[{"x":96,"y":182,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":110,"y":127,"diam":80,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":110,"y":75,"diam":80,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":150,"y1":100,"x2":80,"y2":30,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":150,"y1":100,"x2":220,"y2":30,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"butterfly":{"rotate":true,"elements":[{"xcors":[150,209,225,225,195,165,150],"ycors":[165,199,225,255,270,255,240],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[150,89,75,75,105,135,150],"ycors":[165,198,225,255,270,255,240],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[139,100,55,25,10,10,25,40,85,139],"ycors":[148,105,90,90,105,135,180,195,194,163],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[162,200,245,275,290,290,275,260,215,162],"ycors":[150,105,90,90,105,135,180,195,195,165],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[150,135,120,135,150,165,180,165],"ycors":[255,225,150,120,105,120,150,225],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":135,"y":90,"diam":30,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x1":150,"y1":105,"x2":195,"y2":60,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false},{"x1":150,"y1":105,"x2":105,"y2":60,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false}]},"car":{"rotate":false,"elements":[{"xcors":[300,279,261,240,226,213,203,185,159,135,75,0,0,0,300,300],"ycors":[180,164,144,135,132,106,84,63,50,50,60,150,165,225,225,180],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":180,"y":180,"diam":90,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":30,"y":180,"diam":90,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[162,132,134,209,194,189,180],"ycors":[80,78,135,135,105,96,89],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":47,"y":195,"diam":58,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":195,"y":195,"diam":58,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"circle":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"circle 2":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":30,"y":30,"diam":240,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"circle 3":{"rotate":false,"elements":[{"x":8,"y":8,"diam":283,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":12,"y":12,"diam":277,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":16,"y":16,"diam":268,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":16,"y":16,"diam":268,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":21,"y":21,"diam":258,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":8,"y":8,"diam":285,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":12,"y":12,"diam":277,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":14,"y":14,"diam":272,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":12,"y":12,"diam":277,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true}]},"circle-edge":{"rotate":false,"elements":[{"x":12,"y":12,"diam":277,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":true},{"x":21,"y":21,"diam":258,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":true},{"x":23,"y":23,"diam":255,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":true},{"x":30,"y":30,"diam":240,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":true}]},"circle-edge2":{"rotate":false,"elements":[{"x":2,"y":2,"diam":295,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":16,"y":16,"diam":268,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":26,"y":26,"diam":247,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":60,"y":60,"diam":180,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":103,"y":103,"diam":95,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":23,"y":23,"diam":255,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":8,"y":8,"diam":285,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":15,"y":15,"diam":270,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":12,"y":12,"diam":277,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true},{"x":2,"y":2,"diam":297,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":false,"marked":true}]},"co2":{"rotate":true,"elements":[{"x":26,"y":116,"diam":67,"type":"circle","color":"rgba(241, 106, 21, 1.0)","filled":true,"marked":false},{"x":26,"y":116,"diam":67,"type":"circle","color":"rgba(241, 106, 21, 1.0)","filled":true,"marked":false},{"x":191,"y":116,"diam":67,"type":"circle","color":"rgba(241, 106, 21, 1.0)","filled":true,"marked":false},{"x":75,"y":75,"diam":150,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x":101,"y":101,"diam":67,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":73,"y":73,"diam":152,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":18,"y":108,"diam":85,"type":"circle","color":"rgba(241, 106, 21, 1.0)","filled":false,"marked":false},{"x":183,"y":108,"diam":85,"type":"circle","color":"rgba(241, 106, 21, 1.0)","filled":false,"marked":false}]},"cow":{"rotate":false,"elements":[{"xcors":[200,197,179,177,166,140,93,78,72,49,48,37,25,25,45,103,179,198,252,272,293,285,255,242,224],"ycors":[193,249,249,196,187,189,191,179,211,209,181,149,120,89,72,84,75,76,64,81,103,121,121,118,167],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[73,86,62,48],"ycors":[210,251,249,208],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[25,16,9,23,25,39],"ycors":[114,195,204,213,200,123],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"cylinder":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"dot":{"rotate":false,"elements":[{"x":90,"y":90,"diam":120,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"face happy":{"rotate":false,"elements":[{"x":8,"y":8,"diam":285,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":60,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":180,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[150,90,62,47,67,90,109,150,192,210,227,251,236,212],"ycors":[255,239,213,191,179,203,218,225,218,203,181,194,217,240],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"face neutral":{"rotate":false,"elements":[{"x":8,"y":7,"diam":285,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":60,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":180,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xmin":60,"ymin":195,"xmax":240,"ymax":225,"type":"rectangle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"face sad":{"rotate":false,"elements":[{"x":8,"y":8,"diam":285,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":60,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":180,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[150,90,62,47,67,90,109,150,192,210,227,251,236,212],"ycors":[168,184,210,232,244,220,205,198,205,220,242,229,206,183],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"fish":{"rotate":false,"elements":[{"xcors":[44,21,15,0,15,0,13,20,45],"ycors":[131,87,86,120,150,180,214,212,166],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[135,119,95,76,46,60],"ycors":[195,235,218,210,204,165],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[75,83,71,86,166,135],"ycors":[45,77,103,114,78,60],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[30,151,226,280,292,292,287,270,195,151,30],"ycors":[136,77,81,119,146,160,170,195,210,212,166],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":215,"y":106,"diam":30,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"flag":{"rotate":false,"elements":[{"xmin":60,"ymin":15,"xmax":75,"ymax":300,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[90,270,90],"ycors":[150,90,30],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":75,"y1":135,"x2":90,"y2":135,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":75,"y1":45,"x2":90,"y2":45,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"flower":{"rotate":false,"elements":[{"xcors":[135,165,180,180,150,165,195,195,165],"ycors":[120,165,210,240,300,300,240,195,135],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"x":85,"y":132,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":130,"y":147,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":192,"y":85,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":85,"y":40,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":177,"y":40,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":177,"y":132,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":70,"y":85,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":130,"y":25,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":96,"y":51,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":113,"y":68,"diam":74,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[189,219,249,279,234],"ycors":[233,188,173,188,218],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[180,150,105,75,135],"ycors":[255,210,210,240,240],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false}]},"house":{"rotate":false,"elements":[{"xmin":45,"ymin":120,"xmax":255,"ymax":285,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":120,"ymin":210,"xmax":180,"ymax":285,"type":"rectangle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[15,150,285],"ycors":[120,15,120],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":30,"y1":120,"x2":270,"y2":120,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false}]},"leaf":{"rotate":false,"elements":[{"xcors":[150,135,120,60,30,60,60,15,30,15,40,45,60,90,105,120,105,120,135,150,165,180,195,180,195,210,240,255,263,285,270,285,240,240,270,240,180,165],"ycors":[210,195,210,210,195,180,165,135,120,105,104,90,90,105,120,120,60,60,30,15,30,60,60,120,120,105,90,90,104,105,120,135,165,180,195,210,210,195],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,135,120,105,105,135,165,165],"ycors":[195,240,255,255,285,285,240,195],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"line":{"rotate":true,"elements":[{"x1":150,"y1":0,"x2":150,"y2":300,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"line half":{"rotate":true,"elements":[{"x1":150,"y1":0,"x2":150,"y2":150,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"link":{"rotate":true,"elements":[{"x1":150,"y1":0,"x2":150,"y2":300,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"link direction":{"rotate":true,"elements":[{"x1":150,"y1":150,"x2":30,"y2":225,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":150,"y1":150,"x2":270,"y2":225,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"oxygen":{"rotate":true,"elements":[{"x":5,"y":65,"diam":170,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":125,"y":65,"diam":170,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"pentagon":{"rotate":false,"elements":[{"xcors":[150,15,60,240,285],"ycors":[15,120,285,285,120],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"person":{"rotate":false,"elements":[{"x":110,"y":5,"diam":80,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[105,120,90,105,135,150,165,195,210,180,195],"ycors":[90,195,285,300,300,225,300,300,285,195,90],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":127,"ymin":79,"xmax":172,"ymax":94,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[195,240,225,165],"ycors":[90,150,180,105],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[105,60,75,135],"ycors":[90,150,180,105],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"plant":{"rotate":false,"elements":[{"xmin":135,"ymin":90,"xmax":165,"ymax":300,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,90,45,75,135],"ycors":[255,210,195,255,285],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[165,210,255,225,165],"ycors":[255,210,195,255,285],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,90,45,75,135],"ycors":[180,135,120,180,210],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[165,165,225,255,210],"ycors":[180,210,180,120,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,90,45,75,135],"ycors":[105,60,45,105,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[165,165,225,255,210],"ycors":[105,135,105,45,60],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,120,150,180,165],"ycors":[90,45,15,45,90],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"square":{"rotate":false,"elements":[{"xmin":30,"ymin":30,"xmax":270,"ymax":270,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"square 2":{"rotate":false,"elements":[{"xmin":30,"ymin":30,"xmax":270,"ymax":270,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":60,"ymin":60,"xmax":240,"ymax":240,"type":"rectangle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"star":{"rotate":false,"elements":[{"xcors":[151,185,298,207,242,151,59,94,3,116],"ycors":[1,108,108,175,282,216,282,175,108,108],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"sugar":{"rotate":true,"elements":[{"xcors":[75,135,165,255,225,285,195,240,150,135,75,75,15,105,15,90,75],"ycors":[60,15,60,60,120,165,180,255,255,210,255,210,195,150,90,75,60],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":true}]},"target":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":30,"y":30,"diam":240,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":60,"y":60,"diam":180,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":90,"y":90,"diam":120,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":120,"y":120,"diam":60,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"tree":{"rotate":false,"elements":[{"x":118,"y":3,"diam":94,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":120,"ymin":195,"xmax":180,"ymax":300,"type":"rectangle","color":"rgba(157, 110, 72, 1.0)","filled":true,"marked":false},{"x":65,"y":21,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":116,"y":41,"diam":127,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":45,"y":90,"diam":120,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":104,"y":74,"diam":152,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"triangle":{"rotate":false,"elements":[{"xcors":[150,15,285],"ycors":[30,255,255],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"triangle 2":{"rotate":false,"elements":[{"xcors":[150,15,285],"ycors":[30,255,255],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[151,225,75],"ycors":[99,223,224],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"truck":{"rotate":false,"elements":[{"xmin":4,"ymin":45,"xmax":195,"ymax":187,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[296,296,259,244,208,207],"ycors":[193,150,134,104,104,194],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":195,"ymin":60,"xmax":195,"ymax":105,"type":"rectangle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[238,252,219,218],"ycors":[112,141,141,112],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":234,"y":174,"diam":42,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xmin":181,"ymin":185,"xmax":214,"ymax":194,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":144,"y":174,"diam":42,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":24,"y":174,"diam":42,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":24,"y":174,"diam":42,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x":144,"y":174,"diam":42,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x":234,"y":174,"diam":42,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"turtle":{"rotate":true,"elements":[{"xcors":[215,240,246,228,215,193],"ycors":[204,233,254,266,252,210],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[195,225,245,260,269,261,240,225,210],"ycors":[90,75,75,89,108,124,105,105,105],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[105,75,55,40,31,39,60,75,90],"ycors":[90,75,75,89,108,124,105,105,105],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[132,134,107,108,150,192,192,169,172],"ycors":[85,64,51,17,2,18,52,65,87],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[85,60,54,72,85,107],"ycors":[204,233,254,266,252,210],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[119,179,209,224,220,175,128,81,74,88],"ycors":[75,75,101,135,225,261,261,224,135,99],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"vapor":{"rotate":true,"elements":[{"x":63,"y":198,"diam":85,"type":"circle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"x":78,"y":3,"diam":85,"type":"circle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"x":48,"y":33,"diam":234,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"wheel":{"rotate":false,"elements":[{"x":3,"y":3,"diam":294,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":30,"y":30,"diam":240,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x1":150,"y1":285,"x2":150,"y2":15,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":15,"y1":150,"x2":285,"y2":150,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x":120,"y":120,"diam":60,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":216,"y1":40,"x2":79,"y2":269,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":40,"y1":84,"x2":269,"y2":221,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":40,"y1":216,"x2":269,"y2":79,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":84,"y1":40,"x2":221,"y2":269,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"x":{"rotate":false,"elements":[{"xcors":[270,225,30,75],"ycors":[75,30,225,270],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[30,75,270,225],"ycors":[75,30,225,270],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]}}, {"default":{"direction-indicator":{"rotate":true,"elements":[{"x1":150,"y1":150,"x2":90,"y2":180,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":150,"y1":150,"x2":210,"y2":180,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"curviness":0.0,"lines":[{"x-offset":-0.2,"is-visible":false,"dashes":[0.0,1.0]},{"x-offset":0.0,"is-visible":true,"dashes":[1.0,0.0]},{"x-offset":0.2,"is-visible":false,"dashes":[0.0,1.0]}]}});
 
 var BreedManager  = workspace.breedManager;
 var LayoutManager = workspace.layoutManager;
@@ -400,6 +39,8 @@ var ListPrims     = workspace.listPrims;
 var MousePrims    = workspace.mousePrims;
 var plotManager   = workspace.plotManager;
 var Prims         = workspace.prims;
+var PrintPrims    = workspace.printPrims;
+var OutputPrims   = workspace.outputPrims;
 var SelfPrims     = workspace.selfPrims;
 var SelfManager   = workspace.selfManager;
 var Updater       = workspace.updater;
@@ -422,7 +63,6 @@ var TurtleSet = tortoise_require('engine/core/turtleset');
 var Tasks     = tortoise_require('engine/prim/tasks');
 
 var AgentModel = tortoise_require('agentmodel');
-var Denuller   = tortoise_require('nashorn/denuller');
 var Random     = tortoise_require('shim/random');
 var StrictMath = tortoise_require('shim/strictmath');
 function startup() {
@@ -767,5 +407,5 @@ world.observer.setGlobal('sun-brightness', 30);
   
   <script type="application/javascript" src="leaf-injection.js"></script>
   <script type="application/javascript" src="pause.js"></script>
-
-</body></html>
+  </body>
+</html>

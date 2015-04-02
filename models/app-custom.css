@@ -1,0 +1,8 @@
+/* Custom CSS - hide the "Netlogo Code" button */
+.netlogo-code-tab {
+  display: none;
+}
+
+#output {
+  overflow: auto;
+}

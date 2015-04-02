@@ -1,50 +1,42 @@
-/* Custom ITSI - hide the "Netlogo Code" button */
-.netlogo-code-tab {
-  display: none;
-}
-
-#output {
-  overflow: auto;
-}
-
-/* Original shared CSS below */
-
-/* Just to be perfectly clear, all the -webkit- stuff for flexbox is all for
-   Safari. Once they get their act together, it should be removed.
-   BCH 11/14/2014 */
-
-.netlogo-model {
+      .netlogo-model {
     border: 2px solid black;
     border-radius: 20px;
-    display: flex;
     display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
     padding: 20px;
-    flex-flow: column;
     -webkit-flex-flow: column;
+        -ms-flex-flow: column;
+            flex-flow: column;
 }
 
 .netlogo-header {
-    display: flex;
     display: -webkit-flex;
-    flex-flow: row;
+    display: -ms-flexbox;
+    display: flex;
     -webkit-flex-flow: row;
+        -ms-flex-flow: row;
+            flex-flow: row;
+    -webkit-align-items: baseline;
+        -ms-flex-align: baseline;
+            align-items: baseline;
 }
 
 .netlogo-widget {
     font-size: 12px;
-    font-family: sans-serif;
-    box-sizing: border-box;
+    font-family: "Lucida Grande", sans-serif;
+    -moz-box-sizing: border-box;
+         box-sizing: border-box;
     background-color: #CCC;
     border-radius: 4px;
+    overflow: hidden;
 }
 
 .netlogo-command,.netlogo-input {
-    -webkit-touch-callout: none;
     -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }
 
 .netlogo-command:hover,.netlogo-input:hover {
@@ -54,12 +46,15 @@
 
 .netlogo-tabs {
     margin-top: 20px;
-    display: flex;
     display: -webkit-flex;
-    flex-flow: row;
+    display: -ms-flexbox;
+    display: flex;
     -webkit-flex-flow: row;
-    justify-content: space-around;
+        -ms-flex-flow: row;
+            flex-flow: row;
     -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
 }
 
 .netlogo-tab {
@@ -80,26 +75,32 @@
 }
 
 .netlogo-model-text {
-    display: flex;
     display: -webkit-flex;
-    flex-flow: row;
+    display: -ms-flexbox;
+    display: flex;
     -webkit-flex-flow: row;
+        -ms-flex-flow: row;
+            flex-flow: row;
     background-color: white;
 }
 
 .netlogo-code-container {
-    flex: 1;
     -webkit-flex: 1;
-    display: flex;
+        -ms-flex: 1;
+            flex: 1;
     display: -webkit-flex;
-    flex-flow: column;
+    display: -ms-flexbox;
+    display: flex;
     -webkit-flex-flow: column;
+        -ms-flex-flow: column;
+            flex-flow: column;
     background-color: white;
     margin: 10px;
 }
 .netlogo-code {
-    flex: 1;
-    -webkit-flex: 1;
+    -webkit-flex: 1 1 auto;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
     font-family: monospace;
     overflow-x: scroll;
     border: inset;
@@ -109,27 +110,84 @@
 }
 
 .netlogo-info {
-    flex: 1;
     -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
     margin: 10px;
+}
+
+.netlogo-command-center {
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 175px;
+  padding: 5px;
+}
+
+.netlogo-output-widget {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 5px;
+}
+
+.netlogo-output-area {
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: white;
+  margin: 0px;
+  overflow: auto;
+}
+
+.netlogo-command-center-input {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+}
+
+.netlogo-command-center-input input {
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
 
 .netlogo-speed-slider {
     background-color: transparent;
     border: none;
     margin-right: 10px;
-    flex: auto;
     -webkit-flex: auto;
-    display: flex;
+        -ms-flex: auto;
+            flex: auto;
     display: -webkit-flex;
-    align-items: center;
-    -webkit-align-items: center;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: baseline;
+        -ms-flex-align: baseline;
+            align-items: baseline;
+}
+
+.netlogo-widget input[type=range]::-ms-tooltip {
+  display: none;
 }
 
 .netlogo-speed-slider input {
     border: none;
-    flex: auto;
     -webkit-flex: auto;
+        -ms-flex: auto;
+            flex: auto;
 }
 
 .netlogo-model input[type=range] {
@@ -155,17 +213,20 @@
 
 .netlogo-button {
     border: inherit;
-    display: flex;
     display: -webkit-flex;
-    justify-content: center;
-    -webkit-justify-content: center;
-    align-items: center;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
     -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
     padding: 0px;
 }
 
 .netlogo-button > span {
-    /* For some reason, Safari doesn't like -webkit-justify-content in buttons,
+    /* For some reason, Safari doesn't like justify-content in buttons,
        we have to resort to putting a span in the button that can then be
        centered.
        BCH 11/14/2014 */
@@ -190,10 +251,12 @@
 }
 
 .netlogo-switcher {
-    display: flex;
     display: -webkit-flex;
-    align-items: center;
+    display: -ms-flexbox;
+    display: flex;
     -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .netlogo-slider {
@@ -238,12 +301,15 @@
 
 .netlogo-monitor {
     padding: 2px 4px;
-    display: flex;
     display: -webkit-flex;
-    flex-flow: column;
+    display: -ms-flexbox;
+    display: flex;
     -webkit-flex-flow: column;
-    justify-content: space-around;
+        -ms-flex-flow: column;
+            flex-flow: column;
     -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
 }
 
 .netlogo-monitor > .netlogo-value {
@@ -251,28 +317,39 @@
     padding: 2px 2px;
 }
 
+.netlogo-value {
+    overflow: hidden;
+}
+
 .netlogo-input-box {
     padding: 2px 4px;
-    display: flex;
     display: -webkit-flex;
-    flex-flow: column;
+    display: -ms-flexbox;
+    display: flex;
     -webkit-flex-flow: column;
-    justify-content: space-around;
+        -ms-flex-flow: column;
+            flex-flow: column;
     -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
 }
 
 .netlogo-chooser {
     padding: 2px 4px;
-    display: flex;
     display: -webkit-flex;
-    flex-flow: column;
+    display: -ms-flexbox;
+    display: flex;
     -webkit-flex-flow: column;
-    justify-content: space-around;
+        -ms-flex-flow: column;
+            flex-flow: column;
     -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
 }
 
 .netlogo-plot {
-    box-sizing: content-box; /* otherwise border gets cut off -- BCH 11/9/2014 */
+    -moz-box-sizing: content-box;
+         box-sizing: content-box; /* otherwise border gets cut off -- BCH 11/9/2014 */
     border: 1px solid black;
 }
 
@@ -280,6 +357,7 @@
     display: none;
 }
 
+/*# sourceMappingURL=widgets.css.map */
 .netlogo-command {
     background-color: #BCBCE5;
 }
@@ -299,6 +377,7 @@
 }
 
 
+/*# sourceMappingURL=classic.css.map */
 .cm-s-netlogo-default .cm-operator {
     color: #000000;
 }
@@ -320,12 +399,14 @@
     color: #963700;
 }
 
+/*# sourceMappingURL=netlogo-syntax.css.map */
 /* BASICS */
 
 .CodeMirror {
   /* Set height, width, borders, and global font properties here */
   font-family: monospace;
   height: 300px;
+  color: black;
 }
 
 /* PADDING */
@@ -355,7 +436,7 @@
   text-align: right;
   color: #999;
   -moz-box-sizing: content-box;
-  box-sizing: content-box;
+       box-sizing: content-box;
 }
 
 .CodeMirror-guttermarker { color: black; }
@@ -383,13 +464,7 @@
   width: auto;
   border: 0;
   -webkit-animation: blink 1.06s steps(1) infinite;
-  -moz-animation: blink 1.06s steps(1) infinite;
-  animation: blink 1.06s steps(1) infinite;
-}
-@-moz-keyframes blink {
-  0% { background: #7e7; }
-  50% { background: none; }
-  100% { background: #7e7; }
+          animation: blink 1.06s steps(1) infinite;
 }
 @-webkit-keyframes blink {
   0% { background: #7e7; }
@@ -461,11 +536,9 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
    the editor. You probably shouldn't touch them. */
 
 .CodeMirror {
-  line-height: 1;
   position: relative;
   overflow: hidden;
   background: white;
-  color: black;
 }
 
 .CodeMirror-scroll {
@@ -478,13 +551,13 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   outline: none; /* Prevent dragging from highlighting the element */
   position: relative;
   -moz-box-sizing: content-box;
-  box-sizing: content-box;
+       box-sizing: content-box;
 }
 .CodeMirror-sizer {
   position: relative;
   border-right: 30px solid transparent;
   -moz-box-sizing: content-box;
-  box-sizing: content-box;
+       box-sizing: content-box;
 }
 
 /* The fake, visible scrollbars. Used to force redraw during scrolling
@@ -520,7 +593,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   white-space: normal;
   height: 100%;
   -moz-box-sizing: content-box;
-  box-sizing: content-box;
+       box-sizing: content-box;
   display: inline-block;
   margin-bottom: -30px;
   /* Hack to make IE7 behave */
@@ -537,14 +610,19 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   cursor: default;
   z-index: 4;
 }
+.CodeMirror-gutter-wrapper {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
 
 .CodeMirror-lines {
   cursor: text;
   min-height: 1px; /* prevents collapsing before first draw */
 }
 .CodeMirror pre {
-  /* Reset some styles that the rest of the page might have set */
-  -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;
+  /* Reset some styles that the rest of the page might have set */ border-radius: 0;
   border-width: 0;
   background: transparent;
   font-family: inherit;
@@ -557,6 +635,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   z-index: 2;
   position: relative;
   overflow: visible;
+  -webkit-tap-highlight-color: transparent;
 }
 .CodeMirror-wrap pre {
   word-wrap: break-word;
@@ -577,6 +656,10 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
 }
 
 .CodeMirror-widget {}
+
+.CodeMirror-code {
+  outline: none;
+}
 
 .CodeMirror-measure {
   position: absolute;
@@ -605,6 +688,9 @@ div.CodeMirror-cursors {
 .CodeMirror-selected { background: #d9d9d9; }
 .CodeMirror-focused .CodeMirror-selected { background: #d7d4f0; }
 .CodeMirror-crosshair { cursor: crosshair; }
+.CodeMirror ::-moz-selection { background: #d7d4f0; }
+.CodeMirror ::selection { background: #d7d4f0; }
+.CodeMirror ::-moz-selection { background: #d7d4f0; }
 
 .cm-searching {
   background: #ffa;
@@ -629,3 +715,5 @@ div.CodeMirror-cursors {
 
 /* Help users use markselection to safely style text background */
 span.CodeMirror-selectedtext { background: none; }
+
+/*# sourceMappingURL=codemirror.css.map */
