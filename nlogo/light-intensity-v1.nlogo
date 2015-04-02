@@ -15,7 +15,6 @@ to startup
 end
 
 to calc-light
-  wait delay-time / 1000
   ifelse planet-diameter > 2.4 [         ; checks to see if the planet is too small to see and shows a message
     ask planet 3 [set hidden? true]
     ask planet 4 [set hidden? true]]
@@ -42,8 +41,8 @@ to calc-light
   let brightness 1                     ; set default full brightness
   let percent-overlap 1                ; set default full overlap
   if dist < (p-rad + s-rad) [          ; if overlap then do the following
-    if dist > (s-rad - p-rad) [        ; only calc acos if overlap is partial otherwise skip this next calc
-      let area-of-overlap p-rad ^ 2 * (acos((dist ^ 2 + p-rad ^ 2 - s-rad ^ 2) / (2 * dist * p-rad)) * pi / 180) + s-rad ^ 2 * (acos((dist ^ 2 + s-rad ^ 2 - p-rad ^ 2)/(2 * dist * s-rad)) * pi / 180) - 0.5 * sqrt((-1 * dist + p-rad + s-rad) * (dist + p-rad - s-rad) * (dist - p-rad + s-rad) * (dist + p-rad + s-rad)) ; calculates the overlap of two arbitrarily sized circles (note the conversion of acos value to radians)
+    if dist > (s-rad - p-rad) [        ; only calc my-acos if overlap is partial otherwise skip this next calc
+      let area-of-overlap p-rad ^ 2 * (my-acos((dist ^ 2 + p-rad ^ 2 - s-rad ^ 2) / (2 * dist * p-rad)) * pi / 180) + s-rad ^ 2 * (my-acos((dist ^ 2 + s-rad ^ 2 - p-rad ^ 2)/(2 * dist * s-rad)) * pi / 180) - 0.5 * sqrt((-1 * dist + p-rad + s-rad) * (dist + p-rad - s-rad) * (dist - p-rad + s-rad) * (dist + p-rad + s-rad)) ; calculates the overlap of two arbitrarily sized circles (note the conversion of my-acos value to radians)
       let area-of-planet pi * (([size] of planet 1) / 2) ^ 2
       set percent-overlap area-of-overlap / area-of-planet]
     set brightness 1 - (( [size] of planet 1 / [size] of sun 0 ) ^ 2) * percent-overlap] ; dim light according to partial overlaps using the percent-overlap coefficient
@@ -53,6 +52,9 @@ to calc-light
     [ set-plot-x-range 0 graph-time-window ]                                       ; adjust graph based on slider settings
     [ set-plot-x-range (timestep - graph-time-window) timestep ]   ; x-max is always last data point plotted and x-min is relative to that based on the slider
   set-plot-y-range magnify-y-range / 100 1                       ; convert slider to 1/100th of its value to set y-min
+end
+
+to-report my-acos [x]
 end
 
 to reset
