@@ -13,6 +13,7 @@ end
 to move-turtles
   set x x + wavelength
   create-points 1 [
+    set size 3
     set heading 270
     set ycor 20 * (sin x)
     set xcor xval
