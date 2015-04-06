@@ -642,7 +642,7 @@ to handle-presets
     if Preset-planets = "Custom" [
       set customize-planet true]                           ; lands in 'move planet' next cycle through go
     if Preset-planets = "Earth" [                     ; remember: mass in earth-masses, distances in AU, time in years
-      set x-cor 1 / sqrt 2                            ; starts this off 45¡ around the orbit
+      set x-cor 1 / sqrt 2                            ; starts this off 45 deg around the orbit
       set y-cor 1 / sqrt 2
       set grid-scale "1 box = 0.25 au"                          ; should be about 5x the orbital radius
       set planet-diameter 1                           ; the earth is one earth diameter!!
@@ -677,7 +677,7 @@ to handle-presets
       set planet-diameter precision (55 ^ .3333) 3       ; the diameter sets the mass, so this reverses the process, computing the diameter that would get .107 earth masses
       set rocky-planet true ]
     if Preset-planets = "Like Earth but 10x larger diameter" [   
-      set x-cor 1 / sqrt 2                            ; starts this off 45¡ around the orbit
+      set x-cor 1 / sqrt 2                            ; starts this off 45 deg around the orbit
       set y-cor 1 / sqrt 2
       select-circular-velocity                        ; computes vx and vy for a circular orbit at this radius
                                                       ;          set grid-scale "1 box = 0.25 au"                          ; should be about 5x the orbital radius
@@ -1038,7 +1038,7 @@ TEXTBOX
 547
 262
 591
-¥ customize-planet = set distance and velocity\n¥ make circular orbit = adjust custom velocity\n¥ grid-scale = zoom view in or out
+* customize-planet = set distance and velocity\n* make circular orbit = adjust custom velocity\n* grid-scale = zoom view in or out
 11
 52.0
 1
