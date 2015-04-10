@@ -80,7 +80,7 @@ directed-link-breed [pointers pointer]         ; used to point out small planets
 undirected-link-breed [glines gline]           ; used for grid lines
 
 to startup
-  ca
+  clear-all
   ;  set startup variable values
   set insert-on? false                         ; code stest this true around occulations
   set insert-size 2 * max-pycor / 3            ; the patch size of the insert square-- 1/3 of the vertical height
@@ -189,6 +189,7 @@ to startup
   handle-presets
 ;  do-scale-change  
   set theta 80    
+  reset-ticks
   update-screen                                          ; draw everything
   go
 end
@@ -646,7 +647,7 @@ to handle-presets
         if Preset-planets = "Custom" [
           set customize-planet true]                           ; lands in 'move planet' next cycle through go
         if Preset-planets = "Earth" [                     ; remember: mass in earth-masses, distances in AU, time in years
-          set x-cor 1 / sqrt 2                            ; starts this off 45¡ around the orbit
+          set x-cor 1 / sqrt 2                            ; starts this off 45ï¿½ around the orbit
           set y-cor 1 / sqrt 2
           set grid-scale "1 box = 0.25 au"                          ; should be about 5x the orbital radius
           set planet-diameter 1                           ; the earth is one earth diameter!!
@@ -681,7 +682,7 @@ to handle-presets
           set planet-diameter precision (55 ^ .3333) 3       ; the diameter sets the mass, so this reverses the process, computing the diameter that would get .107 earth masses
           set rocky-planet true ]
         if Preset-planets = "Like Earth but 10x larger diameter" [   
-          set x-cor 1 / sqrt 2                            ; starts this off 45¡ around the orbit
+          set x-cor 1 / sqrt 2                            ; starts this off 45ï¿½ around the orbit
           set y-cor 1 / sqrt 2
           select-circular-velocity                        ; computes vx and vy for a circular orbit at this radius
                                                           ;          set grid-scale "1 box = 0.25 au"                          ; should be about 5x the orbital radius
@@ -720,6 +721,7 @@ end
 ; this breaks normal netlogo, but is fine for tortoise conversion
 to-report my-read-from-string [string]
   report string
+  ; report read-from-string string
 end
 
 
@@ -810,9 +812,9 @@ to-report dist-between [a b]   ; a and b are lists of x, y, z values; z is ignor
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-265
+250
 10
-908
+893
 596
 48
 42
@@ -834,6 +836,7 @@ GRAPHICS-WINDOW
 0
 0
 ticks
+30.0
 
 BUTTON
 84
@@ -850,11 +853,12 @@ NIL
 NIL
 NIL
 NIL
+1
 
 SLIDER
 2
 402
-261
+249
 435
 planet-diameter
 planet-diameter
@@ -869,7 +873,7 @@ HORIZONTAL
 PLOT
 2
 44
-255
+250
 192
 Velocity of Star
 Time (days)
@@ -880,13 +884,14 @@ NIL
 8.6
 false
 false
+"" ""
 PENS
-"default" 1.0 0 -16777216 true
+"default" 1.0 0 -16777216 true "" ""
 
 CHOOSER
-129
+117
 357
-261
+249
 402
 grid-scale
 grid-scale
@@ -894,9 +899,9 @@ grid-scale
 2
 
 SLIDER
-266
+250
 10
-908
+892
 43
 Simulation-speed
 Simulation-speed
@@ -934,11 +939,12 @@ NIL
 NIL
 NIL
 NIL
+1
 
 CHOOSER
 2
 435
-261
+249
 480
 Preset-Planets
 Preset-Planets
@@ -948,7 +954,7 @@ Preset-Planets
 BUTTON
 166
 10
-255
+249
 43
 Reset graph
 set first-step? true\nset elapsed-time 0
@@ -960,11 +966,12 @@ NIL
 NIL
 NIL
 NIL
+1
 
 BUTTON
 2
 357
-128
+117
 403
 make circular orbit
 select-circular-velocity
@@ -976,11 +983,12 @@ NIL
 NIL
 NIL
 NIL
+1
 
 SLIDER
 3
 194
-255
+249
 227
 graph-time-window
 graph-time-window
@@ -1015,7 +1023,7 @@ moving away from observer
 SWITCH
 120
 481
-261
+249
 514
 customize-planet
 customize-planet
@@ -1028,27 +1036,26 @@ TEXTBOX
 518
 262
 574
-¥ customize-planet = set distance and velocity\n¥ make circular orbit = adjust custom velocity\n¥ grid-scale = zoom view in or out
+* customize-planet = set distance and velocity\n* make circular orbit = adjust custom velocity\n* grid-scale = zoom view in or out
 11
 52.0
 1
 
 @#$#@#$#@
-WHAT IS IT?
------------
+## WHAT IS IT?
+
 This software allows you to explore how star-planet systems outside the solar system can be identified. It allows you to create different planets orbiting a star like our sun. These systems can be identified from Earth in two ways:
 
-1) The wobble that the planet causes in the star can be detected. This involves detecting slight changes in the location of spectral lines in the light from the star due to the Doppler shift caused by the wobble. 
+1) The wobble that the planet causes in the star can be detected. This involves detecting slight changes in the location of spectral lines in the light from the star due to the Doppler shift caused by the wobble.   
 2) Dimming of the light from the star when the planet passes in front of the star, called a transit or occultation. 
 
-This software calculates both these signals for any size of any orbiting planetÑthe wobble and the drop of light level. 
+This software calculates both these signals for any size of any orbiting planetï¿½the wobble and the drop of light level. 
 
-Real instruments on Earth cannot necessarily see these signals because any measurement necessarily is accompanied by noiseÑunwanted random variations in the signal. One way to reduce this noise is to use a bigger, more precise telescope. This model allows you to see the signal without noise and with an amount of noise that depends on the precision of the telescope. 
+Real instruments on Earth cannot necessarily see these signals because any measurement necessarily is accompanied by noiseï¿½unwanted random variations in the signal. One way to reduce this noise is to use a bigger, more precise telescope. This model allows you to see the signal without noise and with an amount of noise that depends on the precision of the telescope. 
 
+## HOW TO USE IT
 
-HOW TO USE IT
--------------
-Press Run/Pause to start. You will see an earth-like planet orbiting a star. You can leave this button in the ÒRunÓ position. 
+Press Run/Pause to start. You will see an earth-like planet orbiting a star. You can leave this button in the ï¿½Runï¿½ position. 
 
 You can drag the cursor over the grid to change the viewing angle while the planet orbits. You can look at the system straight down, edge on or anything between. 
 
@@ -1056,7 +1063,7 @@ When the planet passes in front of the star, a magnified insert pops up and the 
 
 If you select a large diameter planet, you can see the star wobbling, too. The simulation shows both the planet and star orbiting around the center of mass.
 
-All the time you are playing, the two graphs are busy. The result can be a mess because of noise. Turn off 'noise?' (just below the graph) and click on 'Reset Graphs' (also below). Now you can see what the graphs would look like if there was no noise. Too bad scientists donÕt have a noise switch like this!!
+All the time you are playing, the two graphs are busy. The result can be a mess because of noise. Turn off 'noise?' (just below the graph) and click on 'Reset Graphs' (also below). Now you can see what the graphs would look like if there was no noise. Too bad scientists donï¿½t have a noise switch like this!!
 
 The upper graph shows the "proper" motion of the star--that is the motion away from you, the viewer. Note that if you look straight down on the grid (drag your mouse downward) there is no proper motion--the graph is flat. Do you understand why?
 
@@ -1064,36 +1071,34 @@ For most planets and viewing angles, the upper graph goes up and down as the pla
 
 The issue here as is common throughout research is the signal-to-noise ratio. You can just about see the signal for a planet 4x the Earth's diameter. Note: reset the graphs each time you change the diameter.
 
-You can explore whether a closer planet would generate a larger signal. To experiment with a different planet, press the ÒNew PlanetÓ button in the lower right. This stops the simulation and allows you to select a preset planet or make one of your own. 
+You can explore whether a closer planet would generate a larger signal. To experiment with a different planet, press the ï¿½New Planetï¿½ button in the lower right. This stops the simulation and allows you to select a preset planet or make one of your own. 
 
-You can use the ÒPreset-PlanetsÓ pull-down menu to select a planet and to make your own. Several kinds of planets have been pre-loaded that you use to explore the signals they would make. 
+You can use the ï¿½Preset-Planetsï¿½ pull-down menu to select a planet and to make your own. Several kinds of planets have been pre-loaded that you use to explore the signals they would make. 
 
-If you select ÒNone. Set with mouse.Ó This automatically sets a straight-down view and allows you to use the mouse to move the planet or the tip of its velocity vector. It is sometimes hard to select a velocity that doesnÕt cause the planet to zoom away or crash into the sun. To simplify this, there is a 'Make circular' that generates a velocity that gives a circular orbit.
+If you select ï¿½None. Set with mouse.ï¿½ This automatically sets a straight-down view and allows you to use the mouse to move the planet or the tip of its velocity vector. It is sometimes hard to select a velocity that doesnï¿½t cause the planet to zoom away or crash into the sun. To simplify this, there is a 'Make circular' that generates a velocity that gives a circular orbit.
 
-You can also change the ÒDistance-to-starÓ to make planets with small or large orbits. It is easy to loose the planet off-screen if you are not careful. If the planet is lost, you can always hit 'reset' to start over or use the Preset-Planets button
+You can also change the ï¿½Distance-to-starï¿½ to make planets with small or large orbits. It is easy to loose the planet off-screen if you are not careful. If the planet is lost, you can always hit 'reset' to start over or use the Preset-Planets button
 
 The lower graph shows the star's brightness, which only changes during a transit of the planet. First look at it with no noise and then experiment with orbits and masses that give a signal that you can see.
 
+## THINGS TO NOTICE
 
-THINGS TO NOTICE
-----------------
 By exploring this model, you can answer the following questions:
 
-1. What is the origin of a starÕs wobble? What kinds of planet result in the greatest wobble? 
-2. What kinds of planets and inclinations are necessary to detect the wobble?
-3. Under what conditions is there a drop in star intensity? 
-4. In this model, what is the smallest planet that causes enough wobble to be detected above the noise?
-5. In this model, what is the smallest planet that causes enough drop in start intensity to be detected above the noise?
-6. Estimate the fraction of star-planet systems with large planets that we can detect through intensity drop and through wobble? 
+1. What is the origin of a starï¿½s wobble? What kinds of planet result in the greatest wobble?   
+2. What kinds of planets and inclinations are necessary to detect the wobble?  
+3. Under what conditions is there a drop in star intensity?   
+4. In this model, what is the smallest planet that causes enough wobble to be detected above the noise?  
+5. In this model, what is the smallest planet that causes enough drop in start intensity to be detected above the noise?  
+6. Estimate the fraction of star-planet systems with large planets that we can detect through intensity drop and through wobble?   
 7. Why have most planets detected so far been too large to support life? 
 
 
+## CREDITS AND REFERENCES
 
-CREDITS AND REFERENCES
-----------------------
-Created by Bob Tinker
-October 2010
-Design assistance by Dan Damelin
+Created by Bob Tinker  
+October 2010  
+Design assistance by Dan Damelin  
 This software is available under the GNU open srouce license. 
 @#$#@#$#@
 default
@@ -1393,7 +1398,7 @@ Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 
 @#$#@#$#@
-NetLogo 4.1.2
+NetLogo 5.1.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
