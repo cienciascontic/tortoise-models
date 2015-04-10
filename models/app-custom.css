@@ -6,3 +6,7 @@
 #output {
   overflow: auto;
 }
+
+.netlogo-model {
+  padding: 5px !important;
+}
