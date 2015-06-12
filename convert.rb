@@ -5,6 +5,9 @@ if ARGV.empty?
 else
   puts "Converting specified nlogo files..."
 end
+
+DEBUG = false
+
 CUSTOM_COMMANDS = {
   "myImportDrawing" => "my-import-drawing.js",
   "myAcos" => "acos.js",
@@ -18,13 +21,28 @@ def inject_custom_commands(file)
   CUSTOM_COMMANDS.each do |k,v|
     grp = `grep 'function #{k}(' #{file}`
     unless grp.empty?
-      `mv #{file} #{file}.tmp`
-      `head -n -3 #{file}.tmp > #{file}`
-      `cat commands/#{v} >> #{file}`
-      `tail -n 3 #{file}.tmp >> #{file}`
-      `rm #{file}.tmp`
+      puts "overriding command #{v}"
+      lines = `wc -l < #{file}`
+      lines = lines.strip.to_i
+      _inject(file, lines-3, "commands/#{v}")
     end
   end
+end
+
+def inject_patches(file)
+  line = `awk '/# sourceMappingURL=highchartsops.js.map/{ print NR; exit }' #{file}`
+  Dir.glob('patches/*js').each do |patch|
+    puts "applying patch #{patch}"
+    _inject(file, line.strip.to_i, patch)
+  end
+end
+
+def _inject(file, line, source)
+  puts "injecting #{source} at line #{line}" if DEBUG
+  `head -n #{line} #{file} > #{file}.tmp`
+  `cat #{source} >> #{file}.tmp`
+  `tail -n +#{line+1} #{file} >> #{file}.tmp`
+  `mv #{file}.tmp #{file}`
 end
 
 def curl_command(in_file, out_file)
@@ -48,5 +66,6 @@ files.each do |full_filename|
   puts "Converting #{full_filename}..."
   puts `#{curl_command(full_filename, 'standalone/'+fname)}`
 
+  inject_patches('standalone/'+fname)
   inject_custom_commands('standalone/'+fname)
 end
