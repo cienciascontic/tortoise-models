@@ -28,7 +28,7 @@ ARGV.each do |full_filename|
         next
       end
 
-      if line =~ /^\/\/# sourceMappingURL=highchartsops.js.map$/
+      if line =~ /^\/\/# END GLOBAL SCRIPTS$/
         inJs = false
         next
       end

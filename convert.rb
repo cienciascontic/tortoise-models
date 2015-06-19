@@ -31,10 +31,24 @@ end
 
 def inject_patches(file)
   line = `awk '/# sourceMappingURL=highchartsops.js.map/{ print NR; exit }' #{file}`
+  line = line.strip.to_i
+  # since we're injecting patches always at the same line, patches will end up in the final file in *reverse* order
+  # of the order that _inject is called (first injected will end up last in the resulting file)
+
+  # Inject a placeholder so that the process script knows where to cut for the global shared scripts
+  _inject(file, line, 'misc/end_global_scripts_marker.js')
+
   Dir.glob('patches/*js').each do |patch|
     puts "applying patch #{patch}"
-    _inject(file, line.strip.to_i, patch)
+    _inject(file, line, patch)
   end
+end
+
+def inject_shutterbug(file)
+  puts "injecting shutterbug"
+  lines = `wc -l < #{file}`
+  lines = lines.strip.to_i
+  _inject(file, lines-2, "misc/shutterbug.html")
 end
 
 def _inject(file, line, source)
@@ -68,4 +82,5 @@ files.each do |full_filename|
 
   inject_patches('standalone/'+fname)
   inject_custom_commands('standalone/'+fname)
+  inject_shutterbug('standalone/'+fname)
 end
