@@ -109,6 +109,15 @@
     height: 500px;
 }
 
+.netlogo-info-editor .CodeMirror {
+    height: 500px;
+}
+
+.netlogo-toggle-edit-mode {
+    display: block;
+    margin: 10px 0;
+}
+
 .netlogo-info {
     -webkit-flex: 1;
         -ms-flex: 1;
@@ -153,9 +162,9 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-shrink: 0;
       -ms-flex-negative: 0;
-          flex-shrink: 0;
+      -webkit-flex-shrink: 0;
+              flex-shrink: 0;
 }
 
 .netlogo-command-center-input input {
@@ -356,7 +365,6 @@
 .netlogo-forever-button > input {
     display: none;
 }
-
 /*# sourceMappingURL=widgets.css.map */
 .netlogo-command {
     background-color: #BCBCE5;
@@ -375,8 +383,6 @@
 .netlogo-output {
     background-color: #E0E0B5;
 }
-
-
 /*# sourceMappingURL=classic.css.map */
 .cm-s-netlogo-default .cm-operator {
     color: #000000;
@@ -398,7 +404,6 @@
 .cm-s-netlogo-default .cm-constant {
     color: #963700;
 }
-
 /*# sourceMappingURL=netlogo-syntax.css.map */
 /* BASICS */
 
@@ -435,8 +440,7 @@
   min-width: 20px;
   text-align: right;
   color: #999;
-  -moz-box-sizing: content-box;
-       box-sizing: content-box;
+  white-space: nowrap;
 }
 
 .CodeMirror-guttermarker { color: black; }
@@ -523,6 +527,8 @@ div.CodeMirror-overwrite div.CodeMirror-cursor {}
 .cm-s-default .cm-error {color: #f00;}
 .cm-invalidchar {color: #f00;}
 
+.CodeMirror-composing { border-bottom: 2px solid; }
+
 /* Default styles for common addons */
 
 div.CodeMirror span.CodeMirror-matchingbracket {color: #0f0;}
@@ -550,14 +556,10 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   height: 100%;
   outline: none; /* Prevent dragging from highlighting the element */
   position: relative;
-  -moz-box-sizing: content-box;
-       box-sizing: content-box;
 }
 .CodeMirror-sizer {
   position: relative;
   border-right: 30px solid transparent;
-  -moz-box-sizing: content-box;
-       box-sizing: content-box;
 }
 
 /* The fake, visible scrollbars. Used to force redraw during scrolling
@@ -592,8 +594,6 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
 .CodeMirror-gutter {
   white-space: normal;
   height: 100%;
-  -moz-box-sizing: content-box;
-       box-sizing: content-box;
   display: inline-block;
   margin-bottom: -30px;
   /* Hack to make IE7 behave */
@@ -661,6 +661,16 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   outline: none;
 }
 
+/* Force content-box sizing for the elements where we expect it */
+.CodeMirror-scroll,
+.CodeMirror-sizer,
+.CodeMirror-gutter,
+.CodeMirror-gutters,
+.CodeMirror-linenumber {
+  -moz-box-sizing: content-box;
+       box-sizing: content-box;
+}
+
 .CodeMirror-measure {
   position: absolute;
   width: 100%;
@@ -715,5 +725,4 @@ div.CodeMirror-cursors {
 
 /* Help users use markselection to safely style text background */
 span.CodeMirror-selectedtext { background: none; }
-
 /*# sourceMappingURL=codemirror.css.map */
