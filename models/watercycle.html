@@ -15,298 +15,297 @@
 
       var session =
         (function () {
-          var widgets = [{"left":138,"top":11,"right":636,"bottom":290,"patchSize":8.0,"fontSize":10,"wrappingAllowedInX":true,"wrappingAllowedInY":true,"minPxcor":-30,"maxPxcor":30,"minPycor":-15,"maxPycor":15,"updateMode":"Continuous","showTickCounter":true,"tickCounterLabel":"ticks","frameRate":30.0,"type":"view"},{"display":"reset","left":23,"top":55,"right":86,"bottom":88,"source":"setup","forever":false,"buttonType":"OBSERVER","actionKey":null,"type":"button","compiledSource":{"success":true,"result":"Call(setup);"}},{"display":"run/stop","left":13,"top":16,"right":101,"bottom":49,"source":"go","forever":true,"buttonType":"OBSERVER","actionKey":null,"type":"button","compiledSource":{"success":true,"result":"Call(go);"}},{"display":"ocean-temp","left":12,"top":194,"right":115,"bottom":227,"varName":"ocean-temp","min":"0","max":"30","default":29.0,"step":"1","direction":"horizontal","type":"slider","compiledMin":{"success":true,"result":"0"},"compiledMax":{"success":true,"result":"30"},"compiledStep":{"success":true,"result":"1"}},{"display":"wind-speed","left":10,"top":112,"right":115,"bottom":145,"varName":"wind-speed","min":"-10","max":"10","default":-6.0,"step":"1","direction":"horizontal","type":"slider","compiledMin":{"success":true,"result":"-10"},"compiledMax":{"success":true,"result":"10"},"compiledStep":{"success":true,"result":"1"}},{"display":"watch one water molecule","left":7,"top":300,"right":165,"bottom":333,"source":"watch one-of water with [ocean-water? = false and lake-water? = false]","forever":false,"buttonType":"OBSERVER","actionKey":null,"type":"button","compiledSource":{"success":true,"result":"world.observer.watch(ListPrims.oneOf(world.turtleManager.turtlesOfBreed(\"WATER\").agentFilter(function() {\n  return (Prims.equality(SelfPrims.getVariable(\"ocean-water?\"), false) && Prims.equality(SelfPrims.getVariable(\"lake-water?\"), false));\n})));"}},{"display":"stop watching","left":181,"top":300,"right":275,"bottom":333,"source":"reset-perspective","forever":false,"buttonType":"OBSERVER","actionKey":null,"type":"button","compiledSource":{"success":true,"result":"world.observer.resetPerspective();"}},{"display":"Blow the clouds left or right.","left":20,"top":149,"right":115,"bottom":179,"fontSize":11,"color":0.0,"transparent":true,"type":"textBox"},{"display":"Change the ocean temperature.","left":16,"top":234,"right":166,"bottom":262,"fontSize":11,"color":0.0,"transparent":true,"type":"textBox"}];
+          var widgets = "[{\"left\":138,\"top\":11,\"right\":636,\"bottom\":290,\"patchSize\":8.0,\"fontSize\":10,\"wrappingAllowedInX\":true,\"wrappingAllowedInY\":true,\"minPxcor\":-30,\"maxPxcor\":30,\"minPycor\":-15,\"maxPycor\":15,\"updateMode\":\"Continuous\",\"showTickCounter\":true,\"tickCounterLabel\":\"ticks\",\"frameRate\":30.0,\"type\":\"view\"},\n{\"compiledSource\":{\"success\":true,\"result\":\"Call(procedures.setup);\"},\"display\":\"reset\",\"left\":23,\"top\":55,\"right\":86,\"bottom\":88,\"source\":\"setup\",\"forever\":false,\"buttonType\":\"OBSERVER\",\"actionKey\":null,\"type\":\"button\"},\n{\"compiledSource\":{\"success\":true,\"result\":\"Call(procedures.go);\"},\"display\":\"run/stop\",\"left\":13,\"top\":16,\"right\":101,\"bottom\":49,\"source\":\"go\",\"forever\":true,\"buttonType\":\"OBSERVER\",\"actionKey\":null,\"type\":\"button\"},\n{\"getStep\":function() { return 1; },\"getMin\":function() { return 0; },\"getMax\":function() { return 30; },\"compiledMin\":{\"success\":true,\"result\":\"0\"},\"compiledMax\":{\"success\":true,\"result\":\"30\"},\"compiledStep\":{\"success\":true,\"result\":\"1\"},\"display\":\"ocean-temp\",\"left\":12,\"top\":194,\"right\":115,\"bottom\":227,\"varName\":\"ocean-temp\",\"min\":\"0\",\"max\":\"30\",\"default\":29.0,\"step\":\"1\",\"direction\":\"horizontal\",\"type\":\"slider\"},\n{\"getStep\":function() { return 1; },\"getMin\":function() { return -10; },\"getMax\":function() { return 10; },\"compiledMin\":{\"success\":true,\"result\":\"-10\"},\"compiledMax\":{\"success\":true,\"result\":\"10\"},\"compiledStep\":{\"success\":true,\"result\":\"1\"},\"display\":\"wind-speed\",\"left\":10,\"top\":112,\"right\":115,\"bottom\":145,\"varName\":\"wind-speed\",\"min\":\"-10\",\"max\":\"10\",\"default\":-6.0,\"step\":\"1\",\"direction\":\"horizontal\",\"type\":\"slider\"},\n{\"compiledSource\":{\"success\":true,\"result\":\"world.observer.watch(ListPrims.oneOf(world.turtleManager.turtlesOfBreed(\\\"WATER\\\").agentFilter(function() {\\n  return (Prims.equality(SelfPrims.getVariable(\\\"ocean-water?\\\"), false) && Prims.equality(SelfPrims.getVariable(\\\"lake-water?\\\"), false));\\n})));\"},\"display\":\"watch one water molecule\",\"left\":7,\"top\":300,\"right\":165,\"bottom\":333,\"source\":\"watch one-of water with [ocean-water? = false and lake-water? = false]\",\"forever\":false,\"buttonType\":\"OBSERVER\",\"actionKey\":null,\"type\":\"button\"},\n{\"compiledSource\":{\"success\":true,\"result\":\"world.observer.resetPerspective();\"},\"display\":\"stop watching\",\"left\":181,\"top\":300,\"right\":275,\"bottom\":333,\"source\":\"reset-perspective\",\"forever\":false,\"buttonType\":\"OBSERVER\",\"actionKey\":null,\"type\":\"button\"},\n{\"display\":\"Blow the clouds left or right.\",\"left\":20,\"top\":149,\"right\":115,\"bottom\":179,\"fontSize\":11,\"color\":0.0,\"transparent\":true,\"type\":\"textBox\"},\n{\"display\":\"Change the ocean temperature.\",\"left\":16,\"top\":234,\"right\":166,\"bottom\":262,\"fontSize\":11,\"color\":0.0,\"transparent\":true,\"type\":\"textBox\"}]";
           var code    = "breed [ water ]\n\nglobals [  snow-accumulation  lake-accumulation  lake-temp  cloud-temp  mtn-temp]\nwater-own [lake-water? ocean-water? cloud? evaporating?  condensing? groundwater? snow?]\npatches-own [     ]\n\n\n\nto startup\nsetup\nend\n\nto setup\n  clear-all\n  color-patches\n  place-water\n  ask turtles\n  ;;  [ifelse (lake-water? = true or ocean-water? = true  )\n  ;;   [hide-turtle]\n  ;;   [show-turtle]\n  ;;  ]\n  \n  [if ycor < -5\n    [ht]\n  ]\n  set wind-speed 0\n  set lake-temp 15\n  set ocean-temp 15\n  set cloud-temp 2\n  set mtn-temp 3\n  my-import-drawing \"watercyclebackground.png\"\n  reset-ticks\nend\n\nto my-import-drawing [ src ]\nend\n\nto go\n  ask turtles\n  [ifelse (lake-water? = true or ocean-water? = true or (evaporating? = true and ycor < -6))\n    [hide-turtle]\n    [show-turtle]\n  ]\n  set snow-accumulation (count turtles with [snow? = true])   \n  set lake-accumulation (count turtles with [lake-water? = true])\n  if lake-accumulation > 450\n    [ask one-of (turtles with [lake-water? = true])\n      [set lake-water? false\n        set groundwater? true\n        setxy 6  -6 ]\n    ]\n  \n  ask water [move-water]\nend\n\n;;SETUP PROCEDURES\n\nto color-patches\n  ask patches [\n    set pcolor blue + 3\n    if pycor < -5\n    [set pcolor brown - 2]\n    if pycor < -5 and pxcor >= 22\n    [set pcolor blue] ;;ocean\n    \n    if pycor < -5 and pycor >= -7 and pxcor < 22 and pxcor > 5\n    [set pcolor brown - 2] ;;earth\n    \n    if pycor < -5 and pycor >= -10 and abs pxcor <= 5\n    [set pcolor blue - 1]  ;; lake\n    \n    if pycor < -5 and pxcor < -5 and pxcor > -15\n    [set pcolor brown - 2]  ;;earth\n    \n  ]\nend\n\nto place-water\n  ask patches with [pcolor = blue] ;;; ocean\n    [sprout-water 8\n      [set shape \"circle\"\n        set color blue\n        set heading 0\n        set ocean-water? true\n        set lake-water? false\n        set cloud? false\n        set evaporating? false\n        set condensing? false\n        set groundwater? false\n        set snow? false\n      ]\n    ]\n  \n  ask patches with [pcolor = blue - 1] ;; lake\n    [sprout-water 8\n      [set shape \"circle\"\n        set color blue - 1\n        set heading 0\n        set lake-water? true\n        set ocean-water? false\n        set cloud? false\n        set evaporating? false\n        set condensing? false\n        set groundwater? false\n        set snow? false\n      ]\n    ]\n  \nend\n;;GO PROCEDURES\n\n;;to evaporate ;; a water procedure\n  ;;set heading (3 - random 6)\n ;; fd .1\n;;end\n\n;;to condense ;; a water procedure\n;;  set heading 180\n;;  fd .1\n;;end\n\nto move-water ;;a water breed procedure\n  if ycor <= min-pycor [die]\n  \n  if (ycor > 14)\n    [ set ycor (14 - random 3) ]\n  \n  ;; to stop wrap-around above water\n  if (xcor > 29) and ycor >= -5\n    [set xcor 29 - random 20]  \n  if (xcor < -29)\n    [set xcor -29 + random 20]\n  ;; to stop wrap-around below water\n  if (xcor > 29) and ycor < -5\n    [set xcor 29 - random 15]  \n  \n  \n  if (ocean-water? = true) and (ocean-temp > random 10000)\n    [set evaporating?  true\n      set ocean-water? false]\n  \n  if (lake-water? = true) and (lake-temp > random 10000)\n    [set evaporating? true\n      set lake-water? false]\n  \n  if  (ycor > 5)\n    [set evaporating?  false\n      set cloud?  true\n      st\n    ]\n  \n  if (cloud? = true)\n    [set heading random 360\n      set color white set shape \"cloud\" set size 4\n      fd .4\n      if (ycor < 5) or (ycor > 14)  \n      [set ycor 6 + random 8]\n    ]\n  \n  if (evaporating? = true)\n    [set heading heading + (5 - random 10)\n      fd .8\n      if ycor > -4 [set color blue + 1]\n      if ycor > -3 [set color blue + 2]\n      if ycor > -1 [ht]\n    ]\n  \n  if (cloud? = true) and ((10 - cloud-temp) >  random 500)\n    [set cloud? false\n      set condensing? true\n    ]\n  \n  if cloud? = true and condensing? = true \n    [set cloud? false]\n  \n  if (condensing? = true)\n    [set heading 180\n      set color gray set shape \"droplet\" set size 1.5\n      fd .6\n    ]\n  \n  if (condensing? = true) and (ycor < -7 )\n    [set condensing? false set shape \"circle\" set size 1\n      if pcolor = blue ;; in the ocean\n        [set ocean-water? true\n          set heading 0\n          set color blue\n        ]\n      if pcolor = blue - 1 ;; in the lake\n        [set lake-water? true\n          set heading 0\n          set color blue - 1\n        ]\n      \n      if pcolor = brown - 2\n        [set groundwater? true set color black] \n    ]\n  \n  if (condensing? = true) and (ycor < -4 ) and xcor <= -15 ;;in the mountains\n    [set condensing? false set shape \"square\" set size 1\n      set snow? true\n      set color white\n    ]\n  \n  if snow? = true and count turtles-here with [snow? = true] > 1\n    [ask one-of turtles-here \n      [set ycor ycor + 1\n      ]\n    ]\n  \n  if snow? = true and mtn-temp > random 100\n    [set snow? false  \n      set ycor -7\n      set groundwater? true \n      set shape \"circle\"\n      set color black] \n  \n  \n  if groundwater? = true  ;;what all the groundwater does\n    [set xcor xcor + .4\n      if pcolor = blue  ;;; in the ocean\n        [set groundwater? false\n          set ocean-water? true\n          set heading 0\n          set xcor 15 + random 15\n          set color blue\n        ]\n      if pcolor = blue - 1  ;; in the lake\n        [set groundwater? false\n          set lake-water? true\n          set xcor -5 + random 10\n          set heading 0\n          set color blue - 1\n        ]\n    ]\n  if ycor > 5\n    [set xcor (xcor + wind-speed / 10)]\nend";
           var info    = "## WHAT IS IT?\n\nThis model of the water cycle was developed for grades 3-6. It shows the major paths that water takes when traveling around the earth. \n\n## HOW IT WORKS\n\nFive areas of the earth's surface are represented by different colors: ocean, forest, lake, earth, and ice. Water molecules are represented by small circles.  There is a fixed number of water molecules in the model.\n\nWater (blue) can evaporate (move upward) from the ocean and the lake. When it reaches a certain height, the water changes to cloud droplets (white). The \"wind\" pushes it to the left or the right.\n\nThe droplets can turn into rain (gray), which falls straight down. If it lands on white, it turns to ice. If it lands on land or forest, it migrates to the right as groundwater (gray) until it reaches a body of water. \n\nThe sliders control wind speed and the temperatures of various areas -- ocean, lake, ice, and cloud. \n	- Greater temperature in the ocean or lake increases the chance that a given water molecule will evaporate.\n	- Lower temperature in the cloud increases the chance that a cloud water droplet will form rain. \n	- Greater temperature on the mountain increases the chance that an ice molecule will change to groundwater (i.e. melt) and flow to the lake or ocean.\n\n## HOW TO USE IT\n\nRun the model and watch what the water molecules do and where they go.\n\nYou can watch a single water molecule with the \"watch one water\" button.\n\n## THINGS TO TRY\n\nTry each of the sliders, starting with wind-speed, and see what effect they have on the water cycle.\n\nTry to accumulate a lot of snow. \n\nTry to get rid of the snow. (There will always be one white layer left.)\n\nTry to make it rain more a lot over the mountain, or over the ocean.\n\nTry to imitate a dry season vs. a monsoon season. \n\n\n## EXTENDING THE MODEL\n\nAdd a cyclical feature to wind-speed, to imitate day-night conditions or dry/monsoon season.\n\nAdd a desert.\n\nInclude rules for transpiration from the forest\n\nAdd rules that make plants grow or die according to how much rain they have.\n\nChange the level of the lake according to the amount of rain, evaporation, and runoff.\n\n\n\n## NETLOGO FEATURES\n\nThis section could point out any especially interesting or unusual features of NetLogo that the model makes use of, particularly in the Procedures tab.  It might also point out places where workarounds were needed because of missing features.\n\n## RELATED MODELS\n\nThis section could give the names of models in the NetLogo Models Library or elsewhere which are of related interest.\n\n## CREDITS AND REFERENCES\n\nThis section could contain a reference to the model's URL on the web if it has one, as well as any other necessary credits or references.";
           return Tortoise.fromCompiledModel('#model-container', widgets, code, info, '', true);
         })();
-      var modelConfig  = (typeof window.modelConfig !== "undefined" && window.modelConfig !== null) ? window.modelConfig : {};
-var modelPlotOps = (typeof modelConfig.plotOps !== "undefined" && modelConfig.plotOps !== null) ? modelConfig.plotOps : {};
-
-var PenBundle = tortoise_require('engine/plot/pen');
-var Plot      = tortoise_require('engine/plot/plot');
-var PlotOps   = tortoise_require('engine/plot/plotops');
-
-modelConfig.plots = [];
-if (typeof javax !== "undefined") { modelConfig.output = { clear: function(){}, write: function(str) { context.getWriter().print(str); } } }
-
-var workspace = tortoise_require('engine/workspace')(modelConfig)([{ name: "WATER", singular: "turtle", varNames: ["lake-water?", "ocean-water?", "cloud?", "evaporating?", "condensing?", "groundwater?", "snow?"] }])([], [])(["ocean-temp", "wind-speed", "snow-accumulation", "lake-accumulation", "lake-temp", "cloud-temp", "mtn-temp"], ["ocean-temp", "wind-speed"], [], -30, 30, -15, 15, 8.0, true, true, {"default":{"rotate":true,"elements":[{"xcors":[150,40,150,260],"ycors":[5,250,205,250],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"airplane":{"rotate":true,"elements":[{"xcors":[150,135,120,120,15,15,120,135,105,120,150,180,210,165,180,285,285,180,180,165],"ycors":[0,15,60,105,165,195,180,240,270,285,270,285,270,240,180,195,165,105,60,15],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"arrow":{"rotate":true,"elements":[{"xcors":[150,0,105,105,195,195,300],"ycors":[0,150,150,293,293,150,150],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"box":{"rotate":false,"elements":[{"xcors":[150,285,285,150],"ycors":[285,225,75,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[150,15,150,285],"ycors":[135,75,15,75],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[15,15,150,150],"ycors":[75,225,285,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":150,"y1":285,"x2":150,"y2":135,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false},{"x1":150,"y1":135,"x2":15,"y2":75,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false},{"x1":150,"y1":135,"x2":285,"y2":75,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false}]},"bug":{"rotate":true,"elements":[{"x":96,"y":182,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":110,"y":127,"diam":80,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":110,"y":75,"diam":80,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":150,"y1":100,"x2":80,"y2":30,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":150,"y1":100,"x2":220,"y2":30,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"butterfly":{"rotate":true,"elements":[{"xcors":[150,209,225,225,195,165,150],"ycors":[165,199,225,255,270,255,240],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[150,89,75,75,105,135,150],"ycors":[165,198,225,255,270,255,240],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[139,100,55,25,10,10,25,40,85,139],"ycors":[148,105,90,90,105,135,180,195,194,163],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[162,200,245,275,290,290,275,260,215,162],"ycors":[150,105,90,90,105,135,180,195,195,165],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[150,135,120,135,150,165,180,165],"ycors":[255,225,150,120,105,120,150,225],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":135,"y":90,"diam":30,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x1":150,"y1":105,"x2":195,"y2":60,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false},{"x1":150,"y1":105,"x2":105,"y2":60,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false}]},"car":{"rotate":false,"elements":[{"xcors":[300,279,261,240,226,213,203,185,159,135,75,0,0,0,300,300],"ycors":[180,164,144,135,132,106,84,63,50,50,60,150,165,225,225,180],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":180,"y":180,"diam":90,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":30,"y":180,"diam":90,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[162,132,134,209,194,189,180],"ycors":[80,78,135,135,105,96,89],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":47,"y":195,"diam":58,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":195,"y":195,"diam":58,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"circle":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"circle 2":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":30,"y":30,"diam":240,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"cloud":{"rotate":true,"elements":[{"x":30,"y":60,"diam":120,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":135,"y":15,"diam":90,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":221,"y":56,"diam":67,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":135,"y":150,"diam":90,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":126,"y":66,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":43,"y":163,"diam":95,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":0,"y":120,"diam":60,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":165,"y":225,"diam":60,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"cow":{"rotate":false,"elements":[{"xcors":[200,197,179,177,166,140,93,78,72,49,48,37,25,25,45,103,179,198,252,272,293,285,255,242,224],"ycors":[193,249,249,196,187,189,191,179,211,209,181,149,120,89,72,84,75,76,64,81,103,121,121,118,167],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[73,86,62,48],"ycors":[210,251,249,208],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[25,16,9,23,25,39],"ycors":[114,195,204,213,200,123],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"cylinder":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"dot":{"rotate":false,"elements":[{"x":90,"y":90,"diam":120,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"droplet":{"rotate":false,"elements":[{"x":75,"y":150,"diam":150,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[150,135,120,120,105,90,210,195,180,165,150],"ycors":[0,45,75,120,150,180,180,135,105,45,0],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"face happy":{"rotate":false,"elements":[{"x":8,"y":8,"diam":285,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":60,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":180,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[150,90,62,47,67,90,109,150,192,210,227,251,236,212],"ycors":[255,239,213,191,179,203,218,225,218,203,181,194,217,240],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"face neutral":{"rotate":false,"elements":[{"x":8,"y":7,"diam":285,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":60,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":180,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xmin":60,"ymin":195,"xmax":240,"ymax":225,"type":"rectangle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"face sad":{"rotate":false,"elements":[{"x":8,"y":8,"diam":285,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":60,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":180,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[150,90,62,47,67,90,109,150,192,210,227,251,236,212],"ycors":[168,184,210,232,244,220,205,198,205,220,242,229,206,183],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"fish":{"rotate":false,"elements":[{"xcors":[44,21,15,0,15,0,13,20,45],"ycors":[131,87,86,120,150,180,214,212,166],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[135,119,95,76,46,60],"ycors":[195,235,218,210,204,165],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[75,83,71,86,166,135],"ycors":[45,77,103,114,78,60],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[30,151,226,280,292,292,287,270,195,151,30],"ycors":[136,77,81,119,146,160,170,195,210,212,166],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":215,"y":106,"diam":30,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"flag":{"rotate":false,"elements":[{"xmin":60,"ymin":15,"xmax":75,"ymax":300,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[90,270,90],"ycors":[150,90,30],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":75,"y1":135,"x2":90,"y2":135,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":75,"y1":45,"x2":90,"y2":45,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"flower":{"rotate":false,"elements":[{"xcors":[135,165,180,180,150,165,195,195,165],"ycors":[120,165,210,240,300,300,240,195,135],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"x":85,"y":132,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":130,"y":147,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":192,"y":85,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":85,"y":40,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":177,"y":40,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":177,"y":132,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":70,"y":85,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":130,"y":25,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":96,"y":51,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":113,"y":68,"diam":74,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[189,219,249,279,234],"ycors":[233,188,173,188,218],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[180,150,105,75,135],"ycors":[255,210,210,240,240],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false}]},"house":{"rotate":false,"elements":[{"xmin":45,"ymin":120,"xmax":255,"ymax":285,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":120,"ymin":210,"xmax":180,"ymax":285,"type":"rectangle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[15,150,285],"ycors":[120,15,120],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":30,"y1":120,"x2":270,"y2":120,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false}]},"leaf":{"rotate":false,"elements":[{"xcors":[150,135,120,60,30,60,60,15,30,15,40,45,60,90,105,120,105,120,135,150,165,180,195,180,195,210,240,255,263,285,270,285,240,240,270,240,180,165],"ycors":[210,195,210,210,195,180,165,135,120,105,104,90,90,105,120,120,60,60,30,15,30,60,60,120,120,105,90,90,104,105,120,135,165,180,195,210,210,195],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,135,120,105,105,135,165,165],"ycors":[195,240,255,255,285,285,240,195],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"line":{"rotate":true,"elements":[{"x1":150,"y1":0,"x2":150,"y2":300,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"line half":{"rotate":true,"elements":[{"x1":150,"y1":0,"x2":150,"y2":150,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"pentagon":{"rotate":false,"elements":[{"xcors":[150,15,60,240,285],"ycors":[15,120,285,285,120],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"person":{"rotate":false,"elements":[{"x":110,"y":5,"diam":80,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[105,120,90,105,135,150,165,195,210,180,195],"ycors":[90,195,285,300,300,225,300,300,285,195,90],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":127,"ymin":79,"xmax":172,"ymax":94,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[195,240,225,165],"ycors":[90,150,180,105],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[105,60,75,135],"ycors":[90,150,180,105],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"plant":{"rotate":false,"elements":[{"xmin":135,"ymin":90,"xmax":165,"ymax":300,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,90,45,75,135],"ycors":[255,210,195,255,285],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[165,210,255,225,165],"ycors":[255,210,195,255,285],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,90,45,75,135],"ycors":[180,135,120,180,210],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[165,165,225,255,210],"ycors":[180,210,180,120,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,90,45,75,135],"ycors":[105,60,45,105,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[165,165,225,255,210],"ycors":[105,135,105,45,60],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,120,150,180,165],"ycors":[90,45,15,45,90],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"square":{"rotate":false,"elements":[{"xmin":30,"ymin":30,"xmax":270,"ymax":270,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"square 2":{"rotate":false,"elements":[{"xmin":30,"ymin":30,"xmax":270,"ymax":270,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":60,"ymin":60,"xmax":240,"ymax":240,"type":"rectangle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"star":{"rotate":false,"elements":[{"xcors":[151,185,298,207,242,151,59,94,3,116],"ycors":[1,108,108,175,282,216,282,175,108,108],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"target":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":30,"y":30,"diam":240,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":60,"y":60,"diam":180,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":90,"y":90,"diam":120,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":120,"y":120,"diam":60,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"tree":{"rotate":false,"elements":[{"x":118,"y":3,"diam":94,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":120,"ymin":195,"xmax":180,"ymax":300,"type":"rectangle","color":"rgba(157, 110, 72, 1.0)","filled":true,"marked":false},{"x":65,"y":21,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":116,"y":41,"diam":127,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":45,"y":90,"diam":120,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":104,"y":74,"diam":152,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"triangle":{"rotate":false,"elements":[{"xcors":[150,15,285],"ycors":[30,255,255],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"triangle 2":{"rotate":false,"elements":[{"xcors":[150,15,285],"ycors":[30,255,255],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[151,225,75],"ycors":[99,223,224],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"truck":{"rotate":false,"elements":[{"xmin":4,"ymin":45,"xmax":195,"ymax":187,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[296,296,259,244,208,207],"ycors":[193,150,134,104,104,194],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":195,"ymin":60,"xmax":195,"ymax":105,"type":"rectangle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[238,252,219,218],"ycors":[112,141,141,112],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":234,"y":174,"diam":42,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xmin":181,"ymin":185,"xmax":214,"ymax":194,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":144,"y":174,"diam":42,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":24,"y":174,"diam":42,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":24,"y":174,"diam":42,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x":144,"y":174,"diam":42,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x":234,"y":174,"diam":42,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"turtle":{"rotate":true,"elements":[{"xcors":[215,240,246,228,215,193],"ycors":[204,233,254,266,252,210],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[195,225,245,260,269,261,240,225,210],"ycors":[90,75,75,89,108,124,105,105,105],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[105,75,55,40,31,39,60,75,90],"ycors":[90,75,75,89,108,124,105,105,105],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[132,134,107,108,150,192,192,169,172],"ycors":[85,64,51,17,2,18,52,65,87],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[85,60,54,72,85,107],"ycors":[204,233,254,266,252,210],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[119,179,209,224,220,175,128,81,74,88],"ycors":[75,75,101,135,225,261,261,224,135,99],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"wheel":{"rotate":false,"elements":[{"x":3,"y":3,"diam":294,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":30,"y":30,"diam":240,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x1":150,"y1":285,"x2":150,"y2":15,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":15,"y1":150,"x2":285,"y2":150,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x":120,"y":120,"diam":60,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":216,"y1":40,"x2":79,"y2":269,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":40,"y1":84,"x2":269,"y2":221,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":40,"y1":216,"x2":269,"y2":79,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":84,"y1":40,"x2":221,"y2":269,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"x":{"rotate":false,"elements":[{"xcors":[270,225,30,75],"ycors":[75,30,225,270],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[30,75,270,225],"ycors":[75,30,225,270],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]}}, {"default":{"direction-indicator":{"rotate":true,"elements":[{"x1":150,"y1":150,"x2":90,"y2":180,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":150,"y1":150,"x2":210,"y2":180,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"curviness":0.0,"lines":[{"x-offset":-0.2,"is-visible":false,"dash-pattern":[0.0,1.0]},{"x-offset":0.0,"is-visible":true,"dash-pattern":[1.0,0.0]},{"x-offset":0.2,"is-visible":false,"dash-pattern":[0.0,1.0]}]}});
-
-var BreedManager  = workspace.breedManager;
-var LayoutManager = workspace.layoutManager;
-var LinkPrims     = workspace.linkPrims;
-var ListPrims     = workspace.listPrims;
-var MousePrims    = workspace.mousePrims;
-var plotManager   = workspace.plotManager;
-var Prims         = workspace.prims;
-var PrintPrims    = workspace.printPrims;
-var OutputPrims   = workspace.outputPrims;
-var SelfPrims     = workspace.selfPrims;
-var SelfManager   = workspace.selfManager;
-var Updater       = workspace.updater;
-var world         = workspace.world;
-
-var Call           = tortoise_require('util/call');
-var Exception      = tortoise_require('util/exception');
-var NLMath         = tortoise_require('util/nlmath');
-var notImplemented = tortoise_require('util/notimplemented');
-
-var Dump      = tortoise_require('engine/dump');
+      var AgentModel = tortoise_require('agentmodel');
+var Call = tortoise_require('util/call');
 var ColorModel = tortoise_require('engine/core/colormodel');
-var Link      = tortoise_require('engine/core/link');
-var LinkSet   = tortoise_require('engine/core/linkset');
-var Nobody    = tortoise_require('engine/core/nobody');
-var PatchSet  = tortoise_require('engine/core/patchset');
-var Turtle    = tortoise_require('engine/core/turtle');
-var TurtleSet = tortoise_require('engine/core/turtleset');
-var NLType    = tortoise_require('engine/core/typechecker');
-var Tasks     = tortoise_require('engine/prim/tasks');
-
-var AgentModel = tortoise_require('agentmodel');
-var Meta       = tortoise_require('meta');
-var Random     = tortoise_require('shim/random');
+var Dump = tortoise_require('engine/dump');
+var Exception = tortoise_require('util/exception');
+var Link = tortoise_require('engine/core/link');
+var LinkSet = tortoise_require('engine/core/linkset');
+var Meta = tortoise_require('meta');
+var NLMath = tortoise_require('util/nlmath');
+var NLType = tortoise_require('engine/core/typechecker');
+var Nobody = tortoise_require('engine/core/nobody');
+var PatchSet = tortoise_require('engine/core/patchset');
+var PenBundle = tortoise_require('engine/plot/pen');
+var Plot = tortoise_require('engine/plot/plot');
+var PlotOps = tortoise_require('engine/plot/plotops');
+var Random = tortoise_require('shim/random');
 var StrictMath = tortoise_require('shim/strictmath');
-function startup() {
-  Call(setup);
+var Tasks = tortoise_require('engine/prim/tasks');
+var Turtle = tortoise_require('engine/core/turtle');
+var TurtleSet = tortoise_require('engine/core/turtleset');
+var notImplemented = tortoise_require('util/notimplemented');
+var modelConfig = (typeof window.modelConfig !== "undefined" && window.modelConfig !== null) ? window.modelConfig : {};
+var modelPlotOps = (typeof modelConfig.plotOps !== "undefined" && modelConfig.plotOps !== null) ? modelConfig.plotOps : {};
+if (typeof javax !== "undefined") {
+  modelConfig.output = {
+    clear: function() {},
+    write: function(str) { context.getWriter().print(str); }
+  }
 }
-function setup() {
-  world.clearAll();
-  Call(colorPatches);
-  Call(placeWater);
-  world.turtles().ask(function() {
-    if (Prims.lt(SelfPrims.getVariable("ycor"), -5)) {
-      SelfManager.self().hideTurtle(true);;
+modelConfig.plots = [];
+var workspace = tortoise_require('engine/workspace')(modelConfig)([{ name: "WATER", singular: "turtle", varNames: ["lake-water?", "ocean-water?", "cloud?", "evaporating?", "condensing?", "groundwater?", "snow?"] }])([], [])(["ocean-temp", "wind-speed", "snow-accumulation", "lake-accumulation", "lake-temp", "cloud-temp", "mtn-temp"], ["ocean-temp", "wind-speed"], [], -30, 30, -15, 15, 8.0, true, true, {"default":{"rotate":true,"elements":[{"xcors":[150,40,150,260],"ycors":[5,250,205,250],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"airplane":{"rotate":true,"elements":[{"xcors":[150,135,120,120,15,15,120,135,105,120,150,180,210,165,180,285,285,180,180,165],"ycors":[0,15,60,105,165,195,180,240,270,285,270,285,270,240,180,195,165,105,60,15],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"arrow":{"rotate":true,"elements":[{"xcors":[150,0,105,105,195,195,300],"ycors":[0,150,150,293,293,150,150],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"box":{"rotate":false,"elements":[{"xcors":[150,285,285,150],"ycors":[285,225,75,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[150,15,150,285],"ycors":[135,75,15,75],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[15,15,150,150],"ycors":[75,225,285,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":150,"y1":285,"x2":150,"y2":135,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false},{"x1":150,"y1":135,"x2":15,"y2":75,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false},{"x1":150,"y1":135,"x2":285,"y2":75,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false}]},"bug":{"rotate":true,"elements":[{"x":96,"y":182,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":110,"y":127,"diam":80,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":110,"y":75,"diam":80,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":150,"y1":100,"x2":80,"y2":30,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":150,"y1":100,"x2":220,"y2":30,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"butterfly":{"rotate":true,"elements":[{"xcors":[150,209,225,225,195,165,150],"ycors":[165,199,225,255,270,255,240],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[150,89,75,75,105,135,150],"ycors":[165,198,225,255,270,255,240],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[139,100,55,25,10,10,25,40,85,139],"ycors":[148,105,90,90,105,135,180,195,194,163],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[162,200,245,275,290,290,275,260,215,162],"ycors":[150,105,90,90,105,135,180,195,195,165],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[150,135,120,135,150,165,180,165],"ycors":[255,225,150,120,105,120,150,225],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":135,"y":90,"diam":30,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x1":150,"y1":105,"x2":195,"y2":60,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false},{"x1":150,"y1":105,"x2":105,"y2":60,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false}]},"car":{"rotate":false,"elements":[{"xcors":[300,279,261,240,226,213,203,185,159,135,75,0,0,0,300,300],"ycors":[180,164,144,135,132,106,84,63,50,50,60,150,165,225,225,180],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":180,"y":180,"diam":90,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":30,"y":180,"diam":90,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[162,132,134,209,194,189,180],"ycors":[80,78,135,135,105,96,89],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":47,"y":195,"diam":58,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":195,"y":195,"diam":58,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"circle":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"circle 2":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":30,"y":30,"diam":240,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"cloud":{"rotate":true,"elements":[{"x":30,"y":60,"diam":120,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":135,"y":15,"diam":90,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":221,"y":56,"diam":67,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":135,"y":150,"diam":90,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":126,"y":66,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":43,"y":163,"diam":95,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":0,"y":120,"diam":60,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":165,"y":225,"diam":60,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"cow":{"rotate":false,"elements":[{"xcors":[200,197,179,177,166,140,93,78,72,49,48,37,25,25,45,103,179,198,252,272,293,285,255,242,224],"ycors":[193,249,249,196,187,189,191,179,211,209,181,149,120,89,72,84,75,76,64,81,103,121,121,118,167],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[73,86,62,48],"ycors":[210,251,249,208],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[25,16,9,23,25,39],"ycors":[114,195,204,213,200,123],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"cylinder":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"dot":{"rotate":false,"elements":[{"x":90,"y":90,"diam":120,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"droplet":{"rotate":false,"elements":[{"x":75,"y":150,"diam":150,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[150,135,120,120,105,90,210,195,180,165,150],"ycors":[0,45,75,120,150,180,180,135,105,45,0],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"face happy":{"rotate":false,"elements":[{"x":8,"y":8,"diam":285,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":60,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":180,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[150,90,62,47,67,90,109,150,192,210,227,251,236,212],"ycors":[255,239,213,191,179,203,218,225,218,203,181,194,217,240],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"face neutral":{"rotate":false,"elements":[{"x":8,"y":7,"diam":285,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":60,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":180,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xmin":60,"ymin":195,"xmax":240,"ymax":225,"type":"rectangle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"face sad":{"rotate":false,"elements":[{"x":8,"y":8,"diam":285,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":60,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":180,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[150,90,62,47,67,90,109,150,192,210,227,251,236,212],"ycors":[168,184,210,232,244,220,205,198,205,220,242,229,206,183],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"fish":{"rotate":false,"elements":[{"xcors":[44,21,15,0,15,0,13,20,45],"ycors":[131,87,86,120,150,180,214,212,166],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[135,119,95,76,46,60],"ycors":[195,235,218,210,204,165],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[75,83,71,86,166,135],"ycors":[45,77,103,114,78,60],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[30,151,226,280,292,292,287,270,195,151,30],"ycors":[136,77,81,119,146,160,170,195,210,212,166],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":215,"y":106,"diam":30,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"flag":{"rotate":false,"elements":[{"xmin":60,"ymin":15,"xmax":75,"ymax":300,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[90,270,90],"ycors":[150,90,30],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":75,"y1":135,"x2":90,"y2":135,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":75,"y1":45,"x2":90,"y2":45,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"flower":{"rotate":false,"elements":[{"xcors":[135,165,180,180,150,165,195,195,165],"ycors":[120,165,210,240,300,300,240,195,135],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"x":85,"y":132,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":130,"y":147,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":192,"y":85,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":85,"y":40,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":177,"y":40,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":177,"y":132,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":70,"y":85,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":130,"y":25,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":96,"y":51,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":113,"y":68,"diam":74,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[189,219,249,279,234],"ycors":[233,188,173,188,218],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[180,150,105,75,135],"ycors":[255,210,210,240,240],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false}]},"house":{"rotate":false,"elements":[{"xmin":45,"ymin":120,"xmax":255,"ymax":285,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":120,"ymin":210,"xmax":180,"ymax":285,"type":"rectangle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[15,150,285],"ycors":[120,15,120],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":30,"y1":120,"x2":270,"y2":120,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false}]},"leaf":{"rotate":false,"elements":[{"xcors":[150,135,120,60,30,60,60,15,30,15,40,45,60,90,105,120,105,120,135,150,165,180,195,180,195,210,240,255,263,285,270,285,240,240,270,240,180,165],"ycors":[210,195,210,210,195,180,165,135,120,105,104,90,90,105,120,120,60,60,30,15,30,60,60,120,120,105,90,90,104,105,120,135,165,180,195,210,210,195],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,135,120,105,105,135,165,165],"ycors":[195,240,255,255,285,285,240,195],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"line":{"rotate":true,"elements":[{"x1":150,"y1":0,"x2":150,"y2":300,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"line half":{"rotate":true,"elements":[{"x1":150,"y1":0,"x2":150,"y2":150,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"pentagon":{"rotate":false,"elements":[{"xcors":[150,15,60,240,285],"ycors":[15,120,285,285,120],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"person":{"rotate":false,"elements":[{"x":110,"y":5,"diam":80,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[105,120,90,105,135,150,165,195,210,180,195],"ycors":[90,195,285,300,300,225,300,300,285,195,90],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":127,"ymin":79,"xmax":172,"ymax":94,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[195,240,225,165],"ycors":[90,150,180,105],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[105,60,75,135],"ycors":[90,150,180,105],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"plant":{"rotate":false,"elements":[{"xmin":135,"ymin":90,"xmax":165,"ymax":300,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,90,45,75,135],"ycors":[255,210,195,255,285],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[165,210,255,225,165],"ycors":[255,210,195,255,285],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,90,45,75,135],"ycors":[180,135,120,180,210],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[165,165,225,255,210],"ycors":[180,210,180,120,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,90,45,75,135],"ycors":[105,60,45,105,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[165,165,225,255,210],"ycors":[105,135,105,45,60],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,120,150,180,165],"ycors":[90,45,15,45,90],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"square":{"rotate":false,"elements":[{"xmin":30,"ymin":30,"xmax":270,"ymax":270,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"square 2":{"rotate":false,"elements":[{"xmin":30,"ymin":30,"xmax":270,"ymax":270,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":60,"ymin":60,"xmax":240,"ymax":240,"type":"rectangle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"star":{"rotate":false,"elements":[{"xcors":[151,185,298,207,242,151,59,94,3,116],"ycors":[1,108,108,175,282,216,282,175,108,108],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"target":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":30,"y":30,"diam":240,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":60,"y":60,"diam":180,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":90,"y":90,"diam":120,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":120,"y":120,"diam":60,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"tree":{"rotate":false,"elements":[{"x":118,"y":3,"diam":94,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":120,"ymin":195,"xmax":180,"ymax":300,"type":"rectangle","color":"rgba(157, 110, 72, 1.0)","filled":true,"marked":false},{"x":65,"y":21,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":116,"y":41,"diam":127,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":45,"y":90,"diam":120,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":104,"y":74,"diam":152,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"triangle":{"rotate":false,"elements":[{"xcors":[150,15,285],"ycors":[30,255,255],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"triangle 2":{"rotate":false,"elements":[{"xcors":[150,15,285],"ycors":[30,255,255],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[151,225,75],"ycors":[99,223,224],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"truck":{"rotate":false,"elements":[{"xmin":4,"ymin":45,"xmax":195,"ymax":187,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[296,296,259,244,208,207],"ycors":[193,150,134,104,104,194],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":195,"ymin":60,"xmax":195,"ymax":105,"type":"rectangle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[238,252,219,218],"ycors":[112,141,141,112],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":234,"y":174,"diam":42,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xmin":181,"ymin":185,"xmax":214,"ymax":194,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":144,"y":174,"diam":42,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":24,"y":174,"diam":42,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":24,"y":174,"diam":42,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x":144,"y":174,"diam":42,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x":234,"y":174,"diam":42,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"turtle":{"rotate":true,"elements":[{"xcors":[215,240,246,228,215,193],"ycors":[204,233,254,266,252,210],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[195,225,245,260,269,261,240,225,210],"ycors":[90,75,75,89,108,124,105,105,105],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[105,75,55,40,31,39,60,75,90],"ycors":[90,75,75,89,108,124,105,105,105],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[132,134,107,108,150,192,192,169,172],"ycors":[85,64,51,17,2,18,52,65,87],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[85,60,54,72,85,107],"ycors":[204,233,254,266,252,210],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[119,179,209,224,220,175,128,81,74,88],"ycors":[75,75,101,135,225,261,261,224,135,99],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"wheel":{"rotate":false,"elements":[{"x":3,"y":3,"diam":294,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":30,"y":30,"diam":240,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x1":150,"y1":285,"x2":150,"y2":15,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":15,"y1":150,"x2":285,"y2":150,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x":120,"y":120,"diam":60,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":216,"y1":40,"x2":79,"y2":269,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":40,"y1":84,"x2":269,"y2":221,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":40,"y1":216,"x2":269,"y2":79,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":84,"y1":40,"x2":221,"y2":269,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"x":{"rotate":false,"elements":[{"xcors":[270,225,30,75],"ycors":[75,30,225,270],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[30,75,270,225],"ycors":[75,30,225,270],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]}}, {"default":{"direction-indicator":{"rotate":true,"elements":[{"x1":150,"y1":150,"x2":90,"y2":180,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":150,"y1":150,"x2":210,"y2":180,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"curviness":0.0,"lines":[{"x-offset":-0.2,"is-visible":false,"dash-pattern":[0.0,1.0]},{"x-offset":0.0,"is-visible":true,"dash-pattern":[1.0,0.0]},{"x-offset":0.2,"is-visible":false,"dash-pattern":[0.0,1.0]}]}}, function(){});
+var BreedManager = workspace.breedManager;
+var LayoutManager = workspace.layoutManager;
+var LinkPrims = workspace.linkPrims;
+var ListPrims = workspace.listPrims;
+var MousePrims = workspace.mousePrims;
+var OutputPrims = workspace.outputPrims;
+var Prims = workspace.prims;
+var PrintPrims = workspace.printPrims;
+var SelfManager = workspace.selfManager;
+var SelfPrims = workspace.selfPrims;
+var Updater = workspace.updater;
+var plotManager = workspace.plotManager;
+var world = workspace.world;
+var procedures = (function() {
+  var startup = function() { Call(procedures.setup); };
+  var setup = function() {
+    world.clearAll();
+    Call(procedures.colorPatches);
+    Call(procedures.placeWater);
+    world.turtles().ask(function() {
+      if (Prims.lt(SelfPrims.getVariable("ycor"), -5)) {
+        SelfManager.self().hideTurtle(true);;
+      }
+    }, true);
+    world.observer.setGlobal("wind-speed", 0);
+    world.observer.setGlobal("lake-temp", 15);
+    world.observer.setGlobal("ocean-temp", 15);
+    world.observer.setGlobal("cloud-temp", 2);
+    world.observer.setGlobal("mtn-temp", 3);
+    Call(procedures.myImportDrawing, "watercyclebackground.png");
+    world.ticker.reset();
+  };
+  var myImportDrawing = function(src) {};
+  var go = function() {
+    world.turtles().ask(function() {
+      if (((Prims.equality(SelfPrims.getVariable("lake-water?"), true) || Prims.equality(SelfPrims.getVariable("ocean-water?"), true)) || (Prims.equality(SelfPrims.getVariable("evaporating?"), true) && Prims.lt(SelfPrims.getVariable("ycor"), -6)))) {
+        SelfManager.self().hideTurtle(true);;
+      }
+      else {
+        SelfManager.self().hideTurtle(false);;
+      }
+    }, true);
+    world.observer.setGlobal("snow-accumulation", world.turtles().agentFilter(function() { return Prims.equality(SelfPrims.getVariable("snow?"), true); }).size());
+    world.observer.setGlobal("lake-accumulation", world.turtles().agentFilter(function() { return Prims.equality(SelfPrims.getVariable("lake-water?"), true); }).size());
+    if (Prims.gt(world.observer.getGlobal("lake-accumulation"), 450)) {
+      ListPrims.oneOf(world.turtles().agentFilter(function() { return Prims.equality(SelfPrims.getVariable("lake-water?"), true); })).ask(function() {
+        SelfPrims.setVariable("lake-water?", false);
+        SelfPrims.setVariable("groundwater?", true);
+        SelfPrims.setXY(6, -6);
+      }, true);
     }
-  }, true);
-  world.observer.setGlobal("wind-speed", 0);
-  world.observer.setGlobal("lake-temp", 15);
-  world.observer.setGlobal("ocean-temp", 15);
-  world.observer.setGlobal("cloud-temp", 2);
-  world.observer.setGlobal("mtn-temp", 3);
-  Call(myImportDrawing, "watercyclebackground.png");
-  world.ticker.reset();
-}
-function myImportDrawing(src) {
-
-}
-function go() {
-  world.turtles().ask(function() {
-    if (((Prims.equality(SelfPrims.getVariable("lake-water?"), true) || Prims.equality(SelfPrims.getVariable("ocean-water?"), true)) || (Prims.equality(SelfPrims.getVariable("evaporating?"), true) && Prims.lt(SelfPrims.getVariable("ycor"), -6)))) {
-      SelfManager.self().hideTurtle(true);;
+    world.turtleManager.turtlesOfBreed("WATER").ask(function() { Call(procedures.moveWater); }, true);
+  };
+  var colorPatches = function() {
+    world.patches().ask(function() {
+      SelfPrims.setPatchVariable("pcolor", (105 + 3));
+      if (Prims.lt(SelfPrims.getPatchVariable("pycor"), -5)) {
+        SelfPrims.setPatchVariable("pcolor", (35 - 2));
+      }
+      if ((Prims.lt(SelfPrims.getPatchVariable("pycor"), -5) && Prims.gte(SelfPrims.getPatchVariable("pxcor"), 22))) {
+        SelfPrims.setPatchVariable("pcolor", 105);
+      }
+      if ((((Prims.lt(SelfPrims.getPatchVariable("pycor"), -5) && Prims.gte(SelfPrims.getPatchVariable("pycor"), -7)) && Prims.lt(SelfPrims.getPatchVariable("pxcor"), 22)) && Prims.gt(SelfPrims.getPatchVariable("pxcor"), 5))) {
+        SelfPrims.setPatchVariable("pcolor", (35 - 2));
+      }
+      if (((Prims.lt(SelfPrims.getPatchVariable("pycor"), -5) && Prims.gte(SelfPrims.getPatchVariable("pycor"), -10)) && Prims.lte(NLMath.abs(SelfPrims.getPatchVariable("pxcor")), 5))) {
+        SelfPrims.setPatchVariable("pcolor", (105 - 1));
+      }
+      if (((Prims.lt(SelfPrims.getPatchVariable("pycor"), -5) && Prims.lt(SelfPrims.getPatchVariable("pxcor"), -5)) && Prims.gt(SelfPrims.getPatchVariable("pxcor"), -15))) {
+        SelfPrims.setPatchVariable("pcolor", (35 - 2));
+      }
+    }, true);
+  };
+  var placeWater = function() {
+    world.patches().agentFilter(function() { return Prims.equality(SelfPrims.getPatchVariable("pcolor"), 105); }).ask(function() {
+      SelfPrims.sprout(8, "WATER").ask(function() {
+        SelfPrims.setVariable("shape", "circle");
+        SelfPrims.setVariable("color", 105);
+        SelfPrims.setVariable("heading", 0);
+        SelfPrims.setVariable("ocean-water?", true);
+        SelfPrims.setVariable("lake-water?", false);
+        SelfPrims.setVariable("cloud?", false);
+        SelfPrims.setVariable("evaporating?", false);
+        SelfPrims.setVariable("condensing?", false);
+        SelfPrims.setVariable("groundwater?", false);
+        SelfPrims.setVariable("snow?", false);
+      }, true);
+    }, true);
+    world.patches().agentFilter(function() { return Prims.equality(SelfPrims.getPatchVariable("pcolor"), (105 - 1)); }).ask(function() {
+      SelfPrims.sprout(8, "WATER").ask(function() {
+        SelfPrims.setVariable("shape", "circle");
+        SelfPrims.setVariable("color", (105 - 1));
+        SelfPrims.setVariable("heading", 0);
+        SelfPrims.setVariable("lake-water?", true);
+        SelfPrims.setVariable("ocean-water?", false);
+        SelfPrims.setVariable("cloud?", false);
+        SelfPrims.setVariable("evaporating?", false);
+        SelfPrims.setVariable("condensing?", false);
+        SelfPrims.setVariable("groundwater?", false);
+        SelfPrims.setVariable("snow?", false);
+      }, true);
+    }, true);
+  };
+  var moveWater = function() {
+    if (Prims.lte(SelfPrims.getVariable("ycor"), world.topology.minPycor)) {
+      SelfPrims.die();
     }
-    else {
+    if (Prims.gt(SelfPrims.getVariable("ycor"), 14)) {
+      SelfPrims.setVariable("ycor", (14 - Prims.random(3)));
+    }
+    if ((Prims.gt(SelfPrims.getVariable("xcor"), 29) && Prims.gte(SelfPrims.getVariable("ycor"), -5))) {
+      SelfPrims.setVariable("xcor", (29 - Prims.random(20)));
+    }
+    if (Prims.lt(SelfPrims.getVariable("xcor"), -29)) {
+      SelfPrims.setVariable("xcor", (-29 + Prims.random(20)));
+    }
+    if ((Prims.gt(SelfPrims.getVariable("xcor"), 29) && Prims.lt(SelfPrims.getVariable("ycor"), -5))) {
+      SelfPrims.setVariable("xcor", (29 - Prims.random(15)));
+    }
+    if ((Prims.equality(SelfPrims.getVariable("ocean-water?"), true) && Prims.gt(world.observer.getGlobal("ocean-temp"), Prims.random(10000)))) {
+      SelfPrims.setVariable("evaporating?", true);
+      SelfPrims.setVariable("ocean-water?", false);
+    }
+    if ((Prims.equality(SelfPrims.getVariable("lake-water?"), true) && Prims.gt(world.observer.getGlobal("lake-temp"), Prims.random(10000)))) {
+      SelfPrims.setVariable("evaporating?", true);
+      SelfPrims.setVariable("lake-water?", false);
+    }
+    if (Prims.gt(SelfPrims.getVariable("ycor"), 5)) {
+      SelfPrims.setVariable("evaporating?", false);
+      SelfPrims.setVariable("cloud?", true);
       SelfManager.self().hideTurtle(false);;
     }
-  }, true);
-  world.observer.setGlobal("snow-accumulation", world.turtles().agentFilter(function() {
-    return Prims.equality(SelfPrims.getVariable("snow?"), true);
-  }).size());
-  world.observer.setGlobal("lake-accumulation", world.turtles().agentFilter(function() {
-    return Prims.equality(SelfPrims.getVariable("lake-water?"), true);
-  }).size());
-  if (Prims.gt(world.observer.getGlobal("lake-accumulation"), 450)) {
-    ListPrims.oneOf(world.turtles().agentFilter(function() {
-      return Prims.equality(SelfPrims.getVariable("lake-water?"), true);
-    })).ask(function() {
-      SelfPrims.setVariable("lake-water?", false);
-      SelfPrims.setVariable("groundwater?", true);
-      SelfPrims.setXY(6, -6);
-    }, true);
-  }
-  world.turtleManager.turtlesOfBreed("WATER").ask(function() {
-    Call(moveWater);
-  }, true);
-}
-function colorPatches() {
-  world.patches().ask(function() {
-    SelfPrims.setPatchVariable("pcolor", (105 + 3));
-    if (Prims.lt(SelfPrims.getPatchVariable("pycor"), -5)) {
-      SelfPrims.setPatchVariable("pcolor", (35 - 2));
+    if (Prims.equality(SelfPrims.getVariable("cloud?"), true)) {
+      SelfPrims.setVariable("heading", Prims.random(360));
+      SelfPrims.setVariable("color", 9.9);
+      SelfPrims.setVariable("shape", "cloud");
+      SelfPrims.setVariable("size", 4);
+      SelfPrims.fd(0.4);
+      if ((Prims.lt(SelfPrims.getVariable("ycor"), 5) || Prims.gt(SelfPrims.getVariable("ycor"), 14))) {
+        SelfPrims.setVariable("ycor", (6 + Prims.random(8)));
+      }
     }
-    if ((Prims.lt(SelfPrims.getPatchVariable("pycor"), -5) && Prims.gte(SelfPrims.getPatchVariable("pxcor"), 22))) {
-      SelfPrims.setPatchVariable("pcolor", 105);
+    if (Prims.equality(SelfPrims.getVariable("evaporating?"), true)) {
+      SelfPrims.setVariable("heading", (SelfPrims.getVariable("heading") + (5 - Prims.random(10))));
+      SelfPrims.fd(0.8);
+      if (Prims.gt(SelfPrims.getVariable("ycor"), -4)) {
+        SelfPrims.setVariable("color", (105 + 1));
+      }
+      if (Prims.gt(SelfPrims.getVariable("ycor"), -3)) {
+        SelfPrims.setVariable("color", (105 + 2));
+      }
+      if (Prims.gt(SelfPrims.getVariable("ycor"), -1)) {
+        SelfManager.self().hideTurtle(true);;
+      }
     }
-    if ((((Prims.lt(SelfPrims.getPatchVariable("pycor"), -5) && Prims.gte(SelfPrims.getPatchVariable("pycor"), -7)) && Prims.lt(SelfPrims.getPatchVariable("pxcor"), 22)) && Prims.gt(SelfPrims.getPatchVariable("pxcor"), 5))) {
-      SelfPrims.setPatchVariable("pcolor", (35 - 2));
-    }
-    if (((Prims.lt(SelfPrims.getPatchVariable("pycor"), -5) && Prims.gte(SelfPrims.getPatchVariable("pycor"), -10)) && Prims.lte(NLMath.abs(SelfPrims.getPatchVariable("pxcor")), 5))) {
-      SelfPrims.setPatchVariable("pcolor", (105 - 1));
-    }
-    if (((Prims.lt(SelfPrims.getPatchVariable("pycor"), -5) && Prims.lt(SelfPrims.getPatchVariable("pxcor"), -5)) && Prims.gt(SelfPrims.getPatchVariable("pxcor"), -15))) {
-      SelfPrims.setPatchVariable("pcolor", (35 - 2));
-    }
-  }, true);
-}
-function placeWater() {
-  world.patches().agentFilter(function() {
-    return Prims.equality(SelfPrims.getPatchVariable("pcolor"), 105);
-  }).ask(function() {
-    SelfPrims.sprout(8, "WATER").ask(function() {
-      SelfPrims.setVariable("shape", "circle");
-      SelfPrims.setVariable("color", 105);
-      SelfPrims.setVariable("heading", 0);
-      SelfPrims.setVariable("ocean-water?", true);
-      SelfPrims.setVariable("lake-water?", false);
+    if ((Prims.equality(SelfPrims.getVariable("cloud?"), true) && Prims.gt((10 - world.observer.getGlobal("cloud-temp")), Prims.random(500)))) {
       SelfPrims.setVariable("cloud?", false);
-      SelfPrims.setVariable("evaporating?", false);
-      SelfPrims.setVariable("condensing?", false);
-      SelfPrims.setVariable("groundwater?", false);
-      SelfPrims.setVariable("snow?", false);
-    }, true);
-  }, true);
-  world.patches().agentFilter(function() {
-    return Prims.equality(SelfPrims.getPatchVariable("pcolor"), (105 - 1));
-  }).ask(function() {
-    SelfPrims.sprout(8, "WATER").ask(function() {
-      SelfPrims.setVariable("shape", "circle");
-      SelfPrims.setVariable("color", (105 - 1));
-      SelfPrims.setVariable("heading", 0);
-      SelfPrims.setVariable("lake-water?", true);
-      SelfPrims.setVariable("ocean-water?", false);
+      SelfPrims.setVariable("condensing?", true);
+    }
+    if ((Prims.equality(SelfPrims.getVariable("cloud?"), true) && Prims.equality(SelfPrims.getVariable("condensing?"), true))) {
       SelfPrims.setVariable("cloud?", false);
-      SelfPrims.setVariable("evaporating?", false);
+    }
+    if (Prims.equality(SelfPrims.getVariable("condensing?"), true)) {
+      SelfPrims.setVariable("heading", 180);
+      SelfPrims.setVariable("color", 5);
+      SelfPrims.setVariable("shape", "droplet");
+      SelfPrims.setVariable("size", 1.5);
+      SelfPrims.fd(0.6);
+    }
+    if ((Prims.equality(SelfPrims.getVariable("condensing?"), true) && Prims.lt(SelfPrims.getVariable("ycor"), -7))) {
       SelfPrims.setVariable("condensing?", false);
-      SelfPrims.setVariable("groundwater?", false);
+      SelfPrims.setVariable("shape", "circle");
+      SelfPrims.setVariable("size", 1);
+      if (Prims.equality(SelfPrims.getPatchVariable("pcolor"), 105)) {
+        SelfPrims.setVariable("ocean-water?", true);
+        SelfPrims.setVariable("heading", 0);
+        SelfPrims.setVariable("color", 105);
+      }
+      if (Prims.equality(SelfPrims.getPatchVariable("pcolor"), (105 - 1))) {
+        SelfPrims.setVariable("lake-water?", true);
+        SelfPrims.setVariable("heading", 0);
+        SelfPrims.setVariable("color", (105 - 1));
+      }
+      if (Prims.equality(SelfPrims.getPatchVariable("pcolor"), (35 - 2))) {
+        SelfPrims.setVariable("groundwater?", true);
+        SelfPrims.setVariable("color", 0);
+      }
+    }
+    if (((Prims.equality(SelfPrims.getVariable("condensing?"), true) && Prims.lt(SelfPrims.getVariable("ycor"), -4)) && Prims.lte(SelfPrims.getVariable("xcor"), -15))) {
+      SelfPrims.setVariable("condensing?", false);
+      SelfPrims.setVariable("shape", "square");
+      SelfPrims.setVariable("size", 1);
+      SelfPrims.setVariable("snow?", true);
+      SelfPrims.setVariable("color", 9.9);
+    }
+    if ((Prims.equality(SelfPrims.getVariable("snow?"), true) && Prims.gt(SelfManager.self().turtlesHere().agentFilter(function() { return Prims.equality(SelfPrims.getVariable("snow?"), true); }).size(), 1))) {
+      ListPrims.oneOf(SelfManager.self().turtlesHere()).ask(function() { SelfPrims.setVariable("ycor", (SelfPrims.getVariable("ycor") + 1)); }, true);
+    }
+    if ((Prims.equality(SelfPrims.getVariable("snow?"), true) && Prims.gt(world.observer.getGlobal("mtn-temp"), Prims.random(100)))) {
       SelfPrims.setVariable("snow?", false);
-    }, true);
-  }, true);
-}
-function moveWater() {
-  if (Prims.lte(SelfPrims.getVariable("ycor"), world.topology.minPycor)) {
-    SelfPrims.die();
-  }
-  if (Prims.gt(SelfPrims.getVariable("ycor"), 14)) {
-    SelfPrims.setVariable("ycor", (14 - Prims.random(3)));
-  }
-  if ((Prims.gt(SelfPrims.getVariable("xcor"), 29) && Prims.gte(SelfPrims.getVariable("ycor"), -5))) {
-    SelfPrims.setVariable("xcor", (29 - Prims.random(20)));
-  }
-  if (Prims.lt(SelfPrims.getVariable("xcor"), -29)) {
-    SelfPrims.setVariable("xcor", (-29 + Prims.random(20)));
-  }
-  if ((Prims.gt(SelfPrims.getVariable("xcor"), 29) && Prims.lt(SelfPrims.getVariable("ycor"), -5))) {
-    SelfPrims.setVariable("xcor", (29 - Prims.random(15)));
-  }
-  if ((Prims.equality(SelfPrims.getVariable("ocean-water?"), true) && Prims.gt(world.observer.getGlobal("ocean-temp"), Prims.random(10000)))) {
-    SelfPrims.setVariable("evaporating?", true);
-    SelfPrims.setVariable("ocean-water?", false);
-  }
-  if ((Prims.equality(SelfPrims.getVariable("lake-water?"), true) && Prims.gt(world.observer.getGlobal("lake-temp"), Prims.random(10000)))) {
-    SelfPrims.setVariable("evaporating?", true);
-    SelfPrims.setVariable("lake-water?", false);
-  }
-  if (Prims.gt(SelfPrims.getVariable("ycor"), 5)) {
-    SelfPrims.setVariable("evaporating?", false);
-    SelfPrims.setVariable("cloud?", true);
-    SelfManager.self().hideTurtle(false);;
-  }
-  if (Prims.equality(SelfPrims.getVariable("cloud?"), true)) {
-    SelfPrims.setVariable("heading", Prims.random(360));
-    SelfPrims.setVariable("color", 9.9);
-    SelfPrims.setVariable("shape", "cloud");
-    SelfPrims.setVariable("size", 4);
-    SelfPrims.fd(0.4);
-    if ((Prims.lt(SelfPrims.getVariable("ycor"), 5) || Prims.gt(SelfPrims.getVariable("ycor"), 14))) {
-      SelfPrims.setVariable("ycor", (6 + Prims.random(8)));
-    }
-  }
-  if (Prims.equality(SelfPrims.getVariable("evaporating?"), true)) {
-    SelfPrims.setVariable("heading", (SelfPrims.getVariable("heading") + (5 - Prims.random(10))));
-    SelfPrims.fd(0.8);
-    if (Prims.gt(SelfPrims.getVariable("ycor"), -4)) {
-      SelfPrims.setVariable("color", (105 + 1));
-    }
-    if (Prims.gt(SelfPrims.getVariable("ycor"), -3)) {
-      SelfPrims.setVariable("color", (105 + 2));
-    }
-    if (Prims.gt(SelfPrims.getVariable("ycor"), -1)) {
-      SelfManager.self().hideTurtle(true);;
-    }
-  }
-  if ((Prims.equality(SelfPrims.getVariable("cloud?"), true) && Prims.gt((10 - world.observer.getGlobal("cloud-temp")), Prims.random(500)))) {
-    SelfPrims.setVariable("cloud?", false);
-    SelfPrims.setVariable("condensing?", true);
-  }
-  if ((Prims.equality(SelfPrims.getVariable("cloud?"), true) && Prims.equality(SelfPrims.getVariable("condensing?"), true))) {
-    SelfPrims.setVariable("cloud?", false);
-  }
-  if (Prims.equality(SelfPrims.getVariable("condensing?"), true)) {
-    SelfPrims.setVariable("heading", 180);
-    SelfPrims.setVariable("color", 5);
-    SelfPrims.setVariable("shape", "droplet");
-    SelfPrims.setVariable("size", 1.5);
-    SelfPrims.fd(0.6);
-  }
-  if ((Prims.equality(SelfPrims.getVariable("condensing?"), true) && Prims.lt(SelfPrims.getVariable("ycor"), -7))) {
-    SelfPrims.setVariable("condensing?", false);
-    SelfPrims.setVariable("shape", "circle");
-    SelfPrims.setVariable("size", 1);
-    if (Prims.equality(SelfPrims.getPatchVariable("pcolor"), 105)) {
-      SelfPrims.setVariable("ocean-water?", true);
-      SelfPrims.setVariable("heading", 0);
-      SelfPrims.setVariable("color", 105);
-    }
-    if (Prims.equality(SelfPrims.getPatchVariable("pcolor"), (105 - 1))) {
-      SelfPrims.setVariable("lake-water?", true);
-      SelfPrims.setVariable("heading", 0);
-      SelfPrims.setVariable("color", (105 - 1));
-    }
-    if (Prims.equality(SelfPrims.getPatchVariable("pcolor"), (35 - 2))) {
+      SelfPrims.setVariable("ycor", -7);
       SelfPrims.setVariable("groundwater?", true);
+      SelfPrims.setVariable("shape", "circle");
       SelfPrims.setVariable("color", 0);
     }
-  }
-  if (((Prims.equality(SelfPrims.getVariable("condensing?"), true) && Prims.lt(SelfPrims.getVariable("ycor"), -4)) && Prims.lte(SelfPrims.getVariable("xcor"), -15))) {
-    SelfPrims.setVariable("condensing?", false);
-    SelfPrims.setVariable("shape", "square");
-    SelfPrims.setVariable("size", 1);
-    SelfPrims.setVariable("snow?", true);
-    SelfPrims.setVariable("color", 9.9);
-  }
-  if ((Prims.equality(SelfPrims.getVariable("snow?"), true) && Prims.gt(SelfManager.self().turtlesHere().agentFilter(function() {
-    return Prims.equality(SelfPrims.getVariable("snow?"), true);
-  }).size(), 1))) {
-    ListPrims.oneOf(SelfManager.self().turtlesHere()).ask(function() {
-      SelfPrims.setVariable("ycor", (SelfPrims.getVariable("ycor") + 1));
-    }, true);
-  }
-  if ((Prims.equality(SelfPrims.getVariable("snow?"), true) && Prims.gt(world.observer.getGlobal("mtn-temp"), Prims.random(100)))) {
-    SelfPrims.setVariable("snow?", false);
-    SelfPrims.setVariable("ycor", -7);
-    SelfPrims.setVariable("groundwater?", true);
-    SelfPrims.setVariable("shape", "circle");
-    SelfPrims.setVariable("color", 0);
-  }
-  if (Prims.equality(SelfPrims.getVariable("groundwater?"), true)) {
-    SelfPrims.setVariable("xcor", (SelfPrims.getVariable("xcor") + 0.4));
-    if (Prims.equality(SelfPrims.getPatchVariable("pcolor"), 105)) {
-      SelfPrims.setVariable("groundwater?", false);
-      SelfPrims.setVariable("ocean-water?", true);
-      SelfPrims.setVariable("heading", 0);
-      SelfPrims.setVariable("xcor", (15 + Prims.random(15)));
-      SelfPrims.setVariable("color", 105);
+    if (Prims.equality(SelfPrims.getVariable("groundwater?"), true)) {
+      SelfPrims.setVariable("xcor", (SelfPrims.getVariable("xcor") + 0.4));
+      if (Prims.equality(SelfPrims.getPatchVariable("pcolor"), 105)) {
+        SelfPrims.setVariable("groundwater?", false);
+        SelfPrims.setVariable("ocean-water?", true);
+        SelfPrims.setVariable("heading", 0);
+        SelfPrims.setVariable("xcor", (15 + Prims.random(15)));
+        SelfPrims.setVariable("color", 105);
+      }
+      if (Prims.equality(SelfPrims.getPatchVariable("pcolor"), (105 - 1))) {
+        SelfPrims.setVariable("groundwater?", false);
+        SelfPrims.setVariable("lake-water?", true);
+        SelfPrims.setVariable("xcor", (-5 + Prims.random(10)));
+        SelfPrims.setVariable("heading", 0);
+        SelfPrims.setVariable("color", (105 - 1));
+      }
     }
-    if (Prims.equality(SelfPrims.getPatchVariable("pcolor"), (105 - 1))) {
-      SelfPrims.setVariable("groundwater?", false);
-      SelfPrims.setVariable("lake-water?", true);
-      SelfPrims.setVariable("xcor", (-5 + Prims.random(10)));
-      SelfPrims.setVariable("heading", 0);
-      SelfPrims.setVariable("color", (105 - 1));
+    if (Prims.gt(SelfPrims.getVariable("ycor"), 5)) {
+      SelfPrims.setVariable("xcor", (SelfPrims.getVariable("xcor") + (world.observer.getGlobal("wind-speed") / 10)));
     }
-  }
-  if (Prims.gt(SelfPrims.getVariable("ycor"), 5)) {
-    SelfPrims.setVariable("xcor", (SelfPrims.getVariable("xcor") + (world.observer.getGlobal("wind-speed") / 10)));
-  }
-}
-world.observer.setGlobal("ocean-temp", 29);
-world.observer.setGlobal("wind-speed", -6);
-      session.startLoop()
-function myImportDrawing(src) {
+  };
+  return {
+    "COLOR-PATCHES":colorPatches,
+    "GO":go,
+    "MOVE-WATER":moveWater,
+    "MY-IMPORT-DRAWING":myImportDrawing,
+    "PLACE-WATER":placeWater,
+    "SETUP":setup,
+    "STARTUP":startup,
+    "colorPatches":colorPatches,
+    "go":go,
+    "moveWater":moveWater,
+    "myImportDrawing":myImportDrawing,
+    "placeWater":placeWater,
+    "setup":setup,
+    "startup":startup
+  };
+})();
+
+procedures.myImportDrawing = function(src) {
   try {
     window.drawings.push(src);
   } catch(e) {
   }
-}
+};
+procedures['MY-IMPORT-DRAWING'] = procedures.myImportDrawing;
+world.observer.setGlobal("ocean-temp", 29);
+world.observer.setGlobal("wind-speed", -6);
+
+      session.startLoop()
     </script>
 <script src='jquery-1.11.3.min.js' type='text/javascript'></script>
 <script src='shutterbug-0.5.4.js' type='text/javascript'></script>
