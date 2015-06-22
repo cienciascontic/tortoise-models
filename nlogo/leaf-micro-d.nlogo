@@ -19,12 +19,12 @@ breed [ chloroplast ]
 chloroplast-own [ NADPH? ]
 
 to startup
-my-import-drawing "aspenleaftrans.png"
 setup
 end
 
 to setup
 clear-all
+my-import-drawing "aspenleaftrans.png"
 createplant
 createsun
 createchloroplast
