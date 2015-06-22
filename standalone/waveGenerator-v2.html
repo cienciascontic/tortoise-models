@@ -54599,15 +54599,14 @@ defaultShapes = {
       };
       this.patchDrawer.repaintOrig = this.patchDrawer.repaint;
       this.patchDrawer.repaint = function(model) {
-        var i, len, ref, results, src;
-        this.repaintOrig(model);
+        var i, len, ref, ret, src;
+        ret = this.repaintOrig(model);
         ref = window.drawings;
-        results = [];
         for (i = 0, len = ref.length; i < len; i++) {
           src = ref[i];
-          results.push(this.drawScaledImage(src));
+          this.drawScaledImage(src);
         }
-        return results;
+        return ret;
       };
     }
 
@@ -54813,6 +54812,9 @@ procedures.myImportDrawing = function(src) {
   try {
     window.drawings.push(src);
   } catch(e) {
+    if (typeof(console) !== 'undefined' && console && console.log) {
+      console.log("Error adding src for myImportDrawing", src, e);
+    }
   }
 };
 procedures['MY-IMPORT-DRAWING'] = procedures.myImportDrawing;

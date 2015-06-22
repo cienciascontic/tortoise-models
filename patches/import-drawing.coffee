@@ -4,6 +4,7 @@ images = {}
 window.AgentStreamController = class MyAgentStreamController extends window.AgentStreamController
   constructor: ->
     super
+    window.drawings ||= []
 
     triggerRepaint = =>
       @repaint()
@@ -35,7 +36,8 @@ window.AgentStreamController = class MyAgentStreamController extends window.Agen
 
     @patchDrawer.repaintOrig = @patchDrawer.repaint
     @patchDrawer.repaint = (model)->
-      @repaintOrig(model)
+      ret = @repaintOrig(model)
       # inject any images
       for src in window.drawings
         @drawScaledImage src
+      return ret
