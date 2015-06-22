@@ -19,12 +19,12 @@ CUSTOM_COMMANDS = {
 
 def inject_custom_commands(file)
   CUSTOM_COMMANDS.each do |k,v|
-    grp = `grep 'function #{k}(' #{file}`
+    grp = `grep 'var #{k} = function(' #{file}`
     unless grp.empty?
-      puts "overriding command #{v}"
+      puts "overriding command #{k}"
       lines = `wc -l < #{file}`
       lines = lines.strip.to_i
-      _inject(file, lines-3, "commands/#{v}")
+      _inject(file, lines-7, "commands/#{v}")
     end
   end
 end
