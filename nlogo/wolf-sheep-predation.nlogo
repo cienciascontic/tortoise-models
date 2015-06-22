@@ -10,7 +10,7 @@ setup
 end
 
 to setup
-  ca
+  clear-all
   ask patches [ set pcolor green ]
   if grass? [
       ;; indicates whether the grass switch is on
@@ -43,6 +43,7 @@ to setup
     setxy random-xcor random-ycor
   ]
 
+  reset-ticks
   display-labels
 
   do-plot
@@ -229,6 +230,7 @@ GRAPHICS-WINDOW
 0
 1
 ticks
+30.0
 
 SLIDER
 0
@@ -361,6 +363,7 @@ NIL
 NIL
 NIL
 NIL
+1
 
 BUTTON
 8
@@ -377,12 +380,13 @@ NIL
 NIL
 NIL
 NIL
+1
 
 PLOT
 8
 210
 336
-360
+388
 populations
 time
 pop.
@@ -392,16 +396,17 @@ pop.
 100.0
 true
 true
+"" ""
 PENS
-"sheep" 1.0 0 -13345367 true
-"wolves" 1.0 0 -2674135 true
-"grass / 4" 1.0 0 -10899396 true
+"sheep" 1.0 0 -13345367 true "" ""
+"wolves" 1.0 0 -2674135 true "" ""
+"grass / 4" 1.0 0 -10899396 true "" ""
 
 MONITOR
-88
-368
-159
-413
+89
+392
+160
+437
 sheep
 count sheep
 3
@@ -409,10 +414,10 @@ count sheep
 11
 
 MONITOR
-163
-368
-245
-413
+164
+392
+246
+437
 wolves
 count wolves
 3
@@ -420,10 +425,10 @@ count wolves
 11
 
 MONITOR
-249
-368
-325
-413
+250
+392
+326
+437
 grass / 4
 count patches with [ pcolor = green ] / 4
 0
@@ -461,10 +466,10 @@ Grass settings
 0
 
 SWITCH
-26
-421
-162
-454
+27
+445
+163
+478
 show-energy?
 show-energy?
 1
@@ -472,10 +477,10 @@ show-energy?
 -1000
 
 MONITOR
-17
-369
-74
-414
+18
+393
+75
+438
 Ticks
 ticks
 0
@@ -483,10 +488,10 @@ ticks
 11
 
 SWITCH
-185
-421
-310
-454
+186
+445
+311
+478
 watch-one
 watch-one
 1
@@ -494,51 +499,48 @@ watch-one
 -1000
 
 @#$#@#$#@
-WHAT IS IT?
------------
+## WHAT IS IT?
+
 This model explores the stability of predator-prey ecosystems. (The construction of this model is described in two papers by Wilensky & Reisman referenced below.) Such systems are called unstable when they tend to result in extinction for one or more species involved.  In contrast, systems are stable when they tend to maintain themselves over time, despite fluctuations in population sizes. There are two main variations to this model.
 
 In the first variation, wolves and sheep wonder randomly around the landscape, while the wolves look for sheep to prey on. Each step costs the wolves energy, and they must eat sheep in order to replenish their energy - when they run out of energy they die. To allow the population to continue, each wolf or sheep has a fixed probability of reproducing at each time step. This variation produces interesting population dynamics, but is ultimately unstable.
 
 The second variation includes grass (green) in addition to wolves and sheep. The behavior of the wolves is identical to the first variation, however this time the sheep must eat grass in order to maintain their energy - when they run out of energy they die. Once grass is eaten it will only regrow after a fixed amount of time. This variation is more complex than the first, but it is generally stable.
 
+## HOW TO USE IT
 
-HOW TO USE IT
--------------
-1. Set the GRASS? switch to TRUE to include grass in the model, or to FALSE to only include wolves (red) and sheep (white).
-2. Adjust the slider parameters (see below), or use the default settings.
-3. Press the SETUP button.
-4. Press the GO button to begin the simulation.
-5. View the POPULATIONS plot to watch the populations fluctuate over time
+1. Set the GRASS? switch to TRUE to include grass in the model, or to FALSE to only include wolves (red) and sheep (white).  
+2. Adjust the slider parameters (see below), or use the default settings.  
+3. Press the SETUP button.  
+4. Press the GO button to begin the simulation.  
+5. View the POPULATIONS plot to watch the populations fluctuate over time  
 6. View the count-sheep/count-wolves monitors to view current population sizes
 
-Parameters:
-INITIAL-NUMBER-SHEEP: The initial size of sheep population
-INITIAL-NUMBER-WOLVES: The initial size of wolf population
-SHEEP-GAIN-FROM-FOOD: The amount of energy sheep get for every grass patch eaten
-WOLF-GAIN-FROM-FOOD: The amount of energy wolves get for every sheep eaten
-SHEEP-REPRODUCE: The probability of a sheep reproducing at each time step
-WOLF-REPRODUCE: The probability of a wolf reproducing at each time step
-GRASS?: Whether or not to include grass in the model
-GRASS-REGROWTH-TIME: How long it takes for grass to regrow once it is eaten
+Parameters:  
+INITIAL-NUMBER-SHEEP: The initial size of sheep population  
+INITIAL-NUMBER-WOLVES: The initial size of wolf population  
+SHEEP-GAIN-FROM-FOOD: The amount of energy sheep get for every grass patch eaten  
+WOLF-GAIN-FROM-FOOD: The amount of energy wolves get for every sheep eaten  
+SHEEP-REPRODUCE: The probability of a sheep reproducing at each time step  
+WOLF-REPRODUCE: The probability of a wolf reproducing at each time step  
+GRASS?: Whether or not to include grass in the model  
+GRASS-REGROWTH-TIME: How long it takes for grass to regrow once it is eaten  
 SHOW-ENERGY?: Whether or not to show the energy of each animal in the View
 
-Notes:
-- one unit of energy is deducted for every step a wolf takes
+Notes:  
+- one unit of energy is deducted for every step a wolf takes  
 - when grass is included, one unit of energy is deducted for every step a sheep takes
 
+## THINGS TO NOTICE
 
-THINGS TO NOTICE
-----------------
 When grass is not included, watch as the sheep and wolf populations fluctuate. Notice that increases and decreases in the sizes of each population are related. In what way are they related? What eventually happens?
 
 Once grass is added, notice the green line added to the population plot representing fluctuations in the amount of grass. How do the sizes of the three populations appear to relate now? What is the explanation for this?
 
 Why do you suppose that some variations of the model might be stable while others are not?
 
+## THINGS TO TRY
 
-THINGS TO TRY
--------------
 Try adjusting the parameters under various settings. How sensitive is the stability of the model to the particular parameters?
 
 Can you find any parameters that generate a stable ecosystem that includes only wolves and sheep?
@@ -549,26 +551,22 @@ Notice that under stable settings, the populations tend to fluctuate at a predic
 
 Try changing the reproduction rules -- for example, what would happen if reproduction depended on energy rather than being determined by a fixed probability?
 
+## EXTENDING THE MODEL
 
-EXTENDING THE MODEL
--------------------
 There are a number ways to alter the model so that it will be stable with only wolves and sheep (no grass). Some will require new elements to be coded in or existing behaviors to be changed. Can you develop such a version?
 
+## NETLOGO FEATURES
 
-NETLOGO FEATURES
-----------------
 Note the use of breeds to model two different kinds of "turtles": wolves and sheep. Note the use of patches to model grass.
 
 Note use of the ONE-OF agentset reporter to select a random sheep to be eaten by a wolf.
 
+## RELATED MODELS
 
-RELATED MODELS
----------------
 Look at Rabbit Grass Weeds for another model of interacting populations with different rules.
 
+## CREDITS AND REFERENCES
 
-CREDITS AND REFERENCES
-----------------------
 Wilensky, U. & Reisman, K. (1999). Connected Science: Learning Biology through Constructing and Testing Computational Theories -- an Embodied Modeling Approach. International Journal of Complex Systems, M. 234, pp. 1 - 12. (This model is a slightly extended version of the model described in the paper.)
 
 Wilensky, U. & Reisman, K. (in press). Thinking like a Wolf, a Sheep or a Firefly: Learning Biology through Constructing and Testing Computational Theories -- an Embodied Modeling Approach. Cognition & Instruction.
@@ -902,7 +900,7 @@ Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 
 @#$#@#$#@
-NetLogo 4.1
+NetLogo 5.1.0
 @#$#@#$#@
 setup
 set grass? true
