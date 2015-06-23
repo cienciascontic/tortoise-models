@@ -13,6 +13,7 @@ end
 to setup
     display
     clear-all
+    clear-output
     set display_on true
     set NearPlanet false
     ;;set Zoom 15 
@@ -25,7 +26,7 @@ to setup
     create-planets 6              
     
     ask planets [
-      pen-down 
+      pen-up 
       set color green
       ]
     set sun turtle 0
@@ -103,31 +104,12 @@ to setup
 
     ;Compute the initial velocity in x and y directions to produce an approximate circular orbit of radius calculated above regardless of where start point is.
     ;This comes from a = v^2/r for tangential velocity and a = -G*M/r^2. Solve for v at x = r.  Then v = -sqrt(G*M/r).  Then compute v in x and y directions.
-    ;Using sin ((towards sun) - 180) and cos ((towards sun) - 180) to compute y and x components of velocity, respectively, gives the correct 
+    ;Using sin ((towards-nowrap sun) - 180) and cos ((towards-nowrap sun) - 180) to compute y and x components of velocity, respectively, gives the correct 
     ;sign for the resulting value regardless of which quadrant the planets are located.
     
     ask planets with [who < 7][
-        let cx ([xcor] of sun) - xcor
-        let cy ([ycor] of sun) - ycor
-        let dir 0
-        if cx = 0 [
-          if cy < 0 [
-            set dir 180
-          ]
-        ]
-        if cy = 0 [
-          ifelse cx > 0 [
-            set dir 90
-          ][
-            set dir 270
-          ]
-        ]
-        
-        if cx != 0 and cy != 0 [
-          set dir (270 + (pi + (atan2 (0 - cy) cx) * (180 / pi) ) ) mod 360;
-        ]
-        set yvelocity sqrt (([mass] of sun * G) / radius) * sin (dir - 180)
-        set xvelocity 0 - sqrt (([mass] of sun * G) / radius) * cos (dir - 180)
+        set yvelocity sqrt (([mass] of sun * G) / radius) * sin ((towards sun) - 180)
+        set xvelocity 0 - sqrt (([mass] of sun * G) / radius) * cos ((towards sun) - 180)
          ]
          
    
@@ -156,7 +138,6 @@ to setup
                 set yvelocity yvelocity + accy * time / 2
                 ]
                 
-    my-setup-plots
     reset-ticks
 end
 
@@ -169,7 +150,7 @@ end
 to orbit-sun
     set scale Zoom * max-pxcor / 150
     
-   ifelse Vieworbits = true 
+   ifelse vieworbits = true 
         [ask turtles [pen-down]]
         [ask turtles [pen-up]]
         
@@ -228,43 +209,9 @@ to orbit-sun
     
     ;;keep track of ratio of current radius to initial average radius for both earth and comet so they can be plotted
     ask earth [set radius-ratio ((radius  / (avg-radius)))]
-    
-    do-plot
-end         
-            
-to do-plot
- ;; set-current-plot "Earth - Sun Distance"
- ;; ask earth [set-current-plot-pen "radius-ratio earth"]
- ;; ask earth [plot radius-ratio]
-
 end
+               
 
-
-to my-setup-plots
- ;; set-current-plot "Earth - Sun Distance"
-    ;;scale the earth orbit plot based on anticipated ranges.  Determined by previous observations
-
-    ;;  set-plot-y-range precision (1 - (2 * sqrt(time))/ 1000) 4 precision (1 + (2 * sqrt(time))/ 1000) 4
- ;; set-plot-x-range 0 1000
- 
-end
-
-to ToggleDisplay               
-    ifelse display_on = true
-        [no-display set display_on false]
-        [display set display_on true]
-end
-
-to-report atan2 [x y]
-  if x > 0 [ report (atan x y) ]
-  if y >= 0 and x < 0 [ report (atan x y) + pi ]
-  if y < 0 and x < 0 [ report (atan x y) - pi ]
-  if y > 0 and x = 0 [ report pi / 2 ]
-  if y < 0 and x = 0 [ report 0 - pi / 2 ]
-  if y = 0 and x = 0 [ report 0 ]
-  report 0
-end
-  
 @#$#@#$#@
 GRAPHICS-WINDOW
 239
@@ -336,7 +283,7 @@ Zoom
 Zoom
 1
 100
-1
+15
 1
 1
 NIL
@@ -506,6 +453,8 @@ Calculations
 		that time period.  Since the velocities at the beginning of the time interval increase by (acceleration * time) the
 		average velocity for each time period is used.  For the first time period this is computed by adding to the initial velocity
 		the acceleration * time/2.
+
+
 
 
 @#$#@#$#@
