@@ -1,1 +1,329 @@
-unknown primitive: org.nlogo.core.prim.etc._wait at position 10627 in 
+
+
+
+
+<html>
+  <head>
+<link rel="stylesheet" type="text/css" href="app.css" charset="utf-8"/>
+<link rel="stylesheet" type="text/css" href="app-custom.css" charset="utf-8"/>
+  </head>
+  <body>
+    <div id="model-container"></div>
+<script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript">
+;
+
+      var session =
+        (function () {
+          var widgets = "[{\"left\":265,\"top\":60,\"right\":677,\"bottom\":493,\"patchSize\":2.0,\"fontSize\":10,\"wrappingAllowedInX\":true,\"wrappingAllowedInY\":true,\"minPxcor\":-100,\"maxPxcor\":100,\"minPycor\":-100,\"maxPycor\":100,\"updateMode\":\"Continuous\",\"showTickCounter\":true,\"tickCounterLabel\":\"ticks\",\"frameRate\":30.0,\"type\":\"view\"},\n{\"compiledSource\":{\"success\":true,\"result\":\"Call(procedures.run_simulation);\"},\"display\":\"Run/Pause\",\"left\":92,\"top\":19,\"right\":172,\"bottom\":52,\"source\":\"Run_Simulation \",\"forever\":true,\"buttonType\":\"OBSERVER\",\"actionKey\":null,\"type\":\"button\"},\n{\"compiledSource\":{\"success\":true,\"result\":\"Call(procedures.launch);\"},\"display\":\"Launch\",\"left\":171,\"top\":19,\"right\":239,\"bottom\":52,\"source\":\"Launch\",\"forever\":false,\"buttonType\":\"OBSERVER\",\"actionKey\":null,\"type\":\"button\"},\n{\"reporter\":function() { return NLMath.mod((world.observer.getGlobal(\"time\") / 60), 60); },\"compiledSource\":{\"success\":true,\"result\":\"NLMath.mod((world.observer.getGlobal(\\\"time\\\") / 60), 60)\"},\"display\":\"minutes\",\"left\":116,\"top\":110,\"right\":168,\"bottom\":155,\"source\":\"time / 60 mod 60\",\"precision\":1,\"fontSize\":11,\"type\":\"monitor\"},\n{\"getStep\":function() { return 0.05; },\"getMin\":function() { return 2; },\"getMax\":function() { return 4; },\"compiledMin\":{\"success\":true,\"result\":\"2\"},\"compiledMax\":{\"success\":true,\"result\":\"4\"},\"compiledStep\":{\"success\":true,\"result\":\"0.05\"},\"display\":\"Model_Speed\",\"left\":349,\"top\":21,\"right\":596,\"bottom\":54,\"varName\":\"Model_Speed\",\"min\":\"2\",\"max\":\"4\",\"default\":3.0,\"step\":\".05\",\"direction\":\"horizontal\",\"type\":\"slider\"},\n{\"reporter\":function() {\n  return NLMath.round((NLMath.sqrt((NLMath.pow(world.observer.getGlobal(\"rx\"), 2) + NLMath.pow(world.observer.getGlobal(\"ry\"), 2))) - world.observer.getGlobal(\"eradk\")));\n},\"compiledSource\":{\"success\":true,\"result\":\"NLMath.round((NLMath.sqrt((NLMath.pow(world.observer.getGlobal(\\\"rx\\\"), 2) + NLMath.pow(world.observer.getGlobal(\\\"ry\\\"), 2))) - world.observer.getGlobal(\\\"eradk\\\")))\"},\"display\":\"Altitude (km)\",\"left\":162,\"top\":464,\"right\":257,\"bottom\":509,\"source\":\"round (sqrt (Rx ^ 2 + ry ^ 2) - eRadK)\",\"precision\":1,\"fontSize\":11,\"type\":\"monitor\"},\n{\"compiledSource\":{\"success\":true,\"result\":\"world.turtleManager.turtlesOfBreed(\\\"PUFFS\\\").ask(function() { SelfPrims.die(); }, true);\"},\"display\":\"Erase Dots\",\"left\":239,\"top\":19,\"right\":317,\"bottom\":52,\"source\":\"ask puffs [die]\",\"forever\":false,\"buttonType\":\"OBSERVER\",\"actionKey\":null,\"type\":\"button\"},\n{\"reporter\":function() { return NLMath.toInt((world.observer.getGlobal(\"time\") / 86400)); },\"compiledSource\":{\"success\":true,\"result\":\"NLMath.toInt((world.observer.getGlobal(\\\"time\\\") / 86400))\"},\"display\":\"days\",\"left\":13,\"top\":110,\"right\":65,\"bottom\":155,\"source\":\"int (time / 86400)\",\"precision\":2,\"fontSize\":11,\"type\":\"monitor\"},\n{\"reporter\":function() { return world.observer.getGlobal(\"speed\"); },\"compiledSource\":{\"success\":true,\"result\":\"world.observer.getGlobal(\\\"speed\\\")\"},\"display\":\"Speed (km/s)\",\"left\":18,\"top\":465,\"right\":108,\"bottom\":510,\"source\":\"Speed\",\"precision\":2,\"fontSize\":11,\"type\":\"monitor\"},\n{\"reporter\":function() { return NLMath.mod(NLMath.toInt((world.observer.getGlobal(\"time\") / 3600)), 24); },\"compiledSource\":{\"success\":true,\"result\":\"NLMath.mod(NLMath.toInt((world.observer.getGlobal(\\\"time\\\") / 3600)), 24)\"},\"display\":\"hours\",\"left\":65,\"top\":110,\"right\":117,\"bottom\":155,\"source\":\"int (time / 3600) mod 24\",\"precision\":0,\"fontSize\":11,\"type\":\"monitor\"},\n{\"display\":\"Time since launch:\",\"left\":14,\"top\":95,\"right\":164,\"bottom\":113,\"fontSize\":11,\"color\":0.0,\"transparent\":true,\"type\":\"textBox\"},\n{\"getStep\":function() { return 0.1; },\"getMin\":function() { return 0; },\"getMax\":function() { return 3; },\"compiledMin\":{\"success\":true,\"result\":\"0\"},\"compiledMax\":{\"success\":true,\"result\":\"3\"},\"compiledStep\":{\"success\":true,\"result\":\"0.1\"},\"display\":\"Launch-Speed\",\"left\":7,\"top\":58,\"right\":160,\"bottom\":91,\"varName\":\"Launch-Speed\",\"min\":\"0\",\"max\":\"3\",\"default\":1.0,\"step\":\".1\",\"units\":\"Km/s\",\"direction\":\"horizontal\",\"type\":\"slider\"},\n{\"compiledSetupCode\":{\"success\":true,\"result\":\"function() {\\n  workspace.rng.withAux(function() { plotManager.withTemporaryContext('Altitude', undefined)(function() {}); });\\n}\"},\"compiledUpdateCode\":{\"success\":true,\"result\":\"function() {\\n  workspace.rng.withAux(function() { plotManager.withTemporaryContext('Altitude', undefined)(function() {}); });\\n}\"},\"compiledPens\":[{\"compiledSetupCode\":{\"success\":true,\"result\":\"function() {\\n  workspace.rng.withAux(function() { plotManager.withTemporaryContext('Altitude', 'default')(function() {}); });\\n}\"},\"compiledUpdateCode\":{\"success\":true,\"result\":\"function() {\\n  workspace.rng.withAux(function() { plotManager.withTemporaryContext('Altitude', 'default')(function() {}); });\\n}\"},\"display\":\"default\",\"interval\":1.0,\"mode\":0,\"color\":-2674135,\"inLegend\":true,\"setupCode\":\"\",\"updateCode\":\"\",\"type\":\"pen\"}],\"display\":\"Altitude\",\"left\":13,\"top\":160,\"right\":258,\"bottom\":310,\"xAxis\":\"Time (days)\",\"yAxis\":\"Altitude (km)\",\"xmin\":0.0,\"xmax\":10.0,\"ymin\":0.0,\"ymax\":10000.0,\"autoPlotOn\":true,\"legendOn\":false,\"setupCode\":\"\",\"updateCode\":\"\",\"pens\":[{\"display\":\"default\",\"interval\":1.0,\"mode\":0,\"color\":-2674135,\"inLegend\":true,\"setupCode\":\"\",\"updateCode\":\"\",\"type\":\"pen\"}],\"type\":\"plot\"},\n{\"compiledSetupCode\":{\"success\":true,\"result\":\"function() {\\n  workspace.rng.withAux(function() { plotManager.withTemporaryContext('Speed', undefined)(function() {}); });\\n}\"},\"compiledUpdateCode\":{\"success\":true,\"result\":\"function() {\\n  workspace.rng.withAux(function() { plotManager.withTemporaryContext('Speed', undefined)(function() {}); });\\n}\"},\"compiledPens\":[{\"compiledSetupCode\":{\"success\":true,\"result\":\"function() {\\n  workspace.rng.withAux(function() { plotManager.withTemporaryContext('Speed', 'default')(function() {}); });\\n}\"},\"compiledUpdateCode\":{\"success\":true,\"result\":\"function() {\\n  workspace.rng.withAux(function() { plotManager.withTemporaryContext('Speed', 'default')(function() {}); });\\n}\"},\"display\":\"default\",\"interval\":1.0,\"mode\":0,\"color\":-10899396,\"inLegend\":true,\"setupCode\":\"\",\"updateCode\":\"\",\"type\":\"pen\"}],\"display\":\"Speed\",\"left\":14,\"top\":310,\"right\":257,\"bottom\":460,\"xAxis\":\"Time (days)\",\"yAxis\":\"Speed (km/s)\",\"xmin\":0.0,\"xmax\":10.0,\"ymin\":0.0,\"ymax\":2.0,\"autoPlotOn\":true,\"legendOn\":false,\"setupCode\":\"\",\"updateCode\":\"\",\"pens\":[{\"display\":\"default\",\"interval\":1.0,\"mode\":0,\"color\":-10899396,\"inLegend\":true,\"setupCode\":\"\",\"updateCode\":\"\",\"type\":\"pen\"}],\"type\":\"plot\"},\n{\"compiledSource\":{\"success\":true,\"result\":\"Call(procedures.setup);\"},\"display\":\"Reset\",\"left\":7,\"top\":18,\"right\":71,\"bottom\":51,\"source\":\"setup\",\"forever\":false,\"buttonType\":\"OBSERVER\",\"actionKey\":null,\"type\":\"button\"}]";
+          var code    = ";; Orbit Explorer\n;; A model for exploring orbits\n;; June 17, 2010\n\nbreed [earths earth]\nbreed [arrows arrow]\nbreed [Rockets Rocket]    \nbreed [puffs puff]\n\npuffs-own [x0 y0 countdown] ;; (x0,y0) are the coordinates of the puff relative to the earth's center.  \n\nGlobals \n  [scale ;; scale is the overall scale used in the main view in patches per km--that is scale is the number of patches on the screen to km in the simulation\n  eRadK ;; eRadK is the earth's radius in km\n  gHP ;; gHP is the ground height in patches, the hight of the mounain base above the bottom of the screen measured in patches\n  mOffP ;; mOffP is the offset from the left edge of the main sceen of the base of the mountain (and the launch site) in patches\n  cycleCount ;; cycleCount is the number of times the computation has gone though the main loop since start\n  rX ;; rX is the x-coordinate of current location of the rocket in km where the center of the Earth is (0,0)\n  rY ;; ry is the y-coordinate ....\n  rVX ;; rVX is the current x-component of the velocity of the rocket in km/s\n  rVY ;; rVY is the y-component\n  b1 b2 ;; the offsets of the x and y coordinate origins for the scene. Hence scale * x + b1 is the screen location in patches of x measured in km\n  alive? ;; alive? is a logical that is true between launch and crash\n  Gm ;; Gm is the universal gravitational constant G times the mass of the earth\n  running? ;; running? is a logical that is true between launch and crash if the simulation is not paused. \n  launchHeight ;; launchHeight stores the height of the launch\n  time ;; time is the elapsed time since launch in sec\n  nextPuffTime ;; nextPuffTime stores the time when the next puff will be emitted\n  puffInterval ;; puffInterval is the time between puffs in sec\n  speed \n  launch-heading\n  ]\n\n;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n;;;;;;; Start and Initialize ;;;;;;\n;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n\nto startup\n  setup\nend\n\n\nto setup\n  set Cyclecount 0\n  cp ct                               ;; clear patches and turtles\n  clear-all-plots\n  set running? false             ;; start in the paused mode\n  set alive? false               ;; start with the Rocket not alive \n  set eRadK 12000                 ;; earth radius in km should be 6378\n  set LaunchHeight 30e4          ;; the initial height of the rocket\n  set Gm 398600                  ;; the universal gravitational constant times the mass of the earth in km-kg-sec system\n  set puffInterval 600           ;; determines how many seconds between puffs\n  set launch-heading 90          ;;take away this slider in this model\n  create-Rockets 1 [ set shape \"dot\" ht]  ;; the Rocket will show up in the main scene as a circle\n  create-arrows 1 [set size 3 set shape \"arrow\" set color red ht]\n  create-earths 1 [set size 20 set shape \"earth\" set color blue set heading 0]\n  drawScene\n\nend\n\nto drawScene  ;; Draws everything--updates the screen\n  set scale  3e-4        ;; scale is the number of patchs per km in the main scene--the slider is logarithmic\n  ;; the conversion is (h,v) in patchs in the main scene = (scale*x , scale*y ) where x,y are in km relative to the earth center\n  ;; Begin the drawing\n  cp ;; clear all the patches--sets them to black\n  ask earths [                                     ;; create one earth\n    setxy 0 0\n    set size 2 * scale * eRadK ]                  ;; the size (diameter) is the twice the scaled radius of the earth in km\n  ask arrows \n    [set heading Launch-Heading  ;; aim it in the right direction                                     \n      setxy 0 scale * LaunchHeight  st ];; put the arrows in their new position\n  ask rockets \n    [set heading Launch-Heading  ;; aim it in the right direction                                     \n      setxy 0 scale * LaunchHeight  st ];; put the arrows in their new position\nend\n\nto placeArrow ;; keep the arrow up-to-date with changes in the sliders\n  ask arrows [set heading Launch-Heading]  ;; aim it in the right direction\n\nend\n\n;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n;;;;;;; Animate  ;;;;;;;;;;;\n;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n\nto Run_Simulation                      ;; executed repeatedly when the 'Run' button is on\n  if running?                          ;; 'running?\" is a logical that is true after firing the Rocket until paused or crashed\n     [stepRocket                          ;; if running? is true then move the Rocket    \n     set cyclecount cyclecount + 1 ]   ;; cycleCount counts the number of steps executed              \n  every .1 [\n     ask earths [set heading .0027778 * time  ]        ;; rotate the earth  \n     placeArrow                         ;; plot altitude and speed vrs time in days\n     let days time / 86400\n     set-current-plot \"Altitude\"\n     plotxy  days (sqrt (rx ^ 2 + ry ^ 2))\n     plot-pen-down                      ;; may have been put up at launch to avoid a long line from the end of the prior run. \n     set-current-plot \"Speed\"\n     plotxy days speed\n     plot-pen-down\n     ]\nend\n\nto launch  ; move the Rocket to the launcher and give it an initial velocity\n  if count turtles < 1\n    [ setup ]\n  clear-all-plots\n  set-current-plot \"Altitude\"\n  plot-pen-up\n  set-current-plot \"Speed\"\n  plot-pen-up\n  set rVX Launch-Speed * sin (Launch-Heading)                      ;; the initial Rocket x-velocity (km/s)\n  set rVY Launch-Speed * cos (Launch-Heading)                       ;; the initial Rocket y-velocity\n  set rX 0                       ;; the initial location of the Rocket is at the origin of the x-axis, directly above the center of the earth\n  set rY LaunchHeight            ;; the y-coordinate is the launch height in km.\n  set alive? true                ;; turn on the Rocket. \n  set running? true              ;; This determines whether it is advanced\n  set time 0                     ;; times the launch\n  set nextPuffTime 0  \n  handlePuffs                    ;; create a puff\n  set puffInterval .04 * max-pxcor / (scale * Launch-Speed ) ;; sets 50 puffs across screen given launch speed\n  ask rockets [st                 ;; show the rocket if it was hidden by an explosion\n    set size 20               \n    set heading Launch-Heading]   ;; keep the rocket aligned with the arrow. \nend\n\nto stepRocket\n  ;; move the Rocket forward one dt step. All calcuations done in KMKS system. \n  let dt 10 ^ Model_Speed       ;; Model Speed is set by a slider\n  let xx rx + rvx * dt / 2      ;; move forward a half-step to (xx,yy) (local variables)\n  let yy ry + rvy * dt / 2\n  let r2 xx ^ 2 + yy ^ 2        ;; compute the square of the distance to the center of the earth\n  let r sqrt r2                 ;; compute the distance to the center of the earth at this half-step location\n  set time time + dt\n  ifelse  r > eRadK [\n      let r3 r * r2             ;; compute r-cubed\n      let ax 0 - ( Gm * xx / r3 )  ;; use the force at the mid-point to determine the acceleration\n      let ay 0 - ( Gm * yy / r3 )   ;; a-vector = -G*me*r-vector / r-magnitude^3\n      set rvx rvx + ax * dt     ;; use the acceleration to change the velocity\n      set rvy rvy + ay * dt\n      set speed sqrt ( (rvx ^ 2) + (rvy ^ 2 ) )\n      set rx rx + rvx * dt      ;; use the velocity to change the position\n      set ry ry + rvy * dt\n      placeRockets              ;; show the Rockets if they are visible\n      handlePuffs]              ;; make and remove puffs \n   [ explode ]                   ;; if the Rocket collides with the earth, explode\nend\n\nto handlePuffs\n  if time > nextPuffTime [           ;; if it is time for a new puff...\n    create-puffs 1 [                 ;; create a new puff\n      set nextPuffTime nextPuffTime + puffInterval  ;; set the time for the next puff\n      set x0 rx                      ;; the location of this puff is taken from the current Rocket location\n      set y0 ry\n      set shape \"circle\"\n      set color red\n      set countdown 400              ;; allow 400 puffs maximum\n      let temp main x0 y0            ;; Place the latest puff only. Compute the screen position of each puff\n      ifelse last temp              ;; last item in temp is a logical that tells whether this puff is in the main screen. \n         [setxy first temp item 1 temp     ;; if it is on-screen update the location of the puff\n           st ]                      ;; show the puff\n         [ht] ]                      ;; hide the puff\n    ask puffs [                      ;; when one puff is created decrement all the countdown variable in all\n      set countdown countdown - 1\n      if countdown < 0 [die]]        ;; kill off any with non-positive countdown.\n  ]\nend\n\nto placeRockets   ;; show the Rockets at their location rx,ry if visible\n   ask Rockets [                     ;; this is the Rocket in the main scene\n     let temp main rx ry             ;; temp contains the screen coordinates of rx,ry (items 0 and 1) and whether this is visible (item 2)\n     ifelse last temp                ;; if the Rocket is visible in the main screen.........\n         [setxy first temp item 1 temp           ;; update the location of the Rocket\n           st  ]             ;; show turtle\n         [ht]             ;; hide if it is outside the main scene\n   ]\nend\n\nto-report main [u v]             ;; checks whether the location u,v in earth coordinates is visible in the main scene.\n   let x scale * u               ;; transform u,v to screen coordinates\n                                 ;; returns the screen coordinates and a logical telling whether it is currently visible.\n   let y scale * v               ;; (x,y) are the patch locations of the Rocket relative to the center of the scene\n                                 ;; check to see whether it the point is inside the main scene\n   ifelse  x < max-pxcor and x > min-pxcor and y < max-pycor and y > min-pycor \n         [report (list x y true)]\n         [report (list x y false)]           ;; return false if it is not outside the screen\nend\n\nto explode\n    let sz 10\n    ask Rockets [set shape \"explosion\"  ;; turn Rockets into explosions\n       repeat 30 [                          ;; slowly increase the size of each for 50 steps of .1 sec each\n         if size > 0 [set size sz ]\n         set sz sz + 2\n         pause .1 ]      \n       ht set shape \"dot\"]  ;; turn them back into Rockets\n   set running? false                    ;; after colliding with the earth, pause the integration engine\n   set alive? false                      ;; after colliding with the earth, the Rocket is not alive\n   ;; the difference between running? and alive? is that a Rocket may be alive but paused, not running\nend\n\nto pause [t]\n  ;;wait t\nend";
+          var info    = "## WHAT IS IT?\n\nThis section could give a general understanding of what the model is trying to show or explain.\n\n## HOW IT WORKS\n\nThis section could explain what rules the agents use to create the overall behavior of the model.\n\n## HOW TO USE IT\n\nThis section could explain how to use the model, including a description of each of the items in the interface tab.\n\n## THINGS TO NOTICE\n\nThis section could give some ideas of things for the user to notice while running the model.\n\n## THINGS TO TRY\n\nThis section could give some ideas of things for the user to try to do (move sliders, switches, etc.) with the model.\n\n## EXTENDING THE MODEL\n\nThis section could give some ideas of things to add or change in the procedures tab to make the model more complicated, detailed, accurate, etc.\n\n## NETLOGO FEATURES\n\nThis section could point out any especially interesting or unusual features of NetLogo that the model makes use of, particularly in the Procedures tab.  It might also point out places where workarounds were needed because of missing features.\n\n## RELATED MODELS\n\nThis section could give the names of models in the NetLogo Models Library or elsewhere which are of related interest.\n\n## CREDITS AND REFERENCES\n\nThis section could contain a reference to the model's URL on the web if it has one, as well as any other necessary credits or references.";
+          return Tortoise.fromCompiledModel('#model-container', widgets, code, info, '', true);
+        })();
+      var AgentModel = tortoise_require('agentmodel');
+var Call = tortoise_require('util/call');
+var ColorModel = tortoise_require('engine/core/colormodel');
+var Dump = tortoise_require('engine/dump');
+var Exception = tortoise_require('util/exception');
+var Link = tortoise_require('engine/core/link');
+var LinkSet = tortoise_require('engine/core/linkset');
+var Meta = tortoise_require('meta');
+var NLMath = tortoise_require('util/nlmath');
+var NLType = tortoise_require('engine/core/typechecker');
+var Nobody = tortoise_require('engine/core/nobody');
+var PatchSet = tortoise_require('engine/core/patchset');
+var PenBundle = tortoise_require('engine/plot/pen');
+var Plot = tortoise_require('engine/plot/plot');
+var PlotOps = tortoise_require('engine/plot/plotops');
+var Random = tortoise_require('shim/random');
+var StrictMath = tortoise_require('shim/strictmath');
+var Tasks = tortoise_require('engine/prim/tasks');
+var Turtle = tortoise_require('engine/core/turtle');
+var TurtleSet = tortoise_require('engine/core/turtleset');
+var notImplemented = tortoise_require('util/notimplemented');
+var modelConfig = (typeof window.modelConfig !== "undefined" && window.modelConfig !== null) ? window.modelConfig : {};
+var modelPlotOps = (typeof modelConfig.plotOps !== "undefined" && modelConfig.plotOps !== null) ? modelConfig.plotOps : {};
+if (typeof javax !== "undefined") {
+  modelConfig.output = {
+    clear: function() {},
+    write: function(str) { context.getWriter().print(str); }
+  }
+}
+modelConfig.plots = [(function() {
+  var name    = 'Altitude';
+  var plotOps = (typeof modelPlotOps[name] !== "undefined" && modelPlotOps[name] !== null) ? modelPlotOps[name] : new PlotOps(function() {}, function() {}, function() {}, function() { return function() {}; }, function() { return function() {}; }, function() { return function() {}; }, function() { return function() {}; });
+  var pens    = [new PenBundle.Pen('default', plotOps.makePenOps, false, new PenBundle.State(15.0, 1.0, PenBundle.DisplayMode.Line), function() {
+    workspace.rng.withAux(function() { plotManager.withTemporaryContext('Altitude', 'default')(function() {}); });
+  }, function() {
+    workspace.rng.withAux(function() { plotManager.withTemporaryContext('Altitude', 'default')(function() {}); });
+  })];
+  var setup   = function() {
+    workspace.rng.withAux(function() { plotManager.withTemporaryContext('Altitude', undefined)(function() {}); });
+  };
+  var update  = function() {
+    workspace.rng.withAux(function() { plotManager.withTemporaryContext('Altitude', undefined)(function() {}); });
+  };
+  return new Plot(name, pens, plotOps, "Time (days)", "Altitude (km)", false, 0.0, 10.0, 0.0, 10000.0, setup, update);
+})(), (function() {
+  var name    = 'Speed';
+  var plotOps = (typeof modelPlotOps[name] !== "undefined" && modelPlotOps[name] !== null) ? modelPlotOps[name] : new PlotOps(function() {}, function() {}, function() {}, function() { return function() {}; }, function() { return function() {}; }, function() { return function() {}; }, function() { return function() {}; });
+  var pens    = [new PenBundle.Pen('default', plotOps.makePenOps, false, new PenBundle.State(55.0, 1.0, PenBundle.DisplayMode.Line), function() {
+    workspace.rng.withAux(function() { plotManager.withTemporaryContext('Speed', 'default')(function() {}); });
+  }, function() {
+    workspace.rng.withAux(function() { plotManager.withTemporaryContext('Speed', 'default')(function() {}); });
+  })];
+  var setup   = function() {
+    workspace.rng.withAux(function() { plotManager.withTemporaryContext('Speed', undefined)(function() {}); });
+  };
+  var update  = function() {
+    workspace.rng.withAux(function() { plotManager.withTemporaryContext('Speed', undefined)(function() {}); });
+  };
+  return new Plot(name, pens, plotOps, "Time (days)", "Speed (km/s)", false, 0.0, 10.0, 0.0, 2.0, setup, update);
+})()];
+var workspace = tortoise_require('engine/workspace')(modelConfig)([{ name: "EARTHS", singular: "earth", varNames: [] }, { name: "ARROWS", singular: "arrow", varNames: [] }, { name: "ROCKETS", singular: "rocket", varNames: [] }, { name: "PUFFS", singular: "puff", varNames: ["x0", "y0", "countdown"] }])([], [])(["model_speed", "launch-speed", "scale", "eradk", "ghp", "moffp", "cyclecount", "rx", "ry", "rvx", "rvy", "b1", "b2", "alive?", "gm", "running?", "launchheight", "time", "nextpufftime", "puffinterval", "speed", "launch-heading"], ["model_speed", "launch-speed"], [], -100, 100, -100, 100, 2.0, true, true, {"default":{"rotate":true,"elements":[{"xcors":[150,40,150,260],"ycors":[5,250,205,250],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"airplane":{"rotate":true,"elements":[{"xcors":[150,135,120,120,15,15,120,135,105,120,150,180,210,165,180,285,285,180,180,165],"ycors":[0,15,60,105,165,195,180,240,270,285,270,285,270,240,180,195,165,105,60,15],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"arrow":{"rotate":true,"elements":[{"xcors":[150,0,105,105,195,195,300],"ycors":[0,150,150,293,293,150,150],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"box":{"rotate":false,"elements":[{"xcors":[150,285,285,150],"ycors":[285,225,75,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[150,15,150,285],"ycors":[135,75,15,75],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[15,15,150,150],"ycors":[75,225,285,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":150,"y1":285,"x2":150,"y2":135,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false},{"x1":150,"y1":135,"x2":15,"y2":75,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false},{"x1":150,"y1":135,"x2":285,"y2":75,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false}]},"bug":{"rotate":true,"elements":[{"x":96,"y":182,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":110,"y":127,"diam":80,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":110,"y":75,"diam":80,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":150,"y1":100,"x2":80,"y2":30,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":150,"y1":100,"x2":220,"y2":30,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"butterfly":{"rotate":true,"elements":[{"xcors":[150,209,225,225,195,165,150],"ycors":[165,199,225,255,270,255,240],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[150,89,75,75,105,135,150],"ycors":[165,198,225,255,270,255,240],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[139,100,55,25,10,10,25,40,85,139],"ycors":[148,105,90,90,105,135,180,195,194,163],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[162,200,245,275,290,290,275,260,215,162],"ycors":[150,105,90,90,105,135,180,195,195,165],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[150,135,120,135,150,165,180,165],"ycors":[255,225,150,120,105,120,150,225],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":135,"y":90,"diam":30,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x1":150,"y1":105,"x2":195,"y2":60,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false},{"x1":150,"y1":105,"x2":105,"y2":60,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false}]},"car":{"rotate":false,"elements":[{"xcors":[300,279,261,240,226,213,203,185,159,135,75,0,0,0,300,300],"ycors":[180,164,144,135,132,106,84,63,50,50,60,150,165,225,225,180],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":180,"y":180,"diam":90,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":30,"y":180,"diam":90,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[162,132,134,209,194,189,180],"ycors":[80,78,135,135,105,96,89],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":47,"y":195,"diam":58,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":195,"y":195,"diam":58,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"circle":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"circle 2":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":30,"y":30,"diam":240,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"cow":{"rotate":false,"elements":[{"xcors":[200,197,179,177,166,140,93,78,72,49,48,37,25,25,45,103,179,198,252,272,293,285,255,242,224],"ycors":[193,249,249,196,187,189,191,179,211,209,181,149,120,89,72,84,75,76,64,81,103,121,121,118,167],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[73,86,62,48],"ycors":[210,251,249,208],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[25,16,9,23,25,39],"ycors":[114,195,204,213,200,123],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"cylinder":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"dot":{"rotate":false,"elements":[{"x":90,"y":90,"diam":120,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"earth":{"rotate":true,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":96,"y":96,"diam":108,"type":"circle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[45,75,75,120,135,195,225,240,270,255,240,240,210,165,120,90,60],"ycors":[45,60,75,75,60,75,105,135,120,90,60,30,15,0,0,15,30],"type":"polygon","color":"rgba(29, 159, 120, 1.0)","filled":true,"marked":false},{"xcors":[75,45,30,30,15,0,0,0,30,60,105,135,150,150,120,90,75,60,60,75],"ycors":[135,105,105,135,135,120,150,180,240,270,285,270,240,210,210,195,165,165,150,135],"type":"polygon","color":"rgba(29, 159, 120, 1.0)","filled":true,"marked":false}]},"explosion":{"rotate":true,"elements":[{"xcors":[90,15,90,75,150,90,150,180,165,240,180,270,150,165,135,75,90],"ycors":[150,135,135,105,135,30,90,15,120,105,135,195,150,210,165,255,150],"type":"polygon","color":"rgba(237, 237, 49, 1.0)","filled":true,"marked":false},{"xcors":[120,75,105,60,120,30,120,150,150,240,195,270,180,210,150,135],"ycors":[90,75,105,120,150,195,165,285,165,240,165,120,120,45,90,30],"type":"polygon","color":"rgba(215, 50, 41, 1.0)","filled":true,"marked":false}]},"face happy":{"rotate":false,"elements":[{"x":8,"y":8,"diam":285,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":60,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":180,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[150,90,62,47,67,90,109,150,192,210,227,251,236,212],"ycors":[255,239,213,191,179,203,218,225,218,203,181,194,217,240],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"face neutral":{"rotate":false,"elements":[{"x":8,"y":7,"diam":285,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":60,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":180,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xmin":60,"ymin":195,"xmax":240,"ymax":225,"type":"rectangle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"face sad":{"rotate":false,"elements":[{"x":8,"y":8,"diam":285,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":60,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":180,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[150,90,62,47,67,90,109,150,192,210,227,251,236,212],"ycors":[168,184,210,232,244,220,205,198,205,220,242,229,206,183],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"fish":{"rotate":false,"elements":[{"xcors":[44,21,15,0,15,0,13,20,45],"ycors":[131,87,86,120,150,180,214,212,166],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[135,119,95,76,46,60],"ycors":[195,235,218,210,204,165],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[75,83,71,86,166,135],"ycors":[45,77,103,114,78,60],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[30,151,226,280,292,292,287,270,195,151,30],"ycors":[136,77,81,119,146,160,170,195,210,212,166],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":215,"y":106,"diam":30,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"flag":{"rotate":false,"elements":[{"xmin":60,"ymin":15,"xmax":75,"ymax":300,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[90,270,90],"ycors":[150,90,30],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":75,"y1":135,"x2":90,"y2":135,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":75,"y1":45,"x2":90,"y2":45,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"flower":{"rotate":false,"elements":[{"xcors":[135,165,180,180,150,165,195,195,165],"ycors":[120,165,210,240,300,300,240,195,135],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"x":85,"y":132,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":130,"y":147,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":192,"y":85,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":85,"y":40,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":177,"y":40,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":177,"y":132,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":70,"y":85,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":130,"y":25,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":96,"y":51,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":113,"y":68,"diam":74,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[189,219,249,279,234],"ycors":[233,188,173,188,218],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[180,150,105,75,135],"ycors":[255,210,210,240,240],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false}]},"house":{"rotate":false,"elements":[{"xmin":45,"ymin":120,"xmax":255,"ymax":285,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":120,"ymin":210,"xmax":180,"ymax":285,"type":"rectangle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[15,150,285],"ycors":[120,15,120],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":30,"y1":120,"x2":270,"y2":120,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false}]},"iss":{"rotate":true,"elements":[{"xmin":120,"ymin":45,"xmax":180,"ymax":255,"type":"rectangle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[120,150,180],"ycors":[45,0,45],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"x":135,"y":255,"diam":30,"type":"circle","color":"rgba(215, 50, 41, 1.0)","filled":true,"marked":false},{"xmin":15,"ymin":165,"xmax":315,"ymax":180,"type":"rectangle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xmin":30,"ymin":90,"xmax":45,"ymax":270,"type":"rectangle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xmin":60,"ymin":75,"xmax":75,"ymax":270,"type":"rectangle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xmin":225,"ymin":90,"xmax":240,"ymax":270,"type":"rectangle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xmin":255,"ymin":105,"xmax":270,"ymax":270,"type":"rectangle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[150,135,165],"ycors":[15,45,45],"type":"polygon","color":"rgba(52, 93, 169, 1.0)","filled":false,"marked":false},{"xcors":[150,135,165],"ycors":[15,45,45],"type":"polygon","color":"rgba(52, 93, 169, 1.0)","filled":true,"marked":false}]},"junk":{"rotate":true,"elements":[{"xcors":[60,240,180,210,180,180,165,150,135,105,60,90],"ycors":[150,150,135,90,75,15,15,105,90,45,90,120],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false}]},"leaf":{"rotate":false,"elements":[{"xcors":[150,135,120,60,30,60,60,15,30,15,40,45,60,90,105,120,105,120,135,150,165,180,195,180,195,210,240,255,263,285,270,285,240,240,270,240,180,165],"ycors":[210,195,210,210,195,180,165,135,120,105,104,90,90,105,120,120,60,60,30,15,30,60,60,120,120,105,90,90,104,105,120,135,165,180,195,210,210,195],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,135,120,105,105,135,165,165],"ycors":[195,240,255,255,285,285,240,195],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"line":{"rotate":true,"elements":[{"x1":150,"y1":0,"x2":150,"y2":300,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"line half":{"rotate":true,"elements":[{"x1":150,"y1":0,"x2":150,"y2":150,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"mountain":{"rotate":true,"elements":[{"xcors":[0,120,180,300],"ycors":[300,15,15,300],"type":"polygon","color":"rgba(157, 110, 72, 1.0)","filled":true,"marked":false},{"xcors":[120,60,105,105,135,165,165,195,195,180,120],"ycors":[15,165,105,135,45,180,105,150,60,15,15],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false}]},"pentagon":{"rotate":false,"elements":[{"xcors":[150,15,60,240,285],"ycors":[15,120,285,285,120],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"person":{"rotate":false,"elements":[{"x":110,"y":5,"diam":80,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[105,120,90,105,135,150,165,195,210,180,195],"ycors":[90,195,285,300,300,225,300,300,285,195,90],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":127,"ymin":79,"xmax":172,"ymax":94,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[195,240,225,165],"ycors":[90,150,180,105],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[105,60,75,135],"ycors":[90,150,180,105],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"plant":{"rotate":false,"elements":[{"xmin":135,"ymin":90,"xmax":165,"ymax":300,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,90,45,75,135],"ycors":[255,210,195,255,285],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[165,210,255,225,165],"ycors":[255,210,195,255,285],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,90,45,75,135],"ycors":[180,135,120,180,210],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[165,165,225,255,210],"ycors":[180,210,180,120,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,90,45,75,135],"ycors":[105,60,45,105,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[165,165,225,255,210],"ycors":[105,135,105,45,60],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,120,150,180,165],"ycors":[90,45,15,45,90],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"rocket":{"rotate":true,"elements":[{"xcors":[120,75,135,165,225,180],"ycors":[165,285,255,255,285,165],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,105,105,120,135,150,165,180,195,195,165],"ycors":[285,135,105,45,15,0,15,45,105,135,285],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xmin":147,"ymin":176,"xmax":153,"ymax":288,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[120,180,165,150,135],"ycors":[45,45,15,0,15],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":105,"y1":105,"x2":135,"y2":120,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":135,"y1":120,"x2":165,"y2":120,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":165,"y1":120,"x2":195,"y2":105,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":105,"y1":135,"x2":135,"y2":150,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":135,"y1":150,"x2":165,"y2":150,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":165,"y1":150,"x2":195,"y2":135,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"square":{"rotate":false,"elements":[{"xmin":30,"ymin":30,"xmax":270,"ymax":270,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"square 2":{"rotate":false,"elements":[{"xmin":30,"ymin":30,"xmax":270,"ymax":270,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":60,"ymin":60,"xmax":240,"ymax":240,"type":"rectangle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"star":{"rotate":false,"elements":[{"xcors":[151,185,298,207,242,151,59,94,3,116],"ycors":[1,108,108,175,282,216,282,175,108,108],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"target":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":30,"y":30,"diam":240,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":60,"y":60,"diam":180,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":90,"y":90,"diam":120,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":120,"y":120,"diam":60,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"tree":{"rotate":false,"elements":[{"x":118,"y":3,"diam":94,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":120,"ymin":195,"xmax":180,"ymax":300,"type":"rectangle","color":"rgba(157, 110, 72, 1.0)","filled":true,"marked":false},{"x":65,"y":21,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":116,"y":41,"diam":127,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":45,"y":90,"diam":120,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":104,"y":74,"diam":152,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"triangle":{"rotate":false,"elements":[{"xcors":[150,15,285],"ycors":[30,255,255],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"triangle 2":{"rotate":false,"elements":[{"xcors":[150,15,285],"ycors":[30,255,255],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[151,225,75],"ycors":[99,223,224],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"truck":{"rotate":false,"elements":[{"xmin":4,"ymin":45,"xmax":195,"ymax":187,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[296,296,259,244,208,207],"ycors":[193,150,134,104,104,194],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":195,"ymin":60,"xmax":195,"ymax":105,"type":"rectangle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[238,252,219,218],"ycors":[112,141,141,112],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":234,"y":174,"diam":42,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xmin":181,"ymin":185,"xmax":214,"ymax":194,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":144,"y":174,"diam":42,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":24,"y":174,"diam":42,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":24,"y":174,"diam":42,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x":144,"y":174,"diam":42,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x":234,"y":174,"diam":42,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"turtle":{"rotate":true,"elements":[{"xcors":[215,240,246,228,215,193],"ycors":[204,233,254,266,252,210],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[195,225,245,260,269,261,240,225,210],"ycors":[90,75,75,89,108,124,105,105,105],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[105,75,55,40,31,39,60,75,90],"ycors":[90,75,75,89,108,124,105,105,105],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[132,134,107,108,150,192,192,169,172],"ycors":[85,64,51,17,2,18,52,65,87],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[85,60,54,72,85,107],"ycors":[204,233,254,266,252,210],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[119,179,209,224,220,175,128,81,74,88],"ycors":[75,75,101,135,225,261,261,224,135,99],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"wheel":{"rotate":false,"elements":[{"x":3,"y":3,"diam":294,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":30,"y":30,"diam":240,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x1":150,"y1":285,"x2":150,"y2":15,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":15,"y1":150,"x2":285,"y2":150,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x":120,"y":120,"diam":60,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":216,"y1":40,"x2":79,"y2":269,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":40,"y1":84,"x2":269,"y2":221,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":40,"y1":216,"x2":269,"y2":79,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":84,"y1":40,"x2":221,"y2":269,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"x":{"rotate":false,"elements":[{"xcors":[270,225,30,75],"ycors":[75,30,225,270],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[30,75,270,225],"ycors":[75,30,225,270],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]}}, {"default":{"direction-indicator":{"rotate":true,"elements":[{"x1":150,"y1":150,"x2":90,"y2":180,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":150,"y1":150,"x2":210,"y2":180,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"curviness":0.0,"lines":[{"x-offset":-0.2,"is-visible":false,"dash-pattern":[0.0,1.0]},{"x-offset":0.0,"is-visible":true,"dash-pattern":[1.0,0.0]},{"x-offset":0.2,"is-visible":false,"dash-pattern":[0.0,1.0]}]}}, function(){});
+var BreedManager = workspace.breedManager;
+var LayoutManager = workspace.layoutManager;
+var LinkPrims = workspace.linkPrims;
+var ListPrims = workspace.listPrims;
+var MousePrims = workspace.mousePrims;
+var OutputPrims = workspace.outputPrims;
+var Prims = workspace.prims;
+var PrintPrims = workspace.printPrims;
+var SelfManager = workspace.selfManager;
+var SelfPrims = workspace.selfPrims;
+var Updater = workspace.updater;
+var plotManager = workspace.plotManager;
+var world = workspace.world;
+var procedures = (function() {
+  var startup = function() { Call(procedures.setup); };
+  var setup = function() {
+    world.observer.setGlobal("cyclecount", 0);
+    world.clearPatches();
+    world.turtleManager.clearTurtles();
+    plotManager.clearAllPlots();
+    world.observer.setGlobal("running?", false);
+    world.observer.setGlobal("alive?", false);
+    world.observer.setGlobal("eradk", 12000);
+    world.observer.setGlobal("launchheight", 300000);
+    world.observer.setGlobal("gm", 398600);
+    world.observer.setGlobal("puffinterval", 600);
+    world.observer.setGlobal("launch-heading", 90);
+    world.turtleManager.createTurtles(1, "ROCKETS").ask(function() {
+      SelfPrims.setVariable("shape", "dot");
+      SelfManager.self().hideTurtle(true);;
+    }, true);
+    world.turtleManager.createTurtles(1, "ARROWS").ask(function() {
+      SelfPrims.setVariable("size", 3);
+      SelfPrims.setVariable("shape", "arrow");
+      SelfPrims.setVariable("color", 15);
+      SelfManager.self().hideTurtle(true);;
+    }, true);
+    world.turtleManager.createTurtles(1, "EARTHS").ask(function() {
+      SelfPrims.setVariable("size", 20);
+      SelfPrims.setVariable("shape", "earth");
+      SelfPrims.setVariable("color", 105);
+      SelfPrims.setVariable("heading", 0);
+    }, true);
+    Call(procedures.drawscene);
+  };
+  var drawscene = function() {
+    world.observer.setGlobal("scale", 3.0E-4);
+    world.clearPatches();
+    world.turtleManager.turtlesOfBreed("EARTHS").ask(function() {
+      SelfPrims.setXY(0, 0);
+      SelfPrims.setVariable("size", ((2 * world.observer.getGlobal("scale")) * world.observer.getGlobal("eradk")));
+    }, true);
+    world.turtleManager.turtlesOfBreed("ARROWS").ask(function() {
+      SelfPrims.setVariable("heading", world.observer.getGlobal("launch-heading"));
+      SelfPrims.setXY(0, (world.observer.getGlobal("scale") * world.observer.getGlobal("launchheight")));
+      SelfManager.self().hideTurtle(false);;
+    }, true);
+    world.turtleManager.turtlesOfBreed("ROCKETS").ask(function() {
+      SelfPrims.setVariable("heading", world.observer.getGlobal("launch-heading"));
+      SelfPrims.setXY(0, (world.observer.getGlobal("scale") * world.observer.getGlobal("launchheight")));
+      SelfManager.self().hideTurtle(false);;
+    }, true);
+  };
+  var placearrow = function() {
+    world.turtleManager.turtlesOfBreed("ARROWS").ask(function() { SelfPrims.setVariable("heading", world.observer.getGlobal("launch-heading")); }, true);
+  };
+  var run_simulation = function() {
+    if (world.observer.getGlobal("running?")) {
+      Call(procedures.steprocket);
+      world.observer.setGlobal("cyclecount", (world.observer.getGlobal("cyclecount") + 1));
+    }
+    if (Prims.isThrottleTimeElapsed("run_simulation_0", workspace.selfManager.self(), 0.1)) {
+      Prims.resetThrottleTimerFor("run_simulation_0", workspace.selfManager.self());
+      world.turtleManager.turtlesOfBreed("EARTHS").ask(function() { SelfPrims.setVariable("heading", (0.0027778 * world.observer.getGlobal("time"))); }, true);
+      Call(procedures.placearrow);
+      var days = (world.observer.getGlobal("time") / 86400);
+      plotManager.setCurrentPlot("Altitude");
+      plotManager.plotPoint(days, NLMath.sqrt((NLMath.pow(world.observer.getGlobal("rx"), 2) + NLMath.pow(world.observer.getGlobal("ry"), 2))));
+      plotManager.lowerPen();
+      plotManager.setCurrentPlot("Speed");
+      plotManager.plotPoint(days, world.observer.getGlobal("speed"));
+      plotManager.lowerPen();
+    }
+  };
+  var launch = function() {
+    if (Prims.lt(world.turtles().size(), 1)) {
+      Call(procedures.setup);
+    }
+    plotManager.clearAllPlots();
+    plotManager.setCurrentPlot("Altitude");
+    plotManager.raisePen();
+    plotManager.setCurrentPlot("Speed");
+    plotManager.raisePen();
+    world.observer.setGlobal("rvx", (world.observer.getGlobal("launch-speed") * NLMath.sin(world.observer.getGlobal("launch-heading"))));
+    world.observer.setGlobal("rvy", (world.observer.getGlobal("launch-speed") * NLMath.cos(world.observer.getGlobal("launch-heading"))));
+    world.observer.setGlobal("rx", 0);
+    world.observer.setGlobal("ry", world.observer.getGlobal("launchheight"));
+    world.observer.setGlobal("alive?", true);
+    world.observer.setGlobal("running?", true);
+    world.observer.setGlobal("time", 0);
+    world.observer.setGlobal("nextpufftime", 0);
+    Call(procedures.handlepuffs);
+    world.observer.setGlobal("puffinterval", ((0.04 * world.topology.maxPxcor) / (world.observer.getGlobal("scale") * world.observer.getGlobal("launch-speed"))));
+    world.turtleManager.turtlesOfBreed("ROCKETS").ask(function() {
+      SelfManager.self().hideTurtle(false);;
+      SelfPrims.setVariable("size", 20);
+      SelfPrims.setVariable("heading", world.observer.getGlobal("launch-heading"));
+    }, true);
+  };
+  var steprocket = function() {
+    var dt = NLMath.pow(10, world.observer.getGlobal("model_speed"));
+    var xx = (world.observer.getGlobal("rx") + ((world.observer.getGlobal("rvx") * dt) / 2));
+    var yy = (world.observer.getGlobal("ry") + ((world.observer.getGlobal("rvy") * dt) / 2));
+    var r2 = (NLMath.pow(xx, 2) + NLMath.pow(yy, 2));
+    var r = NLMath.sqrt(r2);
+    world.observer.setGlobal("time", (world.observer.getGlobal("time") + dt));
+    if (Prims.gt(r, world.observer.getGlobal("eradk"))) {
+      var r3 = (r * r2);
+      var ax = (0 - ((world.observer.getGlobal("gm") * xx) / r3));
+      var ay = (0 - ((world.observer.getGlobal("gm") * yy) / r3));
+      world.observer.setGlobal("rvx", (world.observer.getGlobal("rvx") + (ax * dt)));
+      world.observer.setGlobal("rvy", (world.observer.getGlobal("rvy") + (ay * dt)));
+      world.observer.setGlobal("speed", NLMath.sqrt((NLMath.pow(world.observer.getGlobal("rvx"), 2) + NLMath.pow(world.observer.getGlobal("rvy"), 2))));
+      world.observer.setGlobal("rx", (world.observer.getGlobal("rx") + (world.observer.getGlobal("rvx") * dt)));
+      world.observer.setGlobal("ry", (world.observer.getGlobal("ry") + (world.observer.getGlobal("rvy") * dt)));
+      Call(procedures.placerockets);
+      Call(procedures.handlepuffs);
+    }
+    else {
+      Call(procedures.explode);
+    }
+  };
+  var handlepuffs = function() {
+    if (Prims.gt(world.observer.getGlobal("time"), world.observer.getGlobal("nextpufftime"))) {
+      world.turtleManager.createTurtles(1, "PUFFS").ask(function() {
+        world.observer.setGlobal("nextpufftime", (world.observer.getGlobal("nextpufftime") + world.observer.getGlobal("puffinterval")));
+        SelfPrims.setVariable("x0", world.observer.getGlobal("rx"));
+        SelfPrims.setVariable("y0", world.observer.getGlobal("ry"));
+        SelfPrims.setVariable("shape", "circle");
+        SelfPrims.setVariable("color", 15);
+        SelfPrims.setVariable("countdown", 400);
+        var temp = Call(procedures.main, SelfPrims.getVariable("x0"), SelfPrims.getVariable("y0"));
+        if (ListPrims.last(temp)) {
+          SelfPrims.setXY(ListPrims.first(temp), ListPrims.item(1, temp));
+          SelfManager.self().hideTurtle(false);;
+        }
+        else {
+          SelfManager.self().hideTurtle(true);;
+        }
+      }, true);
+      world.turtleManager.turtlesOfBreed("PUFFS").ask(function() {
+        SelfPrims.setVariable("countdown", (SelfPrims.getVariable("countdown") - 1));
+        if (Prims.lt(SelfPrims.getVariable("countdown"), 0)) {
+          SelfPrims.die();
+        }
+      }, true);
+    }
+  };
+  var placerockets = function() {
+    world.turtleManager.turtlesOfBreed("ROCKETS").ask(function() {
+      var temp = Call(procedures.main, world.observer.getGlobal("rx"), world.observer.getGlobal("ry"));
+      if (ListPrims.last(temp)) {
+        SelfPrims.setXY(ListPrims.first(temp), ListPrims.item(1, temp));
+        SelfManager.self().hideTurtle(false);;
+      }
+      else {
+        SelfManager.self().hideTurtle(true);;
+      }
+    }, true);
+  };
+  var main = function(u, v) {
+    var x = (world.observer.getGlobal("scale") * u);
+    var y = (world.observer.getGlobal("scale") * v);
+    if ((((Prims.lt(x, world.topology.maxPxcor) && Prims.gt(x, world.topology.minPxcor)) && Prims.lt(y, world.topology.maxPycor)) && Prims.gt(y, world.topology.minPycor))) {
+      return ListPrims.list(x, y, true);
+    }
+    else {
+      return ListPrims.list(x, y, false);
+    }
+  };
+  var explode = function() {
+    var sz = 10;
+    world.turtleManager.turtlesOfBreed("ROCKETS").ask(function() {
+      SelfPrims.setVariable("shape", "explosion");
+      for (var _index_9969_9975 = 0, _repeatcount_9969_9975 = StrictMath.floor(30); _index_9969_9975 < _repeatcount_9969_9975; _index_9969_9975++){
+        if (Prims.gt(SelfPrims.getVariable("size"), 0)) {
+          SelfPrims.setVariable("size", sz);
+        }
+        sz = (sz + 2);
+        Call(procedures.pause, 0.1);
+      }
+      SelfManager.self().hideTurtle(true);;
+      SelfPrims.setVariable("shape", "dot");
+    }, true);
+    world.observer.setGlobal("running?", false);
+    world.observer.setGlobal("alive?", false);
+  };
+  var pause = function(t) {};
+  return {
+    "DRAWSCENE":drawscene,
+    "EXPLODE":explode,
+    "HANDLEPUFFS":handlepuffs,
+    "LAUNCH":launch,
+    "MAIN":main,
+    "PAUSE":pause,
+    "PLACEARROW":placearrow,
+    "PLACEROCKETS":placerockets,
+    "RUN_SIMULATION":run_simulation,
+    "SETUP":setup,
+    "STARTUP":startup,
+    "STEPROCKET":steprocket,
+    "drawscene":drawscene,
+    "explode":explode,
+    "handlepuffs":handlepuffs,
+    "launch":launch,
+    "main":main,
+    "pause":pause,
+    "placearrow":placearrow,
+    "placerockets":placerockets,
+    "run_simulation":run_simulation,
+    "setup":setup,
+    "startup":startup,
+    "steprocket":steprocket
+  };
+})();
+
+procedures.pause = function(time) {
+  var start = new Date().getTime(),
+      expire = start + (time*500);
+
+  while (new Date().getTime() < expire) { }
+  return;
+};
+procedures.PAUSE = procedures.pause;
+world.observer.setGlobal("model_speed", 3);
+world.observer.setGlobal("launch-speed", 1);
+
+      session.startLoop()
+    </script>
+<script src='jquery-1.11.3.min.js' type='text/javascript'></script>
+<script src='shutterbug-0.5.4.js' type='text/javascript'></script>
+<script>
+  Shutterbug.enable('body');
+</script>
+  </body>
+</html>

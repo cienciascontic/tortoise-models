@@ -35,15 +35,15 @@ Globals
 ;;;;;;; Start and Initialize ;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-to startup                            ;; this is handy for debugging, but shouldn't be necessary in the production version
-  set Cyclecount 0
-  cp ct                               ;; clear patches and turtles
-  clear-all-plots
-  initialize
+to startup
+  setup
 end
 
 
-to initialize
+to setup
+  set Cyclecount 0
+  cp ct                               ;; clear patches and turtles
+  clear-all-plots
   set running? false             ;; start in the paused mode
   set alive? false               ;; start with the Rocket not alive 
   set eRadK 12000                 ;; earth radius in km should be 6378
@@ -101,6 +101,8 @@ to Run_Simulation                      ;; executed repeatedly when the 'Run' but
 end
 
 to launch  ; move the Rocket to the launcher and give it an initial velocity
+  if count turtles < 1
+    [ setup ]
   clear-all-plots
   set-current-plot "Altitude"
   plot-pen-up
@@ -197,7 +199,7 @@ to explode
 end
 
 to pause [t]
-  wait t
+  ;;wait t
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -228,9 +230,9 @@ ticks
 30.0
 
 BUTTON
-6
+92
 19
-86
+172
 52
 Run/Pause
 Run_Simulation 
@@ -245,9 +247,9 @@ NIL
 1
 
 BUTTON
-85
+171
 19
-153
+239
 52
 Launch
 Launch
@@ -279,9 +281,9 @@ SLIDER
 54
 Model_Speed
 Model_Speed
--1
-0
-0
+2
+4
+3
 .05
 1
 NIL
@@ -299,9 +301,9 @@ round (sqrt (Rx ^ 2 + ry ^ 2) - eRadK)
 11
 
 BUTTON
-153
+239
 19
-231
+317
 52
 Erase Dots
 ask puffs [die]
@@ -408,6 +410,23 @@ false
 "" ""
 PENS
 "default" 1.0 0 -10899396 true "" ""
+
+BUTTON
+7
+18
+71
+51
+Reset
+setup
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
