@@ -5,9 +5,20 @@ raise "Must provide one or more filenames!" if ARGV.empty?
 inStyle = false
 inJs = false
 
+def _line_count(file)
+  lines = `wc -l < #{file}`
+  lines = lines.strip.to_i
+end
+
 ARGV.each do |full_filename|
   fname = File.basename(full_filename)
   puts "Processing #{full_filename}..."
+
+  if _line_count(full_filename) < 4
+    puts "    skipping processing! Too short."
+    next
+  end
+
   css_file = File.open("models/app.css", "w")
   js_file = File.open("models/app.js", "w")
 

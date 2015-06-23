@@ -46,8 +46,7 @@ end
 
 def inject_shutterbug(file)
   puts "injecting shutterbug"
-  lines = `wc -l < #{file}`
-  lines = lines.strip.to_i
+  lines = _line_count(file)
   _inject(file, lines-2, "misc/shutterbug.html")
 end
 
@@ -56,7 +55,13 @@ def _inject(file, line, source)
   `head -n #{line} #{file} > #{file}.tmp`
   `cat #{source} >> #{file}.tmp`
   `tail -n +#{line+1} #{file} >> #{file}.tmp`
-  `mv #{file}.tmp #{file}`
+  `cp #{file}.tmp #{file}`
+  `rm #{file}.tmp`
+end
+
+def _line_count(file)
+  lines = `wc -l < #{file}`
+  lines = lines.strip.to_i
 end
 
 def curl_command(in_file, out_file)
@@ -76,11 +81,14 @@ files = ARGV.empty? ? Dir.glob('nlogo/*nlogo') : ARGV
 
 files.each do |full_filename|
   fname = File.basename(full_filename).gsub(/nlogo$/,'html')
+  file = 'standalone/'+fname
 
   puts "Converting #{full_filename}..."
-  puts `#{curl_command(full_filename, 'standalone/'+fname)}`
+  puts `#{curl_command(full_filename, file)}`
 
-  inject_patches('standalone/'+fname)
-  inject_custom_commands('standalone/'+fname)
-  inject_shutterbug('standalone/'+fname)
+  if _line_count(file) > 4
+    inject_patches(file)
+    inject_custom_commands(file)
+    inject_shutterbug(file)
+  end
 end
