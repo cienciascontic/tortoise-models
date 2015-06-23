@@ -83,9 +83,15 @@ files = ARGV.empty? ? Dir.glob('nlogo/*nlogo') : ARGV
 files.each do |full_filename|
   fname = File.basename(full_filename).gsub(/nlogo$/,'html')
   file = 'standalone/'+fname
+  cache_file = 'cache/'+fname
+
+  Dir.mkdir 'cache' rescue nil
 
   puts "Converting #{full_filename}..."
-  puts `#{curl_command(full_filename, file)}`
+  if !File.exists?(cache_file)
+    puts `#{curl_command(full_filename, cache_file)}`
+  end
+  `cp #{cache_file} #{file}`
 
   if _line_count(file) > 4
     inject_patches(file)
