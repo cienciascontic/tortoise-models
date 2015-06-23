@@ -96,6 +96,7 @@ files.each do |full_filename|
   if _line_count(file) > 4
     inject_patches(file)
     inject_custom_commands(file)
+    _inject(file, _line_count(file)-4, "misc/startup-workaround.js")
     inject_shutterbug(file)
   end
 end
