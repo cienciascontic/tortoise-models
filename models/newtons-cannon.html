@@ -379,6 +379,9 @@ var procedures = (function() {
 })();
 world.observer.setGlobal("launchheading", 20);
 world.observer.setGlobal("mainscale", 1);
+world.observer.setGlobal("launchspeed", 0.3);
+world.observer.setGlobal("model_speed", 0);
+
 
 procedures.pause = function(time) {
   var start = new Date().getTime(),
@@ -412,9 +415,6 @@ procedures.myClearOutput = function() {
   }
 };
 procedures['MY-CLEAR-OUTPUT'] = procedures.myClearOutput;
-world.observer.setGlobal("launchspeed", 0.3);
-world.observer.setGlobal("model_speed", 0);
-
       session.startLoop()
     </script>
 <script src='jquery-1.11.3.min.js' type='text/javascript'></script>

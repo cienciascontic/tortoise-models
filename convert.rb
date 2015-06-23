@@ -25,7 +25,7 @@ def inject_custom_commands(file)
       puts "overriding command #{k}"
       lines = `wc -l < #{file}`
       lines = lines.strip.to_i
-      _inject(file, lines-7, "commands/#{v}")
+      _inject(file, lines-4, "commands/#{v}")
     end
   end
 end

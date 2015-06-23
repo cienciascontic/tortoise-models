@@ -194,6 +194,9 @@ var procedures = (function() {
     "startup":startup,
     "stopMoving":stopMoving
   };
+})();
+world.observer.setGlobal("graph-time-window", 500);
+
 
 procedures.myImportDrawing = function(src) {
   try {
@@ -205,9 +208,6 @@ procedures.myImportDrawing = function(src) {
   }
 };
 procedures['MY-IMPORT-DRAWING'] = procedures.myImportDrawing;
-})();
-world.observer.setGlobal("graph-time-window", 500);
-
       session.startLoop()
     </script>
 <script src='jquery-1.11.3.min.js' type='text/javascript'></script>

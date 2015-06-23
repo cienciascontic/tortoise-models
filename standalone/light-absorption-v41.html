@@ -54805,6 +54805,9 @@ var procedures = (function() {
 world.observer.setGlobal("gas-number", 100);
 world.observer.setGlobal("light-intensity", 2);
 world.observer.setGlobal("absorb-red?", false);
+world.observer.setGlobal("absorb-green?", false);
+world.observer.setGlobal("absorb-blue?", true);
+
 // This is based on the Scala code for the NetLogo implementation.
 // https://github.com/NetLogo/NetLogo/blob/5.x/src/main/org/nlogo/prim/etc/_approximatergb.java
 // https://github.com/NetLogo/NetLogo/blob/5.x/src/main/org/nlogo/api/Color.scala
@@ -54911,9 +54914,6 @@ world.observer.setGlobal("absorb-red?", false);
   _populateRGB_Cache();
   _populateRgbMap();
 })();
-world.observer.setGlobal("absorb-green?", false);
-world.observer.setGlobal("absorb-blue?", true);
-
       session.startLoop()
     </script>
 <script src='jquery-1.11.3.min.js' type='text/javascript'></script>

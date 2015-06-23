@@ -55020,6 +55020,9 @@ var procedures = (function() {
 })();
 world.observer.setGlobal("launchheading", 30);
 world.observer.setGlobal("mainscale", 0.25);
+world.observer.setGlobal("launchspeed", 1);
+world.observer.setGlobal("model_speed", 0);
+
 
 procedures.pause = function(time) {
   var start = new Date().getTime(),
@@ -55045,9 +55048,6 @@ procedures.myOutputPrint = function(str) {
   }
 };
 procedures['MY-OUTPUT-PRINT'] = procedures.myOutputPrint;
-world.observer.setGlobal("launchspeed", 1);
-world.observer.setGlobal("model_speed", 0);
-
       session.startLoop()
     </script>
 <script src='jquery-1.11.3.min.js' type='text/javascript'></script>

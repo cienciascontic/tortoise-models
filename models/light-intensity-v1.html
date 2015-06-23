@@ -204,14 +204,14 @@ var procedures = (function() {
   };
 })();
 world.observer.setGlobal("graph-time-window", 500);
+world.observer.setGlobal("planet-diameter", 16);
+world.observer.setGlobal("magnify-y-range", 37);
+
 
 procedures.myAcos = function(x) {
   return Math.acos(x) * 180 / Math.PI;
 };
 procedures['MY-ACOS'] = procedures.myAcos;
-world.observer.setGlobal("planet-diameter", 16);
-world.observer.setGlobal("magnify-y-range", 37);
-
       session.startLoop()
     </script>
 <script src='jquery-1.11.3.min.js' type='text/javascript'></script>

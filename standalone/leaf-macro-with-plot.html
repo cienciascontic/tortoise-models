@@ -54980,6 +54980,9 @@ var procedures = (function() {
 })();
 world.observer.setGlobal("water-flow", 10);
 world.observer.setGlobal("co2-amount", 14);
+world.observer.setGlobal("sun-brightness", 36);
+world.observer.setGlobal("day-night?", true);
+
 
 procedures.myImportDrawing = function(src) {
   try {
@@ -54991,9 +54994,6 @@ procedures.myImportDrawing = function(src) {
   }
 };
 procedures['MY-IMPORT-DRAWING'] = procedures.myImportDrawing;
-world.observer.setGlobal("sun-brightness", 36);
-world.observer.setGlobal("day-night?", true);
-
       session.startLoop()
     </script>
 <script src='jquery-1.11.3.min.js' type='text/javascript'></script>
