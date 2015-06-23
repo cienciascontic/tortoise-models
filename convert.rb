@@ -12,6 +12,7 @@ CUSTOM_COMMANDS = {
   "myImportDrawing" => "my-import-drawing.js",
   "myAcos" => "acos.js",
   "pause" => "pause.js",
+  "myApproximateRgb" => "approximate-rgb.js",
   "myOutputType" => "output-type.js",
   "myOutputPrint" => "output-print.js",
   "myClearOutput" => "clear-output.js"
