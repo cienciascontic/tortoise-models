@@ -36,6 +36,7 @@ Globals
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 to startup
+  my-hide-speed-slider
   setup
 end
 
@@ -200,6 +201,9 @@ end
 
 to pause [t]
   ;;wait t
+end
+
+to my-hide-speed-slider
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
