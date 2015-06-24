@@ -5,7 +5,7 @@ to startup
 end
 
 to setup
-  ca
+  clear-all
   crt 400
   ask turtles [
     set shape "circle"
@@ -13,6 +13,7 @@ to setup
   set xcor who
   
   ]
+  reset-ticks
 end
 
 to play
@@ -25,10 +26,10 @@ to play
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-378
-10
-1030
-363
+19
+198
+671
+551
 160
 80
 2.0
@@ -49,12 +50,13 @@ GRAPHICS-WINDOW
 0
 1
 ticks
+30.0
 
 BUTTON
-33
 19
-99
-52
+11
+82
+44
 setup
 setup
 NIL
@@ -65,12 +67,13 @@ NIL
 NIL
 NIL
 NIL
+1
 
 BUTTON
-142
-17
-205
-50
+19
+48
+82
+81
 play
 play
 T
@@ -81,12 +84,13 @@ NIL
 NIL
 NIL
 NIL
+1
 
 SLIDER
-34
-83
-67
-219
+193
+13
+226
+149
 amplitude1
 amplitude1
 0
@@ -98,10 +102,10 @@ NIL
 VERTICAL
 
 SLIDER
-118
-83
+277
+13
+310
 151
-221
 Amplitude2
 Amplitude2
 0
@@ -113,10 +117,10 @@ NIL
 VERTICAL
 
 SLIDER
-212
-84
-245
-221
+371
+14
+404
+151
 Amplitude3
 Amplitude3
 0
@@ -128,10 +132,10 @@ NIL
 VERTICAL
 
 SLIDER
-305
-83
-338
-222
+464
+13
+497
+152
 Amplitude4
 Amplitude4
 0
@@ -143,10 +147,10 @@ NIL
 VERTICAL
 
 SLIDER
-2
-226
-94
-259
+161
+156
+253
+189
 Phase1
 Phase1
 0
@@ -158,10 +162,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-94
-226
-186
-259
+253
+156
+345
+189
 Phase2
 Phase2
 0
@@ -173,10 +177,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-186
-226
-278
-259
+345
+156
+437
+189
 Phase3
 Phase3
 0
@@ -188,10 +192,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-278
-226
-370
-259
+437
+156
+529
+189
 Phase4
 Phase4
 0
@@ -203,48 +207,40 @@ NIL
 HORIZONTAL
 
 @#$#@#$#@
-WHAT IS IT?
------------
+## WHAT IS IT?
+
 This section could give a general understanding of what the model is trying to show or explain.
 
+## HOW IT WORKS
 
-HOW IT WORKS
-------------
 This section could explain what rules the agents use to create the overall behavior of the model.
 
+## HOW TO USE IT
 
-HOW TO USE IT
--------------
 This section could explain how to use the model, including a description of each of the items in the interface tab.
 
+## THINGS TO NOTICE
 
-THINGS TO NOTICE
-----------------
 This section could give some ideas of things for the user to notice while running the model.
 
+## THINGS TO TRY
 
-THINGS TO TRY
--------------
 This section could give some ideas of things for the user to try to do (move sliders, switches, etc.) with the model.
 
+## EXTENDING THE MODEL
 
-EXTENDING THE MODEL
--------------------
 This section could give some ideas of things to add or change in the procedures tab to make the model more complicated, detailed, accurate, etc.
 
+## NETLOGO FEATURES
 
-NETLOGO FEATURES
-----------------
 This section could point out any especially interesting or unusual features of NetLogo that the model makes use of, particularly in the Procedures tab.  It might also point out places where workarounds were needed because of missing features.
 
+## RELATED MODELS
 
-RELATED MODELS
---------------
 This section could give the names of models in the NetLogo Models Library or elsewhere which are of related interest.
 
+## CREDITS AND REFERENCES
 
-CREDITS AND REFERENCES
-----------------------
 This section could contain a reference to the model's URL on the web if it has one, as well as any other necessary credits or references.
 @#$#@#$#@
 default
@@ -539,7 +535,7 @@ Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 
 @#$#@#$#@
-NetLogo 4.1
+NetLogo 5.1.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -547,9 +543,9 @@ NetLogo 4.1
 @#$#@#$#@
 default
 0.0
--0.2 0 1.0 0.0
+-0.2 0 0.0 1.0
 0.0 1 1.0 0.0
-0.2 0 1.0 0.0
+0.2 0 0.0 1.0
 link direction
 true
 0
