@@ -1,0 +1,322 @@
+
+
+
+
+<html>
+  <head>
+<link rel="stylesheet" type="text/css" href="app.css" charset="utf-8"/>
+<link rel="stylesheet" type="text/css" href="app-custom.css" charset="utf-8"/>
+  </head>
+  <body>
+    <div id="model-container"></div>
+<script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript">
+;
+
+      var session =
+        (function () {
+          var widgets = "[{\"left\":6,\"top\":142,\"right\":561,\"bottom\":517,\"patchSize\":11.12245,\"fontSize\":10,\"wrappingAllowedInX\":true,\"wrappingAllowedInY\":true,\"minPxcor\":-24,\"maxPxcor\":24,\"minPycor\":-15,\"maxPycor\":15,\"updateMode\":\"Continuous\",\"showTickCounter\":true,\"tickCounterLabel\":\"ticks\",\"frameRate\":30.0,\"type\":\"view\"},\n{\"compiledSource\":{\"success\":true,\"result\":\"Call(procedures.setup);\"},\"display\":\"Reset\",\"left\":6,\"top\":10,\"right\":86,\"bottom\":43,\"source\":\"Setup\",\"forever\":false,\"buttonType\":\"OBSERVER\",\"actionKey\":null,\"type\":\"button\"},\n{\"compiledSource\":{\"success\":true,\"result\":\"Call(procedures.execute);\"},\"display\":\"Run\",\"left\":98,\"top\":10,\"right\":178,\"bottom\":43,\"source\":\"execute\",\"forever\":true,\"buttonType\":\"OBSERVER\",\"actionKey\":null,\"type\":\"button\"},\n{\"getStep\":function() { return 0.02; },\"getMin\":function() { return 0; },\"getMax\":function() { return 1; },\"compiledMin\":{\"success\":true,\"result\":\"0\"},\"compiledMax\":{\"success\":true,\"result\":\"1\"},\"compiledStep\":{\"success\":true,\"result\":\"0.02\"},\"display\":\"Albedo\",\"left\":4,\"top\":47,\"right\":177,\"bottom\":80,\"varName\":\"Albedo\",\"min\":\"0\",\"max\":\"1\",\"default\":0.32,\"step\":\"0.02\",\"direction\":\"horizontal\",\"type\":\"slider\"},\n{\"compiledSource\":{\"success\":true,\"result\":\"Call(procedures.addCo2);\"},\"display\":\"Add GGases\",\"left\":250,\"top\":520,\"right\":357,\"bottom\":553,\"source\":\"add-CO2\",\"forever\":false,\"buttonType\":\"OBSERVER\",\"actionKey\":null,\"type\":\"button\"},\n{\"compiledSource\":{\"success\":true,\"result\":\"Call(procedures.removeCo2);\"},\"display\":\"Remove GGases\",\"left\":359,\"top\":520,\"right\":459,\"bottom\":553,\"source\":\"remove-CO2\",\"forever\":false,\"buttonType\":\"OBSERVER\",\"actionKey\":null,\"type\":\"button\"},\n{\"compiledSource\":{\"success\":true,\"result\":\"Call(procedures.addCloud);\"},\"display\":\"Add Cloud\",\"left\":5,\"top\":521,\"right\":114,\"bottom\":554,\"source\":\"add-cloud\",\"forever\":false,\"buttonType\":\"OBSERVER\",\"actionKey\":null,\"type\":\"button\"},\n{\"compiledSource\":{\"success\":true,\"result\":\"Call(procedures.removeCloud);\"},\"display\":\"Remove Cloud\",\"left\":115,\"top\":521,\"right\":225,\"bottom\":554,\"source\":\"remove-cloud\",\"forever\":false,\"buttonType\":\"OBSERVER\",\"actionKey\":null,\"type\":\"button\"},\n{\"reporter\":function() { return world.observer.getGlobal(\"num-co2\"); },\"compiledSource\":{\"success\":true,\"result\":\"world.observer.getGlobal(\\\"num-co2\\\")\"},\"display\":\"GGas Amount\",\"left\":468,\"top\":521,\"right\":566,\"bottom\":566,\"source\":\"Num-CO2\",\"precision\":3,\"fontSize\":11,\"type\":\"monitor\"},\n{\"compiledSource\":{\"success\":true,\"result\":\"Call(procedures.makeSunray);\"},\"display\":\"Make a Sun Ray\",\"left\":6,\"top\":105,\"right\":145,\"bottom\":138,\"source\":\"make-sunray\",\"forever\":false,\"buttonType\":\"OBSERVER\",\"actionKey\":null,\"type\":\"button\"},\n{\"compiledSource\":{\"success\":true,\"result\":\"for (var _index_33_39 = 0, _repeatcount_33_39 = StrictMath.floor(10); _index_33_39 < _repeatcount_33_39; _index_33_39++){\\n  Call(procedures.makeSunray);\\n}\"},\"display\":\"Make 10 Sun Rays\",\"left\":204,\"top\":106,\"right\":345,\"bottom\":139,\"source\":\"repeat 10 [make-sunray]\",\"forever\":false,\"buttonType\":\"OBSERVER\",\"actionKey\":null,\"type\":\"button\"},\n{\"compiledSource\":{\"success\":true,\"result\":\"for (var _index_33_39 = 0, _repeatcount_33_39 = StrictMath.floor(100); _index_33_39 < _repeatcount_33_39; _index_33_39++){\\n  Call(procedures.makeSunray);\\n}\"},\"display\":\"Make 100 Sun Rays\",\"left\":411,\"top\":105,\"right\":560,\"bottom\":138,\"source\":\"repeat 100 [make-sunray] \",\"forever\":false,\"buttonType\":\"OBSERVER\",\"actionKey\":null,\"type\":\"button\"},\n{\"reporter\":function() { return world.observer.getGlobal(\"temperature\"); },\"compiledSource\":{\"success\":true,\"result\":\"world.observer.getGlobal(\\\"temperature\\\")\"},\"display\":\"Energy in the Earth\",\"left\":202,\"top\":444,\"right\":342,\"bottom\":493,\"source\":\"Temperature\",\"precision\":1,\"fontSize\":12,\"type\":\"monitor\"}]";
+          var code    = "breed [ clouds ]\nbreed [ sunray ]\nbreed [ IR ]\nbreed [ heat ]\nbreed [ people ]\nbreed [ factories ]\nbreed [ CO2 ]\n\nclouds-own [ cloud-num ]\nglobals [ sky-top earth-top temperature num-CO2 num-clouds starter ]\n\nto startup\n  setup\nend\n\nto setup\n  clear-all\n  setup-world\n  set temperature 0 ;; start with a cold earth\n  reset-ticks\nend\n\nto execute \n  if (starter = 0) [\n    set starter 1 \n    setup-world]\n  ask clouds [ fd .3 * (0.1 + (3 + cloud-num) / 10) ]  ; move clouds along\n  run-sunshine \n  ask patches [ update-albedo ]\n  run-heat  ;; moves heat dots\n  run-IR    ;; moves the IR arrowheads\n  run-CO2   ;; moves CO2 molecules\n  set temperature count heat  ;; displays the temperature\nend\n\nto update-albedo\n  if (pycor = earth-top) [ set pcolor 50 + 9 * albedo ]\nend       \n\nto setup-world\n  set sky-top (max-pycor - 5)\n  set earth-top (8 + min-pycor)\n  ask patches [                           ;; set colors of the world\n      if (pycor = max-pycor) [ set pcolor black ]\n      if (pycor < max-pycor) and (pycor > sky-top) [\n        set pcolor 9 - scale-color white pycor sky-top max-pycor   ]\n      if ((pycor <= sky-top) and (pycor > earth-top)) [\n        set pcolor blue + 2 * (pycor + max-pycor) / max-pycor  ]\n      if (pycor < earth-top) [ set pcolor red + 3 ]  \n      update-albedo ] \nend      \n\nto add-cloud            ;; erase clouds and then create new ones\n  set num-clouds num-clouds + 1\n  setup-clouds num-clouds\nend\n\nto remove-cloud\n  if (num-clouds > 0 ) [\n      set num-clouds num-clouds - 1\n      setup-clouds num-clouds ]\nend\n\nto setup-clouds [ n ] \n  ask clouds [ die ]\n  let i 0\n  repeat n\n     [ make-cloud  i n\n     set i i + 1]\nend\n\nto make-cloud [ k n ]                   ;; makes cloud number k out of n total\n  let width sky-top - earth-top\n  let mid ( sky-top + earth-top ) / 2\n  let y mid + width * ((k / n) - 0.3 ) - 2  ;; the ratio k/n determines its altitude\n  if k = 0 [set y 6 ]\n  let x 2 * (random max-pxcor ) + min-pxcor\n  repeat 3 + random 20 [ create-clouds 1  ;; lots of turtles make up a cloud\n    [set cloud-num k\n    setxy x + (random 9) - 4 y + random random 5\n    set color white\n    set size 2 + random 2\n    set heading 90 \n    Set shape \"cloud\" ]  ]\nend\n\nto run-sunshine\n  ask sunray [\n     fd .2    ;; move sunrays forward\n     if ((heading = 20) and (ycor = max-pycor)) [ die ] ] ;; kill rays leaving upward\n  reflect-sunrays-from-clouds  ;; check for reflection off clouds\n  encounter-earth   ;; check for reflection off earth and absorbtion\n end\n\nto make-sunray\n  create-sunray 1 \n      [ set heading 160\n      set color yellow\n      set size 3\n      setxy min-pxcor + random (max-pxcor - min-pxcor)  max-pycor ] ;; start the sunrays anywhere along the top\nend\n \nto reflect-sunrays-from-clouds\n ask sunray [\n    if (count clouds-here > 0 ) [   ;; if sunray shares patch with a cloud\n      set heading 180 - heading ]]  ;; turn the sunray around\nend \n\nto encounter-earth\n  ask sunray [\n    if (ycor <= earth-top) [\n      ifelse (100 * albedo > random 100) \n          [ set heading 20  ]           ;; reflect\n          [ set heading 95 + random 170 ;; morph into heat energy\n            set color 13 + random 4  \n            set breed heat \n            set size 3   \n            set shape \"dot\"  ]]]\nend\n\nto run-heat    ;; advances the heat energy turtles\n  ask heat [\n    fd .5 * ( random 11 ) / 10\n    if (ycor <= 0 + min-pycor )[ set heading 70 - random 170 ] ;; if heading into the earth's core, bounce\n    if (ycor >= earth-top ) [  ;; if heading back into sky\n      ifelse (random 3 = 1)    ;; one of three tries the heat escapes\n        [ set breed IR\n        set heading -50 + random 100 ;; start the IR off in a random upward direction\n        set color magenta \n        set size 3\n        set shape \"default\" ]           ;; let them escape as IR with arrowhead shapes\n      [ set heading 100 + random 160 ]]] ;; otherwise return them to earth\nend \n\nto run-IR\n  ask IR [\n    fd .3\n    if (ycor >= max-pycor ) [ die ]\n    if (ycor <= earth-top ) [   ;; convert to heat \n      set breed heat\n      set heading 95 + random 170\n      set color 13 + random 4  \n      set shape \"dot\" ]\n    if (count CO2-here > 0)   ;; check for collision with CO2\n      [ set heading random 360 ]] ;; send off in a new direction\nend\n\nto add-CO2  ;; randomly adds 25 CO2 molecules to atmosphere\n  let width sky-top - earth-top\n  if (num-CO2 < 150) [  ;; stop adding CO2 at 150 molecules--more slow the model too much\n    repeat 25 [\n      create-CO2 1\n        [let i random 3\n          if i = 0 [set shape \"co2\"]\n          if i = 1 [set shape \"molecule water\"]\n          if i = 2 [set shape \"black ball\"]\n          set color black\n          set size 2\n          setxy random (2 * max-pxcor) + min-pxcor earth-top + random width\n          set heading random 360 ]] ;; heading is used to spin molecule \n  set num-CO2 count CO2 ]  \nend\n\nto remove-CO2 ;; randomly remove 25 CO2 molecules\n  repeat 25 [\n    if (count CO2 > 0 ) [\n      ask one-of CO2 [ die ]]]\n  set num-CO2 count CO2\nend\n\nto run-CO2\n  let d 0\n  ask CO2 [\n    set heading heading + (random 3) - 1 ;; turn a bit\n    fd .01 * (5 + random 10) ;; move forward a bit\n    if (ycor <= earth-top + 1) [set heading 45 - random 90 ] ;; bounce off earth\n    if (ycor >= sky-top) [set heading 135 + random 90] ] ;; bounce off sky top\nend\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+          var info    = "## WHAT IS IT?\n\nThis is a model of energy flow in the earth. It shows the earth as rose colored. On the earth surface is a green strip. Above that is a blue atmosphere and black space at the top. Clouds and CO2 molecules can be added to the atmosphere. The CO2 molecules represent greenhouse gasses that block infrared light that the earth emits. \n\n## HOW IT WORKS\n\nYellow arrowheads stream downward representing sunlight energy. Some of the sunlight reflects off clouds and more can reflect off the earth surface. \n\nIf sunlight is absorbed by the earth, it turns into a red dot, representing heat energy. Each dot represents the energy of one yellow sunlight arrowhead. The red dots randomly move around the earth. The temperature of the earth is related to the total number of red dots. \n\nSometimes the red dots transform into infrared (IR) light that heads toward space, carrying off energy. The probability of a red dot becoming IR light depends on the earth temperature. When the earth is cold, few red dots cause IR light; when it is hot, most do. The IR energy is represented by a magenta arrowhead. Each carries the same energy as a yellow arrowhead and as a red dot. The IR light goes through clouds but can bounce off CO2 molecules. \n\n## HOW TO USE IT\n\nThe \"sun-brightness\" slider controls how much sun energy enters the earth atmosphere. A value of 1.0 corresponds to our sun. Higher values allow you to see what would happen if the earth was closer to the sun, or if the sun got brighter. \n\nThe \"albedo\" slider controls how much of the sun energy hitting the earth is absorbed.   \nIf the albedo is 1.0, the earth reflects all sunlight. This could happen if the earth froze and is indicated by a white surface. If the albedo is zero, the earth absorbs all sunlight. This is indicated as a black surface. The earth's albedo is about 0.6. \n\nYou can add and remove clouds with buttons. Clouds block sunlight but not IR. \n\nYou can add and remove greenhouse gasses, represented as CO2 molecules. CO2 blocks IR light but not sunlight. The buttons add and subtract molecules in groups of 25 up to 150.\n\nThe temperature of the earth is related to the amount of heat in the earth. The more red dots you see, the hotter it is. \n\n## THINGS TO NOTICE\n\nFollow a single sunlight arrowhead. This easier if you slow down the model using the slider at the top of the model. \n\nHere is a better way to follow an arrowhead. Stop the model and control-click on an arrowhead, select the last item \"turle\" followed by a number. This opens a sub-menu where you can select \"watch\" followed by a number. Now when you run the model, you will see a circle around that arrowhead. \n\nWhat happens to the arrowhead when it hits the earth? Describe its later path. Does it escape the earth? What happens then? Do all arrowheads follow similar paths? \n\n## THINGS TO TRY\n\n1. Play with model. Change the albedo and run the model.   \nAdd clouds and CO2 to the model and then watch a single sunlight arrowhead.   \nWhat is the highest earth temperature you can produce? \n\n2. Run the model with a bright sun but no clouds and no CO2. What happens to the temperature? It should rise quickly and then settle down around 50 degrees. Why does it stop rising? Why does the temperatuer continue to bounce around? Remember, the temperature reflects the number of red dots in the earth. When the temperature is constant, there about as many incoming yellow arrowheads as outgoing IR ones. Why? \n\n3. Explore the effect of albedo holding everything else constant. Does increasing the albedo increase or decrease the earth temperature? When you experiment, be sure to run the model long enough for the temperature to settle down. \n\n4. Explore the effect of clouds holding everything else constant. \n\n5. Explore the effect of adding 100 CO2 molecules. What is the cause of the change you observe. Follow one sunlight arrowhead now. \n\n## DETAILS ABOUT THE MODEL\n\nThere is a relation between the number of red dots in the earth and the temperature of the earth. This is because the earth temperature goes up as the total thermal energy is increased. Thermal energy is added by sunlight that reaches the earth as well as from infrared (IR) light reflected down to the earth. Thermal energy is removed by IR emitted by the earth. The balance of these determines the energy in the earth with is proportional to its temperature. \n\nThere are, of course, many simplifications in this model. The earth is not a single temperature, does not have a single albedo, and does not have a single heat capacity. Visible light is somewhat absorbed by CO2 and some IR light does bounce off clouds. No model is completely accurate. What is important, is that a model react in some ways like the system it is supposed to model. This model does that, showing how the greenhouse effect is caused by CO2 and other gases that absorb IR. \n\n## CREDITS AND REFERENCES\n\nCreated Nov 19, 2005 by Robert Tinker for the TELS project. Updated Jan 9, 2006. ";
+          return Tortoise.fromCompiledModel('#model-container', widgets, code, info, '', true);
+        })();
+      var AgentModel = tortoise_require('agentmodel');
+var Call = tortoise_require('util/call');
+var ColorModel = tortoise_require('engine/core/colormodel');
+var Dump = tortoise_require('engine/dump');
+var Exception = tortoise_require('util/exception');
+var Link = tortoise_require('engine/core/link');
+var LinkSet = tortoise_require('engine/core/linkset');
+var Meta = tortoise_require('meta');
+var NLMath = tortoise_require('util/nlmath');
+var NLType = tortoise_require('engine/core/typechecker');
+var Nobody = tortoise_require('engine/core/nobody');
+var PatchSet = tortoise_require('engine/core/patchset');
+var PenBundle = tortoise_require('engine/plot/pen');
+var Plot = tortoise_require('engine/plot/plot');
+var PlotOps = tortoise_require('engine/plot/plotops');
+var Random = tortoise_require('shim/random');
+var StrictMath = tortoise_require('shim/strictmath');
+var Tasks = tortoise_require('engine/prim/tasks');
+var Turtle = tortoise_require('engine/core/turtle');
+var TurtleSet = tortoise_require('engine/core/turtleset');
+var notImplemented = tortoise_require('util/notimplemented');
+var modelConfig = (typeof window.modelConfig !== "undefined" && window.modelConfig !== null) ? window.modelConfig : {};
+var modelPlotOps = (typeof modelConfig.plotOps !== "undefined" && modelConfig.plotOps !== null) ? modelConfig.plotOps : {};
+if (typeof javax !== "undefined") {
+  modelConfig.output = {
+    clear: function() {},
+    write: function(str) { context.getWriter().print(str); }
+  }
+}
+modelConfig.plots = [];
+var workspace = tortoise_require('engine/workspace')(modelConfig)([{ name: "CLOUDS", singular: "turtle", varNames: ["cloud-num"] }, { name: "SUNRAY", singular: "turtle", varNames: [] }, { name: "IR", singular: "turtle", varNames: [] }, { name: "HEAT", singular: "turtle", varNames: [] }, { name: "PEOPLE", singular: "turtle", varNames: [] }, { name: "FACTORIES", singular: "turtle", varNames: [] }, { name: "CO2", singular: "turtle", varNames: [] }])([], [])(["albedo", "sky-top", "earth-top", "temperature", "num-co2", "num-clouds", "starter"], ["albedo"], [], -24, 24, -15, 15, 11.12245, true, true, {"default":{"rotate":true,"elements":[{"xcors":[150,40,150,260],"ycors":[5,250,205,250],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"airplane":{"rotate":true,"elements":[{"xcors":[150,135,120,120,15,15,120,135,105,120,150,180,210,165,180,285,285,180,180,165],"ycors":[0,15,60,105,165,195,180,240,270,285,270,285,270,240,180,195,165,105,60,15],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"arrow":{"rotate":true,"elements":[{"xcors":[150,0,105,105,195,195,300],"ycors":[0,150,150,293,293,150,150],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"black ball":{"rotate":true,"elements":[{"x":45,"y":90,"diam":120,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":135,"y":90,"diam":120,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"box":{"rotate":false,"elements":[{"xcors":[150,285,285,150],"ycors":[285,225,75,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[150,15,150,285],"ycors":[135,75,15,75],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[15,15,150,150],"ycors":[75,225,285,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":150,"y1":285,"x2":150,"y2":135,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false},{"x1":150,"y1":135,"x2":15,"y2":75,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false},{"x1":150,"y1":135,"x2":285,"y2":75,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false}]},"bug":{"rotate":true,"elements":[{"x":96,"y":182,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":110,"y":127,"diam":80,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":110,"y":75,"diam":80,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":150,"y1":100,"x2":80,"y2":30,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":150,"y1":100,"x2":220,"y2":30,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"butterfly":{"rotate":true,"elements":[{"xcors":[150,209,225,225,195,165,150],"ycors":[165,199,225,255,270,255,240],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[150,89,75,75,105,135,150],"ycors":[165,198,225,255,270,255,240],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[139,100,55,25,10,10,25,40,85,139],"ycors":[148,105,90,90,105,135,180,195,194,163],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[162,200,245,275,290,290,275,260,215,162],"ycors":[150,105,90,90,105,135,180,195,195,165],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[150,135,120,135,150,165,180,165],"ycors":[255,225,150,120,105,120,150,225],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":135,"y":90,"diam":30,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x1":150,"y1":105,"x2":195,"y2":60,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false},{"x1":150,"y1":105,"x2":105,"y2":60,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false}]},"car":{"rotate":false,"elements":[{"xcors":[300,279,261,240,226,213,203,185,159,135,75,0,0,0,300,300],"ycors":[180,164,144,135,132,106,84,63,50,50,60,150,165,225,225,180],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":180,"y":180,"diam":90,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":30,"y":180,"diam":90,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[162,132,134,209,194,189,180],"ycors":[80,78,135,135,105,96,89],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":47,"y":195,"diam":58,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":195,"y":195,"diam":58,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"circle":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"circle 2":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":30,"y":30,"diam":240,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"cloud":{"rotate":false,"elements":[{"x":13,"y":118,"diam":94,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":86,"y":101,"diam":127,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":51,"y":51,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":118,"y":43,"diam":95,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":158,"y":68,"diam":134,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"co2":{"rotate":true,"elements":[{"x":0,"y":90,"diam":120,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":180,"y":90,"diam":120,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":75,"y":75,"diam":150,"type":"circle","color":"rgba(52, 93, 169, 1.0)","filled":true,"marked":false}]},"cow":{"rotate":false,"elements":[{"xcors":[200,197,179,177,166,140,93,78,72,49,48,37,25,25,45,103,179,198,252,272,293,285,255,242,224],"ycors":[193,249,249,196,187,189,191,179,211,209,181,149,120,89,72,84,75,76,64,81,103,121,121,118,167],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[73,86,62,48],"ycors":[210,251,249,208],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[25,16,9,23,25,39],"ycors":[114,195,204,213,200,123],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"cylinder":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"dot":{"rotate":false,"elements":[{"x":90,"y":75,"diam":120,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"face happy":{"rotate":false,"elements":[{"x":8,"y":8,"diam":285,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":60,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":180,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[150,90,62,47,67,90,109,150,192,210,227,251,236,212],"ycors":[255,239,213,191,179,203,218,225,218,203,181,194,217,240],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"face neutral":{"rotate":false,"elements":[{"x":8,"y":7,"diam":285,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":60,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":180,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xmin":60,"ymin":195,"xmax":240,"ymax":225,"type":"rectangle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"face sad":{"rotate":false,"elements":[{"x":8,"y":8,"diam":285,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":60,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":180,"y":75,"diam":60,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[150,90,62,47,67,90,109,150,192,210,227,251,236,212],"ycors":[168,184,210,232,244,220,205,198,205,220,242,229,206,183],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"fish":{"rotate":false,"elements":[{"xcors":[44,21,15,0,15,0,13,20,45],"ycors":[131,87,86,120,150,180,214,212,166],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[135,119,95,76,46,60],"ycors":[195,235,218,210,204,165],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[75,83,71,86,166,135],"ycors":[45,77,103,114,78,60],"type":"polygon","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[30,151,226,280,292,292,287,270,195,151,30],"ycors":[136,77,81,119,146,160,170,195,210,212,166],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":215,"y":106,"diam":30,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"flag":{"rotate":false,"elements":[{"xmin":60,"ymin":15,"xmax":75,"ymax":300,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[90,270,90],"ycors":[150,90,30],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":75,"y1":135,"x2":90,"y2":135,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":75,"y1":45,"x2":90,"y2":45,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"flower":{"rotate":false,"elements":[{"xcors":[135,165,180,180,150,165,195,195,165],"ycors":[120,165,210,240,300,300,240,195,135],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"x":85,"y":132,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":130,"y":147,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":192,"y":85,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":85,"y":40,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":177,"y":40,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":177,"y":132,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":70,"y":85,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":130,"y":25,"diam":38,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":96,"y":51,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":113,"y":68,"diam":74,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[189,219,249,279,234],"ycors":[233,188,173,188,218],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[180,150,105,75,135],"ycors":[255,210,210,240,240],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false}]},"house":{"rotate":false,"elements":[{"xmin":45,"ymin":120,"xmax":255,"ymax":285,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":120,"ymin":210,"xmax":180,"ymax":285,"type":"rectangle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xcors":[15,150,285],"ycors":[120,15,120],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":30,"y1":120,"x2":270,"y2":120,"type":"line","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false}]},"leaf":{"rotate":false,"elements":[{"xcors":[150,135,120,60,30,60,60,15,30,15,40,45,60,90,105,120,105,120,135,150,165,180,195,180,195,210,240,255,263,285,270,285,240,240,270,240,180,165],"ycors":[210,195,210,210,195,180,165,135,120,105,104,90,90,105,120,120,60,60,30,15,30,60,60,120,120,105,90,90,104,105,120,135,165,180,195,210,210,195],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,135,120,105,105,135,165,165],"ycors":[195,240,255,255,285,285,240,195],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"line":{"rotate":true,"elements":[{"x1":150,"y1":0,"x2":150,"y2":300,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"line half":{"rotate":true,"elements":[{"x1":150,"y1":0,"x2":150,"y2":150,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"molecule water":{"rotate":true,"elements":[{"x":183,"y":63,"diam":84,"type":"circle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"x":183,"y":63,"diam":84,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false},{"x":75,"y":75,"diam":150,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":75,"y":75,"diam":150,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false},{"x":33,"y":63,"diam":84,"type":"circle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"x":33,"y":63,"diam":84,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":false,"marked":false}]},"pentagon":{"rotate":false,"elements":[{"xcors":[150,15,60,240,285],"ycors":[15,120,285,285,120],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"person":{"rotate":false,"elements":[{"x":110,"y":5,"diam":80,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[105,120,90,105,135,150,165,195,210,180,195],"ycors":[90,195,285,300,300,225,300,300,285,195,90],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":127,"ymin":79,"xmax":172,"ymax":94,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[195,240,225,165],"ycors":[90,150,180,105],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[105,60,75,135],"ycors":[90,150,180,105],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"plant":{"rotate":false,"elements":[{"xmin":135,"ymin":90,"xmax":165,"ymax":300,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,90,45,75,135],"ycors":[255,210,195,255,285],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[165,210,255,225,165],"ycors":[255,210,195,255,285],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,90,45,75,135],"ycors":[180,135,120,180,210],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[165,165,225,255,210],"ycors":[180,210,180,120,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,90,45,75,135],"ycors":[105,60,45,105,135],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[165,165,225,255,210],"ycors":[105,135,105,45,60],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[135,120,150,180,165],"ycors":[90,45,15,45,90],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"square":{"rotate":false,"elements":[{"xmin":30,"ymin":30,"xmax":270,"ymax":270,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"square 2":{"rotate":false,"elements":[{"xmin":30,"ymin":30,"xmax":270,"ymax":270,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":60,"ymin":60,"xmax":240,"ymax":240,"type":"rectangle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"star":{"rotate":false,"elements":[{"xcors":[151,185,298,207,242,151,59,94,3,116],"ycors":[1,108,108,175,282,216,282,175,108,108],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"target":{"rotate":false,"elements":[{"x":0,"y":0,"diam":300,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":30,"y":30,"diam":240,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":60,"y":60,"diam":180,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":90,"y":90,"diam":120,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":120,"y":120,"diam":60,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"tree":{"rotate":false,"elements":[{"x":118,"y":3,"diam":94,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":120,"ymin":195,"xmax":180,"ymax":300,"type":"rectangle","color":"rgba(157, 110, 72, 1.0)","filled":true,"marked":false},{"x":65,"y":21,"diam":108,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":116,"y":41,"diam":127,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":45,"y":90,"diam":120,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":104,"y":74,"diam":152,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"triangle":{"rotate":false,"elements":[{"xcors":[150,15,285],"ycors":[30,255,255],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"triangle 2":{"rotate":false,"elements":[{"xcors":[150,15,285],"ycors":[30,255,255],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[151,225,75],"ycors":[99,223,224],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false}]},"truck":{"rotate":false,"elements":[{"xmin":4,"ymin":45,"xmax":195,"ymax":187,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[296,296,259,244,208,207],"ycors":[193,150,134,104,104,194],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xmin":195,"ymin":60,"xmax":195,"ymax":105,"type":"rectangle","color":"rgba(255, 255, 255, 1.0)","filled":true,"marked":false},{"xcors":[238,252,219,218],"ycors":[112,141,141,112],"type":"polygon","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":234,"y":174,"diam":42,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"xmin":181,"ymin":185,"xmax":214,"ymax":194,"type":"rectangle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":144,"y":174,"diam":42,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":24,"y":174,"diam":42,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x":24,"y":174,"diam":42,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x":144,"y":174,"diam":42,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x":234,"y":174,"diam":42,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"turtle":{"rotate":true,"elements":[{"xcors":[215,240,246,228,215,193],"ycors":[204,233,254,266,252,210],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[195,225,245,260,269,261,240,225,210],"ycors":[90,75,75,89,108,124,105,105,105],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[105,75,55,40,31,39,60,75,90],"ycors":[90,75,75,89,108,124,105,105,105],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[132,134,107,108,150,192,192,169,172],"ycors":[85,64,51,17,2,18,52,65,87],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[85,60,54,72,85,107],"ycors":[204,233,254,266,252,210],"type":"polygon","color":"rgba(89, 176, 60, 1.0)","filled":true,"marked":false},{"xcors":[119,179,209,224,220,175,128,81,74,88],"ycors":[75,75,101,135,225,261,261,224,135,99],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]},"wheel":{"rotate":false,"elements":[{"x":3,"y":3,"diam":294,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x":30,"y":30,"diam":240,"type":"circle","color":"rgba(0, 0, 0, 1.0)","filled":true,"marked":false},{"x1":150,"y1":285,"x2":150,"y2":15,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":15,"y1":150,"x2":285,"y2":150,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x":120,"y":120,"diam":60,"type":"circle","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"x1":216,"y1":40,"x2":79,"y2":269,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":40,"y1":84,"x2":269,"y2":221,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":40,"y1":216,"x2":269,"y2":79,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":84,"y1":40,"x2":221,"y2":269,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"x":{"rotate":false,"elements":[{"xcors":[270,225,30,75],"ycors":[75,30,225,270],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true},{"xcors":[30,75,270,225],"ycors":[75,30,225,270],"type":"polygon","color":"rgba(141, 141, 141, 1.0)","filled":true,"marked":true}]}}, {"default":{"direction-indicator":{"rotate":true,"elements":[{"x1":150,"y1":150,"x2":90,"y2":180,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true},{"x1":150,"y1":150,"x2":210,"y2":180,"type":"line","color":"rgba(141, 141, 141, 1.0)","filled":false,"marked":true}]},"curviness":0.0,"lines":[{"x-offset":-0.2,"is-visible":false,"dash-pattern":[0.0,1.0]},{"x-offset":0.0,"is-visible":true,"dash-pattern":[1.0,0.0]},{"x-offset":0.2,"is-visible":false,"dash-pattern":[0.0,1.0]}]}}, function(){});
+var BreedManager = workspace.breedManager;
+var LayoutManager = workspace.layoutManager;
+var LinkPrims = workspace.linkPrims;
+var ListPrims = workspace.listPrims;
+var MousePrims = workspace.mousePrims;
+var OutputPrims = workspace.outputPrims;
+var Prims = workspace.prims;
+var PrintPrims = workspace.printPrims;
+var SelfManager = workspace.selfManager;
+var SelfPrims = workspace.selfPrims;
+var Updater = workspace.updater;
+var plotManager = workspace.plotManager;
+var world = workspace.world;
+var procedures = (function() {
+  var startup = function() { Call(procedures.setup); };
+  var setup = function() {
+    world.clearAll();
+    Call(procedures.setupWorld);
+    world.observer.setGlobal("temperature", 0);
+    world.ticker.reset();
+  };
+  var execute = function() {
+    if (Prims.equality(world.observer.getGlobal("starter"), 0)) {
+      world.observer.setGlobal("starter", 1);
+      Call(procedures.setupWorld);
+    }
+    world.turtleManager.turtlesOfBreed("CLOUDS").ask(function() { SelfPrims.fd((0.3 * (0.1 + ((3 + SelfPrims.getVariable("cloud-num")) / 10)))); }, true);
+    Call(procedures.runSunshine);
+    world.patches().ask(function() { Call(procedures.updateAlbedo); }, true);
+    Call(procedures.runHeat);
+    Call(procedures.runIr);
+    Call(procedures.runCo2);
+    world.observer.setGlobal("temperature", world.turtleManager.turtlesOfBreed("HEAT").size());
+  };
+  var updateAlbedo = function() {
+    if (Prims.equality(SelfPrims.getPatchVariable("pycor"), world.observer.getGlobal("earth-top"))) {
+      SelfPrims.setPatchVariable("pcolor", (50 + (9 * world.observer.getGlobal("albedo"))));
+    }
+  };
+  var setupWorld = function() {
+    world.observer.setGlobal("sky-top", (world.topology.maxPycor - 5));
+    world.observer.setGlobal("earth-top", (8 + world.topology.minPycor));
+    world.patches().ask(function() {
+      if (Prims.equality(SelfPrims.getPatchVariable("pycor"), world.topology.maxPycor)) {
+        SelfPrims.setPatchVariable("pcolor", 0);
+      }
+      if ((Prims.lt(SelfPrims.getPatchVariable("pycor"), world.topology.maxPycor) && Prims.gt(SelfPrims.getPatchVariable("pycor"), world.observer.getGlobal("sky-top")))) {
+        SelfPrims.setPatchVariable("pcolor", (9 - ColorModel.scaleColor(9.9, SelfPrims.getPatchVariable("pycor"), world.observer.getGlobal("sky-top"), world.topology.maxPycor)));
+      }
+      if ((Prims.lte(SelfPrims.getPatchVariable("pycor"), world.observer.getGlobal("sky-top")) && Prims.gt(SelfPrims.getPatchVariable("pycor"), world.observer.getGlobal("earth-top")))) {
+        SelfPrims.setPatchVariable("pcolor", (105 + ((2 * (SelfPrims.getPatchVariable("pycor") + world.topology.maxPycor)) / world.topology.maxPycor)));
+      }
+      if (Prims.lt(SelfPrims.getPatchVariable("pycor"), world.observer.getGlobal("earth-top"))) {
+        SelfPrims.setPatchVariable("pcolor", (15 + 3));
+      }
+      Call(procedures.updateAlbedo);
+    }, true);
+  };
+  var addCloud = function() {
+    world.observer.setGlobal("num-clouds", (world.observer.getGlobal("num-clouds") + 1));
+    Call(procedures.setupClouds, world.observer.getGlobal("num-clouds"));
+  };
+  var removeCloud = function() {
+    if (Prims.gt(world.observer.getGlobal("num-clouds"), 0)) {
+      world.observer.setGlobal("num-clouds", (world.observer.getGlobal("num-clouds") - 1));
+      Call(procedures.setupClouds, world.observer.getGlobal("num-clouds"));
+    }
+  };
+  var setupClouds = function(n) {
+    world.turtleManager.turtlesOfBreed("CLOUDS").ask(function() { SelfPrims.die(); }, true);
+    var i = 0;
+    for (var _index_1604_1610 = 0, _repeatcount_1604_1610 = StrictMath.floor(n); _index_1604_1610 < _repeatcount_1604_1610; _index_1604_1610++){
+      Call(procedures.makeCloud, i, n);
+      i = (i + 1);
+    }
+  };
+  var makeCloud = function(k, n) {
+    var width = (world.observer.getGlobal("sky-top") - world.observer.getGlobal("earth-top"));
+    var mid = ((world.observer.getGlobal("sky-top") + world.observer.getGlobal("earth-top")) / 2);
+    var y = ((mid + (width * ((k / n) - 0.3))) - 2);
+    if (Prims.equality(k, 0)) {
+      y = 6;
+    }
+    var x = ((2 * Prims.random(world.topology.maxPxcor)) + world.topology.minPxcor);
+    for (var _index_1961_1967 = 0, _repeatcount_1961_1967 = StrictMath.floor((3 + Prims.random(20))); _index_1961_1967 < _repeatcount_1961_1967; _index_1961_1967++){
+      world.turtleManager.createTurtles(1, "CLOUDS").ask(function() {
+        SelfPrims.setVariable("cloud-num", k);
+        SelfPrims.setXY(((x + Prims.random(9)) - 4), (y + Prims.random(Prims.random(5))));
+        SelfPrims.setVariable("color", 9.9);
+        SelfPrims.setVariable("size", (2 + Prims.random(2)));
+        SelfPrims.setVariable("heading", 90);
+        SelfPrims.setVariable("shape", "cloud");
+      }, true);
+    }
+  };
+  var runSunshine = function() {
+    world.turtleManager.turtlesOfBreed("SUNRAY").ask(function() {
+      SelfPrims.fd(0.2);
+      if ((Prims.equality(SelfPrims.getVariable("heading"), 20) && Prims.equality(SelfPrims.getVariable("ycor"), world.topology.maxPycor))) {
+        SelfPrims.die();
+      }
+    }, true);
+    Call(procedures.reflectSunraysFromClouds);
+    Call(procedures.encounterEarth);
+  };
+  var makeSunray = function() {
+    world.turtleManager.createTurtles(1, "SUNRAY").ask(function() {
+      SelfPrims.setVariable("heading", 160);
+      SelfPrims.setVariable("color", 45);
+      SelfPrims.setVariable("size", 3);
+      SelfPrims.setXY((world.topology.minPxcor + Prims.random((world.topology.maxPxcor - world.topology.minPxcor))), world.topology.maxPycor);
+    }, true);
+  };
+  var reflectSunraysFromClouds = function() {
+    world.turtleManager.turtlesOfBreed("SUNRAY").ask(function() {
+      if (Prims.gt(SelfManager.self().breedHere("CLOUDS").size(), 0)) {
+        SelfPrims.setVariable("heading", (180 - SelfPrims.getVariable("heading")));
+      }
+    }, true);
+  };
+  var encounterEarth = function() {
+    world.turtleManager.turtlesOfBreed("SUNRAY").ask(function() {
+      if (Prims.lte(SelfPrims.getVariable("ycor"), world.observer.getGlobal("earth-top"))) {
+        if (Prims.gt((100 * world.observer.getGlobal("albedo")), Prims.random(100))) {
+          SelfPrims.setVariable("heading", 20);
+        }
+        else {
+          SelfPrims.setVariable("heading", (95 + Prims.random(170)));
+          SelfPrims.setVariable("color", (13 + Prims.random(4)));
+          SelfPrims.setVariable("breed", world.turtleManager.turtlesOfBreed("HEAT"));
+          SelfPrims.setVariable("size", 3);
+          SelfPrims.setVariable("shape", "dot");
+        }
+      }
+    }, true);
+  };
+  var runHeat = function() {
+    world.turtleManager.turtlesOfBreed("HEAT").ask(function() {
+      SelfPrims.fd(((0.5 * Prims.random(11)) / 10));
+      if (Prims.lte(SelfPrims.getVariable("ycor"), (0 + world.topology.minPycor))) {
+        SelfPrims.setVariable("heading", (70 - Prims.random(170)));
+      }
+      if (Prims.gte(SelfPrims.getVariable("ycor"), world.observer.getGlobal("earth-top"))) {
+        if (Prims.equality(Prims.random(3), 1)) {
+          SelfPrims.setVariable("breed", world.turtleManager.turtlesOfBreed("IR"));
+          SelfPrims.setVariable("heading", (-50 + Prims.random(100)));
+          SelfPrims.setVariable("color", 125);
+          SelfPrims.setVariable("size", 3);
+          SelfPrims.setVariable("shape", "default");
+        }
+        else {
+          SelfPrims.setVariable("heading", (100 + Prims.random(160)));
+        }
+      }
+    }, true);
+  };
+  var runIr = function() {
+    world.turtleManager.turtlesOfBreed("IR").ask(function() {
+      SelfPrims.fd(0.3);
+      if (Prims.gte(SelfPrims.getVariable("ycor"), world.topology.maxPycor)) {
+        SelfPrims.die();
+      }
+      if (Prims.lte(SelfPrims.getVariable("ycor"), world.observer.getGlobal("earth-top"))) {
+        SelfPrims.setVariable("breed", world.turtleManager.turtlesOfBreed("HEAT"));
+        SelfPrims.setVariable("heading", (95 + Prims.random(170)));
+        SelfPrims.setVariable("color", (13 + Prims.random(4)));
+        SelfPrims.setVariable("shape", "dot");
+      }
+      if (Prims.gt(SelfManager.self().breedHere("CO2").size(), 0)) {
+        SelfPrims.setVariable("heading", Prims.random(360));
+      }
+    }, true);
+  };
+  var addCo2 = function() {
+    var width = (world.observer.getGlobal("sky-top") - world.observer.getGlobal("earth-top"));
+    if (Prims.lt(world.observer.getGlobal("num-co2"), 150)) {
+      for (var _index_4458_4464 = 0, _repeatcount_4458_4464 = StrictMath.floor(25); _index_4458_4464 < _repeatcount_4458_4464; _index_4458_4464++){
+        world.turtleManager.createTurtles(1, "CO2").ask(function() {
+          var i = Prims.random(3);
+          if (Prims.equality(i, 0)) {
+            SelfPrims.setVariable("shape", "co2");
+          }
+          if (Prims.equality(i, 1)) {
+            SelfPrims.setVariable("shape", "molecule water");
+          }
+          if (Prims.equality(i, 2)) {
+            SelfPrims.setVariable("shape", "black ball");
+          }
+          SelfPrims.setVariable("color", 0);
+          SelfPrims.setVariable("size", 2);
+          SelfPrims.setXY((Prims.random((2 * world.topology.maxPxcor)) + world.topology.minPxcor), (world.observer.getGlobal("earth-top") + Prims.random(width)));
+          SelfPrims.setVariable("heading", Prims.random(360));
+        }, true);
+      }
+      world.observer.setGlobal("num-co2", world.turtleManager.turtlesOfBreed("CO2").size());
+    }
+  };
+  var removeCo2 = function() {
+    for (var _index_4923_4929 = 0, _repeatcount_4923_4929 = StrictMath.floor(25); _index_4923_4929 < _repeatcount_4923_4929; _index_4923_4929++){
+      if (Prims.gt(world.turtleManager.turtlesOfBreed("CO2").size(), 0)) {
+        ListPrims.oneOf(world.turtleManager.turtlesOfBreed("CO2")).ask(function() { SelfPrims.die(); }, true);
+      }
+    }
+    world.observer.setGlobal("num-co2", world.turtleManager.turtlesOfBreed("CO2").size());
+  };
+  var runCo2 = function() {
+    var d = 0;
+    world.turtleManager.turtlesOfBreed("CO2").ask(function() {
+      SelfPrims.setVariable("heading", ((SelfPrims.getVariable("heading") + Prims.random(3)) - 1));
+      SelfPrims.fd((0.01 * (5 + Prims.random(10))));
+      if (Prims.lte(SelfPrims.getVariable("ycor"), (world.observer.getGlobal("earth-top") + 1))) {
+        SelfPrims.setVariable("heading", (45 - Prims.random(90)));
+      }
+      if (Prims.gte(SelfPrims.getVariable("ycor"), world.observer.getGlobal("sky-top"))) {
+        SelfPrims.setVariable("heading", (135 + Prims.random(90)));
+      }
+    }, true);
+  };
+  return {
+    "ADD-CLOUD":addCloud,
+    "ADD-CO2":addCo2,
+    "ENCOUNTER-EARTH":encounterEarth,
+    "EXECUTE":execute,
+    "MAKE-CLOUD":makeCloud,
+    "MAKE-SUNRAY":makeSunray,
+    "REFLECT-SUNRAYS-FROM-CLOUDS":reflectSunraysFromClouds,
+    "REMOVE-CLOUD":removeCloud,
+    "REMOVE-CO2":removeCo2,
+    "RUN-CO2":runCo2,
+    "RUN-HEAT":runHeat,
+    "RUN-IR":runIr,
+    "RUN-SUNSHINE":runSunshine,
+    "SETUP":setup,
+    "SETUP-CLOUDS":setupClouds,
+    "SETUP-WORLD":setupWorld,
+    "STARTUP":startup,
+    "UPDATE-ALBEDO":updateAlbedo,
+    "addCloud":addCloud,
+    "addCo2":addCo2,
+    "encounterEarth":encounterEarth,
+    "execute":execute,
+    "makeCloud":makeCloud,
+    "makeSunray":makeSunray,
+    "reflectSunraysFromClouds":reflectSunraysFromClouds,
+    "removeCloud":removeCloud,
+    "removeCo2":removeCo2,
+    "runCo2":runCo2,
+    "runHeat":runHeat,
+    "runIr":runIr,
+    "runSunshine":runSunshine,
+    "setup":setup,
+    "setupClouds":setupClouds,
+    "setupWorld":setupWorld,
+    "startup":startup,
+    "updateAlbedo":updateAlbedo
+  };
+})();
+world.observer.setGlobal("albedo", 0.32);
+
+window.startup = procedures.startup;
+      session.startLoop()
+    </script>
+<script src='jquery-1.11.3.min.js' type='text/javascript'></script>
+<script src='shutterbug-0.5.4.js' type='text/javascript'></script>
+<script>
+  Shutterbug.enable('body');
+</script>
+  </body>
+</html>
