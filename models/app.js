@@ -53461,8 +53461,8 @@ defaultShapes = {
 
     SessionLite.prototype.startLoop = function() {
       this.widgetController.updateWidgets();
-      if (typeof startup !== "undefined" && startup !== null) {
-        Call(startup);
+      if (procedures.startup != null) {
+        Call(procedures.startup);
       }
       return requestAnimationFrame(this.eventLoop);
     };
