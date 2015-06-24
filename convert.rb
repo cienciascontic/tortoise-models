@@ -9,6 +9,7 @@ end
 DEBUG = false
 
 CUSTOM_COMMANDS = {
+  "myHideSpeedSlider" => "my-hide-speed-slider.js",
   "myImportDrawing" => "my-import-drawing.js",
   "myAcos" => "acos.js",
   "pause" => "pause.js",
