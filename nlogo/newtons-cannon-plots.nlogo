@@ -122,12 +122,12 @@ end
 
 to showresults
   let r eRadK * 2 * pi * (atan rx ry) / 360  ;; distance on surface of earth from launch
-  my-output-type round r
-  my-output-type "km   "
-  my-output-type launchHeading
-  my-output-type "�   "
-  my-output-type launchSpeed
-  my-output-print "km/s"
+  output-type round r
+  output-type "km   "
+  output-type launchHeading
+  output-type " deg "
+  output-type launchSpeed
+  output-print "km/s"
 end
 
 to plotresults
@@ -252,14 +252,6 @@ to drawScene  ;; Draws everything--updates the screen
   placeISS 
   placePuffs
   placeJunk
-end
-
-to my-output-type [str]
-  ;; output-type str
-end
-
-to my-output-print [str]
-  ;; output-print str
 end
 
 to pause [t]

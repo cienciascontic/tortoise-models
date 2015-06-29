@@ -54210,8 +54210,8 @@ defaultShapes = {
 
     SessionLite.prototype.startLoop = function() {
       this.widgetController.updateWidgets();
-      if (typeof startup !== "undefined" && startup !== null) {
-        Call(startup);
+      if (procedures.startup != null) {
+        Call(procedures.startup);
       }
       return requestAnimationFrame(this.eventLoop);
     };
@@ -54780,12 +54780,12 @@ var procedures = (function() {
   };
   var showresults = function() {
     var r = ((((world.observer.getGlobal("eradk") * 2) * 3.141592653589793) * NLMath.atan(world.observer.getGlobal("rx"), world.observer.getGlobal("ry"))) / 360);
-    Call(procedures.myOutputType, NLMath.round(r));
-    Call(procedures.myOutputType, "km   ");
-    Call(procedures.myOutputType, world.observer.getGlobal("launchheading"));
-    Call(procedures.myOutputType, "Â°   ");
-    Call(procedures.myOutputType, world.observer.getGlobal("launchspeed"));
-    Call(procedures.myOutputPrint, "km/s");
+    OutputPrims.type(NLMath.round(r));
+    OutputPrims.type("km   ");
+    OutputPrims.type(world.observer.getGlobal("launchheading"));
+    OutputPrims.type(" deg ");
+    OutputPrims.type(world.observer.getGlobal("launchspeed"));
+    OutputPrims.print("km/s");
   };
   var handlepuffs = function() {
     if (Prims.gt(world.observer.getGlobal("time"), world.observer.getGlobal("nextpufftime"))) {
@@ -54858,7 +54858,7 @@ var procedures = (function() {
   var explode = function() {
     var sz = 10;
     world.turtleManager.turtlesOfBreed("ISSS").ask(function() { SelfPrims.setVariable("shape", "explosion"); }, true);
-    for (var _index_10453_10459 = 0, _repeatcount_10453_10459 = StrictMath.floor(20); _index_10453_10459 < _repeatcount_10453_10459; _index_10453_10459++){
+    for (var _index_10435_10441 = 0, _repeatcount_10435_10441 = StrictMath.floor(20); _index_10435_10441 < _repeatcount_10435_10441; _index_10435_10441++){
       world.turtleManager.turtlesOfBreed("ISSS").ask(function() {
         if (Prims.gt(SelfPrims.getVariable("size"), 0)) {
           SelfPrims.setVariable("size", sz);
@@ -54935,9 +54935,6 @@ var procedures = (function() {
     Call(procedures.placepuffs);
     Call(procedures.placejunk);
   };
-  var myOutputType = function(string) {};
-  var myOutputPrint = function(string) {};
-  var myClearOutput = function() {};
   var pause = function(t) {};
   return {
     "DRAWSCENE":drawscene,
@@ -54946,9 +54943,6 @@ var procedures = (function() {
     "INITIALIZE":initialize,
     "LAUNCH":launch,
     "MAIN":main,
-    "MY-CLEAR-OUTPUT":myClearOutput,
-    "MY-OUTPUT-PRINT":myOutputPrint,
-    "MY-OUTPUT-TYPE":myOutputType,
     "PAUSE":pause,
     "PLACEARROWS":placearrows,
     "PLACEISS":placeiss,
@@ -54966,9 +54960,6 @@ var procedures = (function() {
     "initialize":initialize,
     "launch":launch,
     "main":main,
-    "myClearOutput":myClearOutput,
-    "myOutputPrint":myOutputPrint,
-    "myOutputType":myOutputType,
     "pause":pause,
     "placearrows":placearrows,
     "placeiss":placeiss,
@@ -54996,30 +54987,6 @@ procedures.pause = function(time) {
   return;
 };
 procedures.PAUSE = procedures.pause;
-
-procedures.myOutputType = function(str) {
-  var div = document.getElementById('output');
-  if (div) {
-    div.innerHTML += str;
-  }
-};
-procedures['MY-OUTPUT-TYPE'] = procedures.myOutputType;
-
-procedures.myOutputPrint = function(str) {
-  var div = document.getElementById('output');
-  if (div) {
-    div.innerHTML += str + "\n";
-  }
-};
-procedures['MY-OUTPUT-PRINT'] = procedures.myOutputPrint;
-
-procedures.myClearOutput = function() {
-  var div = document.getElementById('output');
-  if (div) {
-    div.innerHTML = "";
-  }
-};
-procedures['MY-CLEAR-OUTPUT'] = procedures.myClearOutput;
 window.startup = procedures.startup;
       session.startLoop()
     </script>

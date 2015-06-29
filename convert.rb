@@ -14,10 +14,7 @@ CUSTOM_COMMANDS = {
   "myAcos" => "acos.js",
   "pause" => "pause.js",
   "myApproximateRgb" => "approximate-rgb.js",
-  "myHsb" => "hsb.js",
-  "myOutputType" => "output-type.js",
-  "myOutputPrint" => "output-print.js",
-  "myClearOutput" => "clear-output.js"
+  "myHsb" => "hsb.js"
 }
 
 def inject_custom_commands(file)
