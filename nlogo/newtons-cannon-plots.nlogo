@@ -305,7 +305,7 @@ launchHeading
 30
 1
 1
-°
+deg
 HORIZONTAL
 
 SLIDER
