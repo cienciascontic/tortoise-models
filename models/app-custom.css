@@ -2,6 +2,16 @@ body {
   background-color: white;
 }
 
+/* Fix for cut off slider value boxes */
+.netlogo-widget.netlogo-slider .netlogo-value {
+  position: absolute;
+  right: 3px;
+}
+
+.netlogo-widget.netlogo-slider .netlogo-label {
+  font-size: 0.8em;
+}
+
 /* Custom CSS - hide the "Netlogo Code" button */
 .netlogo-code-tab {
   display: none;
