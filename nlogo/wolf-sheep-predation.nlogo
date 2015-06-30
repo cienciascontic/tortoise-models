@@ -47,7 +47,6 @@ to setup
   display-labels
 
   do-plot
-    watch-one-animal
 end
 
 to go
@@ -161,9 +160,7 @@ to display-labels
 end
 
 to watch-one-animal
-if watch-one = true
-  [watch one-of turtles]
-
+  watch one-of turtles
 end
 
 ; *** NetLogo 3.1.3 Model Copyright Notice ***
@@ -487,16 +484,22 @@ ticks
 1
 11
 
-SWITCH
-186
+BUTTON
+198
 445
-311
+287
 478
-watch-one
-watch-one
+watch one
+watch-one-animal
+NIL
 1
-1
--1000
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+0
 
 @#$#@#$#@
 ## WHAT IS IT?
