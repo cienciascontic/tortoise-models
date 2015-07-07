@@ -1,5 +1,5 @@
 #!/bin/env ruby
-
+FORCE = !ARGV.delete('--force').nil?
 if ARGV.empty?
   puts "Converting all nlogo files..."
 else
@@ -87,7 +87,7 @@ files.each do |full_filename|
   Dir.mkdir 'cache' rescue nil
 
   puts "Converting #{full_filename}..."
-  if !File.exists?(cache_file)
+  if FORCE || !File.exists?(cache_file)
     puts `#{curl_command(full_filename, cache_file)}`
   end
   `cp #{cache_file} #{file}`
